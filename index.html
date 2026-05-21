@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MKA — Architecture, Engineering, Planning</title>
+  <meta name="description" content="Majed Khan & Associates (MKA) is an architecture, engineering, and town planning firm founded in 1985 with 500+ completed projects across Pakistan.">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/animations.css">
+  
+  <style>
+    /* Home specific styles */
+    .hero-section {
+      position: relative;
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+    }
+    
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+    
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(26, 26, 24, 0.18) 30%, rgba(26, 26, 24, 0.18) 100%);
+      z-index: 1;
+    }
+    
+    .hero-content-bottom-left {
+      position: absolute;
+      bottom: 80px;
+      left: 40px;
+      z-index: 2;
+    }
+    
+    .hero-content-bottom-left .overline {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(245, 243, 238, 0.8);
+      margin-bottom: 8px;
+      display: block;
+    }
+    
+    .hero-content-bottom-left h1 {
+      color: #F5F3EE;
+      line-height: 1.0;
+      margin-bottom: 8px;
+    }
+    
+    .hero-content-bottom-left .sub-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(20px, 2.5vw, 32px);
+      color: rgba(245, 243, 238, 0.7);
+    }
+    
+    .hero-scroll-down {
+      position: absolute;
+      bottom: 80px;
+      right: 40px;
+      z-index: 2;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(245, 243, 238, 0.6);
+    }
+    
+    .hero-stat-block {
+      position: absolute;
+      top: 104px; /* below nav */
+      right: 40px;
+      z-index: 2;
+      text-align: right;
+    }
+    
+    .hero-stat-block p {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+      color: rgba(245, 243, 238, 0.7);
+      margin-bottom: 4px;
+    }
+
+    /* Make nav text white when on transparent hero background */
+    nav.main-nav:not(.scrolled) .nav-logo,
+    nav.main-nav:not(.scrolled) .nav-links a {
+      color: var(--color-white);
+    }
+    nav.main-nav:not(.scrolled) .mobile-menu-toggle span {
+      background-color: var(--color-white);
+    }
+
+    /* Selected Projects */
+    .selected-projects-section {
+      overflow: hidden;
+      background-color: var(--color-bg);
+      position: relative;
+    }
+    
+    .text-center {
+      text-align: center;
+    }
+
+    .projects-scroll-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15vh;
+      padding-bottom: 10vh;
+    }
+
+    .project-card {
+      display: block;
+      width: 40vw; /* Card width */
+      max-width: 600px;
+      position: relative;
+      will-change: transform;
+    }
+
+    .project-img-wrapper {
+      width: 100%;
+      aspect-ratio: 387 / 499;
+      overflow: hidden;
+      margin-bottom: var(--space-sm);
+    }
+
+    .project-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .project-card:hover .project-img-wrapper img {
+      transform: scale(1.05);
+    }
+
+    .project-info h3 {
+      font-size: clamp(24px, 3vw, 32px);
+      margin-bottom: 4px;
+    }
+
+    .project-info .project-category {
+      font-size: 14px;
+      color: var(--color-text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* Stats Bar */
+    .stats-bar {
+      border-top: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+      padding: 60px 0;
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      text-align: center;
+    }
+    
+    .stat-number {
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      font-size: clamp(48px, 6vw, 80px);
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-xs);
+      letter-spacing: -0.04em;
+    }
+    
+    .stat-label {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+    }
+
+    /* Our Process Stacking */
+    .process-section {
+      background-color: var(--color-bg);
+      position: relative;
+    }
+
+    .process-stack-container {
+      position: relative;
+      padding-bottom: 20vh; /* Extra space to scroll past the last card */
+    }
+
+    .process-card {
+      position: sticky;
+      top: 80px; /* Sticks slightly below the nav bar */
+      background-color: var(--color-bg);
+      height: calc(100vh - 80px); /* Fill the viewport minus header */
+      padding-top: var(--space-xl);
+      border-top: 1px solid var(--color-border);
+      /* Subtle shadow to help cards separate when stacked */
+      box-shadow: 0 -20px 40px rgba(0, 0, 0, 0.02);
+      overflow: hidden;
+    }
+
+    .process-card-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-lg);
+      height: 100%;
+    }
+
+    .process-number {
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      font-size: clamp(48px, 6vw, 96px); /* Reduced from 240px max */
+      line-height: 0.8;
+      letter-spacing: -0.05em;
+      color: var(--color-text-primary);
+    }
+
+    .process-content {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .process-content h3 {
+      font-size: clamp(32px, 4vw, 56px);
+      text-transform: uppercase;
+      margin-bottom: var(--space-xs);
+    }
+
+    .process-content p {
+      font-size: 18px;
+      margin-bottom: var(--space-md);
+      color: var(--color-text-secondary);
+    }
+
+    .process-img-wrapper {
+      flex-grow: 1;
+      width: 100%;
+      overflow: hidden;
+      /* Prevent image from overflowing card padding at bottom */
+      margin-bottom: var(--space-xl);
+      min-height: 200px;
+    }
+
+    .process-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Contact CTA */
+    .contact-cta {
+      text-align: center;
+    }
+    
+    .contact-cta h2 {
+      font-weight: 300;
+      font-size: clamp(48px, 7vw, 100px);
+      line-height: 1.05;
+      margin-bottom: var(--space-lg);
+    }
+    
+    .contact-cta .contact-meta {
+      margin-top: var(--space-lg);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 13px;
+      color: var(--color-text-secondary);
+    }
+
+    @media (max-width: 900px) {
+      .hero-stat-block {
+        display: none;
+      }
+      .process-card-inner {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+        gap: var(--space-md);
+      }
+      .process-card {
+        height: auto;
+        min-height: 80vh;
+        padding-top: var(--space-lg);
+      }
+      .process-number {
+        font-size: 56px;
+      }
+      .process-img-wrapper {
+        min-height: 300px;
+      }
+    }
+    
+    @media (max-width: 600px) {
+      .hero-content-bottom-left {
+        left: 20px;
+        bottom: 40px;
+      }
+      .hero-scroll-down {
+        right: 20px;
+        bottom: 40px;
+      }
+      .project-card {
+        width: 80vw;
+        max-width: none;
+      }
+      .stats-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Page Transition Overlay -->
+  <div class="page-transition-overlay"></div>
+
+  <!-- Navigation -->
+  <nav class="main-nav">
+    <div class="container nav-container">
+      <a href="/index.html" class="nav-logo"><img src="/assets/images/logo_MKA.png" alt="MKA Logo" style="height: 100px; width: auto; object-fit: contain; transform: rotate(-90deg);"></a>
+      
+      <div class="nav-links" style="gap: 24px;">
+        <a href="/index.html" class="active">HOME</a>
+        <a href="/about/index.html">STUDIO</a>
+        <a href="/projects/index.html">PROJECTS</a>
+        <a href="/journals/index.html">JOURNALS</a>
+        <a href="/gallery/index.html">GALLERY</a>
+      </div>
+
+      <a href="/contact/index.html" class="btn" style="padding: 10px 20px; font-size: 10px;">CONTACT US</a>
+
+      <div class="mobile-menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Overlay Menu -->
+  <div class="mobile-overlay">
+    <div class="nav-links">
+      <a href="/index.html">Home</a>
+      <a href="/projects/index.html">Projects</a>
+      <a href="/about/index.html">About</a>
+      <a href="/services/index.html">Services</a>
+      <a href="/gallery/index.html">Gallery</a>
+      <a href="/contact/index.html">Contact</a>
+    </div>
+  </div>
+
+  <main>
+    <!-- Section 1: Hero -->
+    <section class="hero-section">
+      <div class="hero-bg">
+        <img src="/assets/images/ricardo-gomez-angel-opFPVxMRpP8-unsplash.jpg" alt="MKA Architecture" fetchpriority="high">
+      </div>
+      <div class="hero-overlay"></div>
+      
+      <div class="hero-stat-block">
+        <p>500+ Projects</p>
+        <p>Since 1985</p>
+      </div>
+
+      <div class="hero-content-bottom-left">
+        <h1 class="display" style="text-transform: uppercase;">Built Different,<br>Built to Last</h1>
+      </div>
+
+      <div class="hero-scroll-down animate-bounce">
+        Scroll Down &darr;
+      </div>
+    </section>
+
+    <!-- Section 2: Selected Projects -->
+    <section class="section selected-projects-section">
+      <div class="container text-center gsap-reveal" style="margin-bottom: var(--space-xl);">
+        <span class="label all-caps" style="color: var(--color-text-primary); font-weight: 800;">&#x25CF; PROJECTS</span>
+        <h2 class="display" style="font-size: clamp(48px, 8vw, 120px); line-height: 0.9; margin-top: var(--space-sm); text-transform: uppercase;">Selected<br>Projects</h2>
+      </div>
+
+      <div class="projects-scroll-container">
+        <!-- Project 1 (Left) -->
+        <a href="/projects/kallar-kahar-park/index.html" class="project-card project-left">
+          <div class="project-img-wrapper">
+            <img src="https://picsum.photos/800/600?random=201" alt="Kallar Kahar Park">
+          </div>
+          <div class="project-info">
+            <h3>Kallar Kahar Park</h3>
+            <span class="project-category">Landscape</span>
+          </div>
+        </a>
+
+        <!-- Project 2 (Right) -->
+        <a href="/projects/index.html" class="project-card project-right">
+          <div class="project-img-wrapper">
+            <img src="https://picsum.photos/800/600?random=202" alt="Sozo Water Park">
+          </div>
+          <div class="project-info">
+            <h3>Sozo Water Park</h3>
+            <span class="project-category">Hospitality</span>
+          </div>
+        </a>
+
+        <!-- Project 3 (Left) -->
+        <a href="/projects/index.html" class="project-card project-left">
+          <div class="project-img-wrapper">
+            <img src="https://picsum.photos/800/600?random=203" alt="Masjid Ibrahim Complex">
+          </div>
+          <div class="project-info">
+            <h3>Masjid Ibrahim Complex</h3>
+            <span class="project-category">Religious</span>
+          </div>
+        </a>
+
+        <!-- Project 4 (Right) -->
+        <a href="/projects/index.html" class="project-card project-right">
+          <div class="project-img-wrapper">
+            <img src="https://picsum.photos/800/600?random=204" alt="Paediatric Block">
+          </div>
+          <div class="project-info">
+            <h3>Paediatric Block, Mayo Hospital</h3>
+            <span class="project-category">Health</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="container text-center" style="margin-top: var(--space-lg);">
+        <a href="/projects/index.html" class="btn">View All Projects &rarr;</a>
+      </div>
+    </section>
+
+    <!-- Section 3: Stats Bar -->
+    <section class="stats-bar">
+      <div class="container stats-grid">
+        <div class="stat-item">
+          <div class="stat-number gsap-count" data-target="500">0</div>
+          <div class="stat-label">Projects Completed</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number gsap-count" data-target="40">0</div>
+          <div class="stat-label">Years of Practice</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number gsap-count" data-target="1985">0</div>
+          <div class="stat-label">Year Founded</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: What We Do (Accordion) -->
+    <section class="what-we-do-section border-top">
+      <div class="container what-we-do-grid">
+        <!-- Left Column: Heading and static image/details -->
+        <div class="what-we-do-left gsap-reveal">
+          <span class="label">• WHAT WE DO</span>
+          <h2>Crafting Form<br>With Purpose</h2>
+          <img src="https://picsum.photos/600/600?random=15" alt="Crafting Form With Purpose" class="side-img">
+          <p>We'd love to hear from you. Whether you're starting a new project, seeking expert guidance, or simply exploring ideas,</p>
+          <a href="/contact/index.html" class="btn-start">Start Your Next Project</a>
+        </div>
+
+        <!-- Right Column: Accordion structure -->
+        <div class="what-we-do-right gsap-reveal">
+          <div class="accordion-container">
+            
+            <!-- Accordion Item 1 -->
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <div class="accordion-header-left">
+                  <span class="accordion-num">01/</span>
+                  <span class="accordion-title">Architectural Design</span>
+                </div>
+                <span class="accordion-icon">+</span>
+              </div>
+              <div class="accordion-content">
+                <p class="accordion-desc">We create bold, enduring designs that balance form and function, ensuring every project reflects elegance and timeless appeal.</p>
+                <a href="/contact/index.html" class="accordion-btn">Get Started</a>
+                <div class="accordion-images">
+                  <img src="https://picsum.photos/600/400?random=101" alt="Architectural Design 1">
+                  <img src="https://picsum.photos/600/400?random=102" alt="Architectural Design 2">
+                  <img src="https://picsum.photos/600/400?random=103" alt="Architectural Design 3">
+                </div>
+              </div>
+            </div>
+
+            <!-- Accordion Item 2 -->
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <div class="accordion-header-left">
+                  <span class="accordion-num">02/</span>
+                  <span class="accordion-title">Interior Spaces</span>
+                </div>
+                <span class="accordion-icon">+</span>
+              </div>
+              <div class="accordion-content">
+                <p class="accordion-desc">Our interiors are crafted to complement architecture—refined, functional, and tailored to enhance everyday living experiences.</p>
+                <a href="/contact/index.html" class="accordion-btn">Get Started</a>
+                <div class="accordion-images">
+                  <img src="https://picsum.photos/600/400?random=111" alt="Interior Spaces 1">
+                  <img src="https://picsum.photos/600/400?random=112" alt="Interior Spaces 2">
+                  <img src="https://picsum.photos/600/400?random=113" alt="Interior Spaces 3">
+                </div>
+              </div>
+            </div>
+
+            <!-- Accordion Item 3 -->
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <div class="accordion-header-left">
+                  <span class="accordion-num">03/</span>
+                  <span class="accordion-title">Urban Planning</span>
+                </div>
+                <span class="accordion-icon">+</span>
+              </div>
+              <div class="accordion-content">
+                <p class="accordion-desc">Master planning and community design that balances environmental sensitivity with smart infrastructure and long-term viability.</p>
+                <a href="/contact/index.html" class="accordion-btn">Get Started</a>
+                <div class="accordion-images">
+                  <img src="https://picsum.photos/600/400?random=121" alt="Urban Planning 1">
+                  <img src="https://picsum.photos/600/400?random=122" alt="Urban Planning 2">
+                  <img src="https://picsum.photos/600/400?random=123" alt="Urban Planning 3">
+                </div>
+              </div>
+            </div>
+
+            <!-- Accordion Item 4 -->
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <div class="accordion-header-left">
+                  <span class="accordion-num">04/</span>
+                  <span class="accordion-title">Sustainable Solutions</span>
+                </div>
+                <span class="accordion-icon">+</span>
+              </div>
+              <div class="accordion-content">
+                <p class="accordion-desc">Integrating energy efficiency, local materials, and green technologies to deliver high-performance buildings with minimal footprints.</p>
+                <a href="/contact/index.html" class="accordion-btn">Get Started</a>
+                <div class="accordion-images">
+                  <img src="https://picsum.photos/600/400?random=131" alt="Sustainable Solutions 1">
+                  <img src="https://picsum.photos/600/400?random=132" alt="Sustainable Solutions 2">
+                  <img src="https://picsum.photos/600/400?random=133" alt="Sustainable Solutions 3">
+                </div>
+              </div>
+            </div>
+
+            <!-- Accordion Item 5 -->
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <div class="accordion-header-left">
+                  <span class="accordion-num">05/</span>
+                  <span class="accordion-title">Project Delivery</span>
+                </div>
+                <span class="accordion-icon">+</span>
+              </div>
+              <div class="accordion-content">
+                <p class="accordion-desc">Comprehensive construction supervision and project management ensuring timelines, budget, and design intent are executed flawlessly.</p>
+                <a href="/contact/index.html" class="accordion-btn">Get Started</a>
+                <div class="accordion-images">
+                  <img src="https://picsum.photos/600/400?random=141" alt="Project Delivery 1">
+                  <img src="https://picsum.photos/600/400?random=142" alt="Project Delivery 2">
+                  <img src="https://picsum.photos/600/400?random=143" alt="Project Delivery 3">
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Gallery Carousel -->
+    <section class="gallery-carousel-section border-top">
+      <div class="container gsap-reveal">
+        <span class="label">• GALLERY</span>
+        <h2>The Archform<br>Collection</h2>
+        <a href="/gallery/index.html" class="btn-view-all">View All</a>
+      </div>
+
+      <div class="carousel-container gsap-reveal">
+        <div class="carousel-track">
+          <div class="carousel-slide"><img src="https://picsum.photos/800/1000?random=40" alt="Collection Item 1"></div>
+          <div class="carousel-slide"><img src="https://picsum.photos/800/1000?random=41" alt="Collection Item 2"></div>
+          <div class="carousel-slide"><img src="https://picsum.photos/800/1000?random=42" alt="Collection Item 3"></div>
+          <div class="carousel-slide"><img src="https://picsum.photos/800/1000?random=43" alt="Collection Item 4"></div>
+          <div class="carousel-slide"><img src="https://picsum.photos/800/1000?random=44" alt="Collection Item 5"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Premium CTA -->
+    <section class="premium-cta">
+      <div class="premium-cta-overlay"></div>
+      <div class="container gsap-reveal">
+        <span class="label">• CONTACT US</span>
+        <h2>Let's Build Together</h2>
+        <a href="/contact/index.html" class="btn-cta">Send us an Enquiry</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Premium Dark Footer -->
+  <footer class="premium-footer">
+    <div class="container">
+      <div class="footer-columns">
+        <div class="footer-col">
+          <span class="footer-col-title">• CONTACT</span>
+          <p>98-E Model Town, Lahore, Pakistan</p>
+          <a href="mailto:hello@archform.com">hello@archform.com</a>
+          <a href="tel:+924235881843">+92 42 35881843</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-title">• SITEMAP</span>
+          <a href="/index.html">Home</a>
+          <a href="/about/index.html">Studio</a>
+          <a href="/projects/index.html">Projects</a>
+          <a href="/gallery/index.html">Gallery</a>
+          <a href="/contact/index.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-title">• PROJECTS</span>
+          <a href="/projects/index.html">Etoile Grand</a>
+          <a href="/projects/index.html">Nebura Heights</a>
+          <a href="/projects/index.html">Solara Pavilion</a>
+          <a href="/projects/index.html">Elysian Spire</a>
+        </div>
+      </div>
+      <div class="footer-meta-row">
+        <div class="footer-socials">
+          <a href="#">INSTAGRAM</a>
+          <a href="#">TWITTER(X)</a>
+          <a href="#">LINKEDIN</a>
+        </div>
+        <div>© 2025 All rights reserved.</div>
+      </div>
+      <div class="footer-big-text">ARCHFORM</div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <script>
+    // Initialize Lenis for Smooth Scrolling
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      direction: 'vertical',
+      gestureDirection: 'vertical',
+      smooth: true,
+      mouseMultiplier: 1,
+      smoothTouch: false,
+      touchMultiplier: 2,
+      infinite: false,
+    });
+
+    lenis.on('scroll', ScrollTrigger.update);
+
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+
+    gsap.ticker.lagSmoothing(0, 0);
+
+    // Page specific GSAP animations
+    document.addEventListener('DOMContentLoaded', () => {
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Section Heading Reveals
+      const reveals = document.querySelectorAll('.gsap-reveal');
+      reveals.forEach(reveal => {
+        gsap.fromTo(reveal, 
+          { y: 40, opacity: 0 },
+          { 
+            y: 0, opacity: 1, duration: 0.8, ease: "power3.out",
+            scrollTrigger: {
+              trigger: reveal,
+              start: "top 80%",
+            }
+          }
+        );
+      });
+
+      // Project & Services Stagger Lists
+      const staggers = document.querySelectorAll('.gsap-stagger-list');
+      staggers.forEach(list => {
+        const children = list.children;
+        gsap.fromTo(children, 
+          { y: 30, opacity: 0 },
+          { 
+            y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: "power2.out",
+            scrollTrigger: {
+              trigger: list,
+              start: "top 80%",
+            }
+          }
+        );
+      });
+
+      // Selected Projects Alternating Scroll
+      // Left Projects start at 35vw and go left to 15vw
+      const leftProjects = document.querySelectorAll('.project-left');
+      leftProjects.forEach(proj => {
+        // If mobile, disable horizontal scroll or change values
+        let startX = window.innerWidth > 900 ? "35vw" : "10vw";
+        let endX = window.innerWidth > 900 ? "15vw" : "10vw";
+        
+        gsap.fromTo(proj, 
+          { x: startX },
+          { 
+            x: endX,
+            ease: "none",
+            scrollTrigger: {
+              trigger: proj,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 1
+            }
+          }
+        );
+      });
+
+      // Right Projects start at 65vw and go right to 85vw
+      const rightProjects = document.querySelectorAll('.project-right');
+      rightProjects.forEach(proj => {
+        let startX = window.innerWidth > 900 ? "65vw" : "10vw";
+        let endX = window.innerWidth > 900 ? "85vw" : "10vw";
+
+        gsap.fromTo(proj, 
+          { x: startX },
+          { 
+            x: endX,
+            ease: "none",
+            scrollTrigger: {
+              trigger: proj,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 1
+            }
+          }
+        );
+      });
+
+      // Stats Count Up
+      const statNumbers = document.querySelectorAll('.gsap-count');
+      statNumbers.forEach(stat => {
+        const target = parseInt(stat.getAttribute('data-target'));
+        const isPlus = stat.parentElement.querySelector('.stat-label').textContent.includes('Projects');
+        
+        gsap.to(stat, {
+          innerHTML: target,
+          duration: 2,
+          snap: { innerHTML: 1 },
+          ease: "power1.inOut",
+          scrollTrigger: {
+            trigger: stat,
+            start: "top 85%",
+          },
+          onUpdate: function() {
+            if (isPlus && this.progress() === 1) {
+              stat.innerHTML = target + '+';
+            }
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
+
+
+

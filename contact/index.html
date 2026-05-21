@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact MKA — Architecture, Engineering, Planning</title>
+  <meta name="description" content="Get in touch with Majed Khan & Associates.">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/animations.css">
+  
+  <style>
+    /* Contact specific styles */
+    .contact-container {
+      padding-top: calc(64px + var(--space-xxl));
+      padding-bottom: var(--space-xxl);
+      min-height: calc(100vh - 300px);
+      display: grid;
+      grid-template-columns: 55% 45%;
+    }
+    
+    .contact-left {
+      padding-right: var(--space-xl);
+      border-right: 1px solid var(--color-border);
+    }
+    
+    .contact-right {
+      padding-left: var(--space-xl);
+    }
+    
+    .contact-address-block {
+      margin-top: var(--space-xl);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 2;
+      color: var(--color-text-primary);
+    }
+    
+    .contact-address-block a {
+      display: block;
+      transition: color 0.3s ease;
+      position: relative;
+      width: fit-content;
+    }
+    
+    .contact-address-block a:hover {
+      color: var(--color-accent);
+      text-decoration: underline;
+    }
+    
+    /* Form Styles */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      margin-top: 40px; /* Align with left content */
+    }
+    
+    input, select, textarea {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--color-border);
+      padding: 12px 0;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--color-text-primary);
+      outline: none;
+      transition: border-color 0.3s ease;
+      border-radius: 0;
+    }
+    
+    input::placeholder, select::placeholder, textarea::placeholder {
+      color: var(--color-text-muted);
+    }
+    
+    input:focus, select:focus, textarea:focus {
+      border-bottom-color: var(--color-text-primary);
+    }
+    
+    select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6"><path fill="%231A1A18" d="M5 6L0 0h10L5 6z"/></svg>');
+      background-repeat: no-repeat;
+      background-position: right 0 center;
+      cursor: pointer;
+    }
+    
+    textarea {
+      resize: vertical;
+    }
+    
+    .form-submit {
+      margin-top: var(--space-md);
+      align-self: flex-start;
+    }
+
+    @media (max-width: 900px) {
+      .contact-container {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+      }
+      .contact-left {
+        padding-right: 0;
+        border-right: none;
+        border-bottom: 1px solid var(--color-border);
+        padding-bottom: var(--space-xl);
+      }
+      .contact-right {
+        padding-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Page Transition Overlay -->
+  <div class="page-transition-overlay"></div>
+
+  <!-- Navigation -->
+  <nav class="main-nav">
+    <div class="container nav-container">
+      <a href="/index.html" class="nav-logo"><img src="/assets/images/logo_MKA.png" alt="MKA Logo" style="height: 100px; width: auto; object-fit: contain; transform: rotate(-90deg);"></a>
+      
+      <div class="nav-links">
+        <a href="/index.html">Home</a>
+        <a href="/projects/index.html">Projects</a>
+        <a href="/about/index.html">About</a>
+        <a href="/services/index.html">Services</a>
+        <a href="/gallery/index.html">Gallery</a>
+        <a href="/contact/index.html" class="active">Contact</a>
+      </div>
+
+      <div class="mobile-menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Overlay Menu -->
+  <div class="mobile-overlay">
+    <div class="nav-links">
+      <a href="/index.html">Home</a>
+      <a href="/projects/index.html">Projects</a>
+      <a href="/about/index.html">About</a>
+      <a href="/services/index.html">Services</a>
+      <a href="/gallery/index.html">Gallery</a>
+      <a href="/contact/index.html">Contact</a>
+    </div>
+  </div>
+
+  <main>
+    <div class="container contact-container">
+      
+      <!-- Left Column -->
+      <div class="contact-left gsap-reveal">
+        <span class="label all-caps">Get in Touch</span>
+        <h1 class="display" style="font-size: clamp(36px, 5vw, 64px); margin-top: var(--space-xs);">Start a Conversation</h1>
+        
+        <div class="contact-address-block">
+          98-E Model Town<br>
+          Lahore, Pakistan<br><br>
+          <a href="mailto:mkaoffice@gmail.com">mkaoffice@gmail.com</a>
+          <a href="tel:+924235881843">+92 42 35881843</a>
+        </div>
+      </div>
+
+      <!-- Right Column -->
+      <div class="contact-right gsap-reveal" style="animation-delay: 0.2s;">
+        <form class="contact-form" action="#" method="POST">
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="email" name="email" placeholder="Your Email" required>
+          <select name="project_type" required>
+            <option value="" disabled selected>Select Project Type</option>
+            <option value="New Build">New Build</option>
+            <option value="Renovation">Renovation</option>
+            <option value="Commercial">Commercial</option>
+            <option value="Landscape">Landscape</option>
+            <option value="Planning">Planning</option>
+            <option value="Other">Other</option>
+          </select>
+          <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+          
+          <button type="submit" class="btn form-submit">Send an Enquiry &rarr;</button>
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Section: Premium CTA -->
+  <section class="premium-cta">
+    <div class="premium-cta-overlay"></div>
+    <div class="container gsap-reveal">
+      <span class="label">• CONTACT US</span>
+      <h2>Let's Build Together</h2>
+      <a href="/contact/index.html" class="btn-cta">Send us an Enquiry</a>
+    </div>
+  </section>
+
+  <!-- Premium Dark Footer -->
+  <footer class="premium-footer">
+    <div class="container">
+      <div class="footer-columns">
+        <div class="footer-col">
+          <span class="footer-col-title">• CONTACT</span>
+          <p>98-E Model Town, Lahore, Pakistan</p>
+          <a href="mailto:hello@archform.com">hello@archform.com</a>
+          <a href="tel:+924235881843">+92 42 35881843</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-title">• SITEMAP</span>
+          <a href="/index.html">Home</a>
+          <a href="/about/index.html">Studio</a>
+          <a href="/projects/index.html">Projects</a>
+          <a href="/gallery/index.html">Gallery</a>
+          <a href="/contact/index.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-title">• PROJECTS</span>
+          <a href="/projects/index.html">Etoile Grand</a>
+          <a href="/projects/index.html">Nebura Heights</a>
+          <a href="/projects/index.html">Solara Pavilion</a>
+          <a href="/projects/index.html">Elysian Spire</a>
+        </div>
+      </div>
+      <div class="footer-meta-row">
+        <div class="footer-socials">
+          <a href="#">INSTAGRAM</a>
+          <a href="#">TWITTER(X)</a>
+          <a href="#">LINKEDIN</a>
+        </div>
+        <div>© 2025 All rights reserved.</div>
+      </div>
+      <div class="footer-big-text">ARCHFORM</div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const reveals = document.querySelectorAll('.gsap-reveal');
+      gsap.fromTo(reveals, 
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, stagger: 0.2, ease: "power3.out", delay: 0.3 }
+      );
+    });
+  </script>
+</body>
+</html>
+
+
+

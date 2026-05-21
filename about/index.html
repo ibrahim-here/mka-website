@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About MKA — Architecture, Engineering, Planning</title>
+  <meta name="description" content="Majed Khan & Associates (MKA) is an architecture, engineering, and town planning firm founded in 1985 with 500+ completed projects across Pakistan.">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/animations.css">
+  
+  <style>
+    /* About specific styles */
+    .about-header {
+      padding-top: calc(64px + var(--space-xxl));
+      padding-bottom: var(--space-xxl);
+    }
+    
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      align-items: center;
+    }
+    
+    .story-image {
+      aspect-ratio: 3/4;
+      overflow: hidden;
+    }
+    
+    .story-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .partners-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      margin-top: var(--space-lg);
+    }
+    
+    .partner-card {
+      border-top: 1px solid var(--color-border);
+      padding-top: 32px;
+    }
+    
+    .partner-image {
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      margin-bottom: var(--space-md);
+    }
+    
+    .partner-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%);
+      transition: filter 0.6s ease;
+    }
+    
+    .partner-card:hover .partner-image img {
+      filter: grayscale(0%);
+    }
+    
+    .partner-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 32px;
+      margin-bottom: var(--space-xs);
+    }
+    
+    .partner-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-sm);
+    }
+    
+    .partner-bio {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 14px;
+      color: var(--color-text-primary);
+      line-height: 1.8;
+    }
+
+    .clients-list {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 16px;
+      color: var(--color-text-secondary);
+      line-height: 2;
+    }
+
+    .memberships-list p {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 16px;
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-xs);
+    }
+
+    @media (max-width: 900px) {
+      .story-grid, .partners-grid {
+        grid-template-columns: 1fr;
+      }
+      .story-image {
+        order: 2;
+      }
+      .story-text {
+        order: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Page Transition Overlay -->
+  <div class="page-transition-overlay"></div>
+
+  <!-- Navigation -->
+  <nav class="main-nav">
+    <div class="container nav-container">
+      <a href="/index.html" class="nav-logo"><img src="/assets/images/logo_MKA.png" alt="MKA Logo" style="height: 100px; width: auto; object-fit: contain; transform: rotate(-90deg);"></a>
+      
+      <div class="nav-links">
+        <a href="/index.html">Home</a>
+        <a href="/projects/index.html">Projects</a>
+        <a href="/about/index.html" class="active">About</a>
+        <a href="/services/index.html">Services</a>
+        <a href="/gallery/index.html">Gallery</a>
+        <a href="/contact/index.html">Contact</a>
+      </div>
+
+      <div class="mobile-menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Overlay Menu -->
+  <div class="mobile-overlay">
+    <div class="nav-links">
+      <a href="/index.html">Home</a>
+      <a href="/projects/index.html">Projects</a>
+      <a href="/about/index.html">About</a>
+      <a href="/services/index.html">Services</a>
+      <a href="/gallery/index.html">Gallery</a>
+      <a href="/contact/index.html">Contact</a>
+    </div>
+  </div>
+
+  <main>
+    <!-- Section 1: Firm Story -->
+    <section class="section about-header container">
+      <div class="story-grid">
+        <div class="story-image gsap-reveal">
+          <img src="https://picsum.photos/600/800?random=150" alt="MKA Studio">
+        </div>
+        <div class="story-text gsap-reveal">
+          <span class="label all-caps">Our Studio</span>
+          <h2>Forty Years of Building Pakistan</h2>
+          <p>Majed Khan & Associates was established in 1985 as a firm of consulting architects, engineers, town planners, and interior designers. Over four decades, the practice has completed more than 500 projects — from individual residences to 2,000-acre master plans.</p>
+          <p>The firm's work spans commercial, religious, hospitality, health, education, transport, and industrial sectors across Pakistan and beyond. MKA has provided professional services to the National Highway Authority, Pizza Hut Pakistan, Defence Housing Authority, Lahore American School, the Hashoo Group, and numerous public and private sector clients.</p>
+          <p>Based at 98-E Model Town, Lahore, and in practice since 1985, MKA operates under the leadership of Abdul Majed Khan and Muhammad Akbar, both long-standing members of Pakistan's professional architectural and engineering bodies.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Partners -->
+    <section class="section container border-top">
+      <div class="gsap-reveal">
+        <span class="label all-caps">Leadership</span>
+        <h2>Partners</h2>
+      </div>
+
+      <div class="partners-grid gsap-stagger-list">
+        <div class="partner-card">
+          <div class="partner-image">
+            <img src="https://picsum.photos/600/800?random=200" alt="Abdul Majed Khan">
+          </div>
+          <div class="partner-name">Abdul Majed Khan</div>
+          <div class="partner-title">Managing Partner and Principal<br>N.D. Architecture, 1980, NCA Lahore</div>
+          <div class="partner-bio">
+            <p>Member, Pakistan Council of Architects and Town Planners (PCATP) since 1980</p>
+            <p>Over 40 years of experience in architectural design, detailing, and construction across commercial, industrial, recreational, educational, religious, health, and residential projects. Worked with PEPAC Limited and Turner International Inc., New York on World Bank projects including polytechnic training centres across Pakistan and renovation of the American Embassy, Islamabad.</p>
+          </div>
+        </div>
+
+        <div class="partner-card">
+          <div class="partner-image">
+            <img src="https://picsum.photos/600/800?random=201" alt="Muhammad Akbar">
+          </div>
+          <div class="partner-name">Muhammad Akbar</div>
+          <div class="partner-title">Managing Partner<br>B.Sc. Civil Engineering, 1983, UET Lahore</div>
+          <div class="partner-bio">
+            <p>Member, Pakistan Engineering Council (PEC) and Pakistan Engineering Congress</p>
+            <p>Over 35 years of experience in construction management, structural design, and cost evaluation. Led construction of numerous commercial, industrial, and residential projects. Supervised major religious buildings (180,000 sq ft, Lahore), banks including MCB, Union Bank and Bank of Punjab, and industrial facilities across Pakistan.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Notable Clients -->
+    <section class="section container border-top">
+      <div class="gsap-reveal">
+        <span class="label all-caps">Who We've Worked With</span>
+        <div class="clients-list mt-4" style="margin-top: 24px;">
+          National Highway Authority &middot; Pizza Hut Pakistan &middot; Defence Housing Authority &middot; Lahore American School &middot; Hashoo Group (PC Hotels & Resorts) &middot; Sialkot Dry Port Trust &middot; Pakistan Engineering Congress &middot; Doon School Society of Pakistan &middot; Lahore Development Authority &middot; T.E.P.A. &middot; D.S. Textiles &middot; Sozo Water Park
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Memberships -->
+    <section class="section container border-top">
+      <div class="gsap-reveal">
+        <span class="label all-caps">Memberships</span>
+        <div class="memberships-list mt-4" style="margin-top: 24px;">
+          <p>PCATP — Pakistan Council of Architects and Town Planners</p>
+          <p>PEC — Pakistan Engineering Council</p>
+          <p>Pakistan Engineering Congress</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Section: Premium CTA -->
+  <section class="premium-cta">
+    <div class="premium-cta-overlay"></div>
+    <div class="container gsap-reveal">
+      <span class="label">• CONTACT US</span>
+      <h2>Let's Build Together</h2>
+      <a href="/contact/index.html" class="btn-cta">Send us an Enquiry</a>
+    </div>
+  </section>
+
+  <!-- Premium Dark Footer -->
+  <footer class="premium-footer">
+    <div class="container">
+      <div class="footer-columns">
+        <div class="footer-col">
+          <span class="footer-col-title">• CONTACT</span>
+          <p>98-E Model Town, Lahore, Pakistan</p>
+          <a href="mailto:hello@archform.com">hello@archform.com</a>
+          <a href="tel:+924235881843">+92 42 35881843</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-title">• SITEMAP</span>
+          <a href="/index.html">Home</a>
+          <a href="/about/index.html">Studio</a>
+          <a href="/projects/index.html">Projects</a>
+          <a href="/gallery/index.html">Gallery</a>
+          <a href="/contact/index.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-title">• PROJECTS</span>
+          <a href="/projects/index.html">Etoile Grand</a>
+          <a href="/projects/index.html">Nebura Heights</a>
+          <a href="/projects/index.html">Solara Pavilion</a>
+          <a href="/projects/index.html">Elysian Spire</a>
+        </div>
+      </div>
+      <div class="footer-meta-row">
+        <div class="footer-socials">
+          <a href="#">INSTAGRAM</a>
+          <a href="#">TWITTER(X)</a>
+          <a href="#">LINKEDIN</a>
+        </div>
+        <div>© 2025 All rights reserved.</div>
+      </div>
+      <div class="footer-big-text">ARCHFORM</div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      gsap.registerPlugin(ScrollTrigger);
+
+      const reveals = document.querySelectorAll('.gsap-reveal');
+      reveals.forEach(reveal => {
+        gsap.fromTo(reveal, 
+          { y: 40, opacity: 0 },
+          { 
+            y: 0, opacity: 1, duration: 0.8, ease: "power3.out",
+            scrollTrigger: {
+              trigger: reveal,
+              start: "top 80%",
+            }
+          }
+        );
+      });
+
+      const staggers = document.querySelectorAll('.gsap-stagger-list');
+      staggers.forEach(list => {
+        const children = list.children;
+        gsap.fromTo(children, 
+          { y: 30, opacity: 0 },
+          { 
+            y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: "power2.out",
+            scrollTrigger: {
+              trigger: list,
+              start: "top 80%",
+            }
+          }
+        );
+      });
+    });
+  </script>
+</body>
+</html>
+
+
+

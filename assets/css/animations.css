@@ -1,0 +1,87 @@
+/* CSS Animations & Transitions not handled by GSAP */
+
+/* Hero Scroll Bounce */
+@keyframes bounce-y {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+.animate-bounce {
+  animation: bounce-y 2s ease-in-out infinite;
+}
+
+/* Hover States (Project List & Grid) */
+.project-list-row {
+  transition: background-color 0.3s ease;
+}
+
+.project-list-row:hover {
+  background-color: #EDE9E2; /* Slightly darker than bg for hover */
+}
+
+.project-list-row .project-year {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-list-row:hover .project-year {
+  opacity: 1;
+}
+
+.project-list-row .project-name {
+  transition: transform 0.3s ease;
+}
+
+.project-list-row:hover .project-name {
+  transform: translateX(6px);
+}
+
+.project-card-grid {
+  overflow: hidden;
+  position: relative;
+}
+
+.project-card-grid img {
+  transition: transform 0.5s ease;
+}
+
+.project-card-grid:hover img {
+  transform: scale(1.03);
+}
+
+.project-card-grid .image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(26, 26, 24, 0.06);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.project-card-grid:hover .image-overlay {
+  opacity: 1;
+}
+
+/* Services Accordion */
+.service-row .service-name {
+  transition: transform 0.3s ease;
+}
+
+.service-row:hover .service-name {
+  transform: translateX(8px);
+}
+
+.service-row .toggle-icon {
+  transition: transform 0.3s ease;
+}
+
+.service-row.open .toggle-icon {
+  transform: rotate(45deg);
+}
