@@ -114,9 +114,10 @@
 
     /* Selected Projects */
     .selected-projects-section {
-      overflow: hidden;
+      overflow: clip;
       background-color: var(--color-bg);
       position: relative;
+      padding-top: 0;
     }
     
     .text-center {
@@ -127,13 +128,15 @@
       display: flex;
       flex-direction: column;
       gap: 15vh;
-      padding-bottom: 10vh;
+      padding-bottom: 20vh;
+      position: relative;
+      z-index: 5;
     }
 
     .project-card {
       display: block;
-      width: 40vw; /* Card width */
-      max-width: 600px;
+      width: 28vw; /* Reduced card width to leave space in the center */
+      max-width: 500px;
       position: relative;
       will-change: transform;
     }
@@ -396,13 +399,15 @@
     </section>
 
     <!-- Section 2: Selected Projects -->
-    <section class="section selected-projects-section">
-      <div class="container text-center gsap-reveal" style="margin-bottom: var(--space-xl);">
-        <span class="label all-caps" style="color: var(--color-text-primary); font-weight: 800;">&#x25CF; PROJECTS</span>
-        <h2 class="display" style="font-size: clamp(48px, 8vw, 120px); line-height: 0.9; margin-top: var(--space-sm); text-transform: uppercase;">Selected<br>Projects</h2>
+    <section class="section selected-projects-section" style="padding-top: 0;">
+      <div class="sticky-projects-heading" style="position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10; pointer-events: none;">
+        <div class="container text-center gsap-reveal">
+          <span class="label all-caps" style="color: var(--color-text-primary); font-weight: 800;">&#x25CF; PROJECTS</span>
+          <h2 class="display" style="font-size: clamp(48px, 8vw, 120px); line-height: 0.9; margin-top: var(--space-sm); text-transform: uppercase;">Selected<br>Projects</h2>
+        </div>
       </div>
 
-      <div class="projects-scroll-container">
+      <div class="projects-scroll-container" style="margin-top: -100vh; padding-top: 25vh;">
         <!-- Project 1 (Left) -->
         <a href="/projects/kallar-kahar-park/index.html" class="project-card project-left">
           <div class="project-img-wrapper">
@@ -723,12 +728,12 @@
       });
 
       // Selected Projects Alternating Scroll
-      // Left Projects start at 35vw and go left to 15vw
+      // Left Projects stay on the far left (0vw to 5vw)
       const leftProjects = document.querySelectorAll('.project-left');
       leftProjects.forEach(proj => {
         // If mobile, disable horizontal scroll or change values
-        let startX = window.innerWidth > 900 ? "35vw" : "10vw";
-        let endX = window.innerWidth > 900 ? "15vw" : "10vw";
+        let startX = window.innerWidth > 900 ? "0vw" : "5vw";
+        let endX = window.innerWidth > 900 ? "5vw" : "0vw";
         
         gsap.fromTo(proj, 
           { x: startX },
@@ -745,11 +750,11 @@
         );
       });
 
-      // Right Projects start at 65vw and go right to 85vw
+      // Right Projects stay on the far right (65vw to 70vw)
       const rightProjects = document.querySelectorAll('.project-right');
       rightProjects.forEach(proj => {
-        let startX = window.innerWidth > 900 ? "65vw" : "10vw";
-        let endX = window.innerWidth > 900 ? "85vw" : "10vw";
+        let startX = window.innerWidth > 900 ? "70vw" : "5vw";
+        let endX = window.innerWidth > 900 ? "65vw" : "10vw";
 
         gsap.fromTo(proj, 
           { x: startX },
