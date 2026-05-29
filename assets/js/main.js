@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }});
   }
 
+  initHoverTextAnimation();
+
   // Global Page Load Stagger (if main content wrapper exists)
   const mainContent = document.querySelector('main');
   if (mainContent && window.gsap) {
@@ -37,18 +39,23 @@ function initMobileNav() {
   
   if (!toggle || !overlay) return;
 
-  toggle.addEventListener('click', () => {
+  function toggleMenu() {
     overlay.classList.toggle('active');
+    toggle.classList.toggle('active');
     
     if (overlay.classList.contains('active')) {
       // Animate links in
       const links = overlay.querySelectorAll('.nav-links a');
-      gsap.fromTo(links, 
-        { y: 30, opacity: 0 }, 
-        { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: "power3.out" }
-      );
+      if (window.gsap) {
+        gsap.fromTo(links, 
+          { x: -30, opacity: 0 }, 
+          { x: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: "power3.out" }
+        );
+      }
     }
-  });
+  }
+
+  toggle.addEventListener('click', toggleMenu);
 }
 
 function initPageTransitions() {
@@ -91,13 +98,51 @@ function initPageTransitions() {
 
 function initScrollNav() {
   const nav = document.querySelector('.main-nav');
+  const links = document.querySelector('.nav-links');
+  const scrollMenuBtn = document.getElementById('scrollMenuBtn');
+  const overlay = document.querySelector('.mobile-overlay');
+  
   if (!nav) return;
 
+  if (scrollMenuBtn && overlay) {
+    scrollMenuBtn.addEventListener('click', () => {
+      const toggleBtn = document.querySelector('.mobile-menu-toggle');
+      if (toggleBtn) {
+        toggleBtn.click();
+      } else {
+        overlay.classList.add('active');
+      }
+    });
+  }
+
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 80) {
-      nav.classList.add('scrolled');
+    const heroSection = document.querySelector('.hero-section');
+    const threshold = heroSection ? heroSection.offsetHeight - 10 : 50; // Slight offset so it happens right when it touches
+
+    if (window.scrollY >= threshold) {
+      if (links) links.classList.add('hidden-on-scroll');
+      if (scrollMenuBtn) scrollMenuBtn.classList.add('visible');
+      // Logo should disappear too
+      const logo = nav.querySelector('.nav-logo');
+      if(logo) {
+        logo.style.transition = "opacity 0.4s ease";
+        logo.style.opacity = "0";
+        logo.style.pointerEvents = "none";
+      }
+      if (heroSection) {
+        nav.classList.remove('hero-inverted');
+      }
     } else {
-      nav.classList.remove('scrolled');
+      if (links) links.classList.remove('hidden-on-scroll');
+      if (scrollMenuBtn) scrollMenuBtn.classList.remove('visible');
+      const logo = nav.querySelector('.nav-logo');
+      if(logo) {
+        logo.style.opacity = "1";
+        logo.style.pointerEvents = "auto";
+      }
+      if (heroSection) {
+        nav.classList.add('hero-inverted');
+      }
     }
   });
 }
@@ -213,4 +258,28 @@ function initCarousel() {
   });
 
   updateCarousel();
+}
+
+function initHoverTextAnimation() {
+  const elements = document.querySelectorAll('[class*="btn"], .nav-links a');
+  elements.forEach(el => {
+    // Skip if already wrapped
+    if (el.querySelector('.hover-text-wrapper')) return;
+    
+    // Find the text node (ignore ::before pseudo elements in HTML, as they are CSS)
+    let textNode = null;
+    el.childNodes.forEach(node => {
+      if (node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== '') {
+        textNode = node;
+      }
+    });
+    
+    if (textNode) {
+      const text = textNode.textContent.trim();
+      const wrapper = document.createElement('span');
+      wrapper.className = 'hover-text-wrapper';
+      wrapper.innerHTML = `<span class="hover-text-visible">${text}</span><span class="hover-text-hidden">${text}</span>`;
+      el.replaceChild(wrapper, textNode);
+    }
+  });
 }

@@ -61,9 +61,10 @@
     }
     
     .hero-content-bottom-left h1 {
-      color: #F5F3EE;
+      color: #FFFFFF;
       line-height: 1.0;
       margin-bottom: 8px;
+      margin-left: -19px;
     }
     
     .hero-content-bottom-left .sub-tagline {
@@ -342,19 +343,22 @@
   <div class="page-transition-overlay"></div>
 
   <!-- Navigation -->
-  <nav class="main-nav">
+  <nav class="main-nav hero-inverted">
     <div class="container nav-container">
       <a href="/index.html" class="nav-logo"><img src="/assets/images/logo_MKA.png" alt="MKA Logo" style="height: 100px; width: auto; object-fit: contain; transform: rotate(-90deg);"></a>
       
-      <div class="nav-links" style="gap: 24px;">
+      <div class="nav-links">
         <a href="/index.html" class="active">HOME</a>
         <a href="/about/index.html">STUDIO</a>
         <a href="/projects/index.html">PROJECTS</a>
-        <a href="/journals/index.html">JOURNALS</a>
+        <a href="/services/index.html">SERVICES</a>
         <a href="/gallery/index.html">GALLERY</a>
       </div>
 
-      <a href="/contact/index.html" class="btn" style="padding: 10px 20px; font-size: 10px;">CONTACT US</a>
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <button class="scroll-menu-btn" id="scrollMenuBtn">MENU</button>
+        <a href="/contact/index.html" class="btn" style="padding: 10px 20px; font-size: 10px;">CONTACT US</a>
+      </div>
 
       <div class="mobile-menu-toggle">
         <span></span>
@@ -384,30 +388,60 @@
       </div>
       <div class="hero-overlay"></div>
       
-      <div class="hero-stat-block">
-        <p>500+ Projects</p>
-        <p>Since 1985</p>
-      </div>
+      <div class="container" style="position: absolute; top: 0; left: 0; right: 0; height: 100%; z-index: 2; pointer-events: none; margin: 0 auto; display: flex; flex-direction: column; justify-content: space-between; padding-top: 104px; padding-bottom: 80px;">
+        <div style="display: flex; justify-content: flex-end; width: 100%; pointer-events: auto;">
+          <!-- Stats removed as requested -->
+        </div>
 
-      <div class="hero-content-bottom-left">
-        <h1 class="display" style="text-transform: uppercase;">Built Different,<br>Built to Last</h1>
-      </div>
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; width: 100%; pointer-events: auto;">
+          <div class="hero-content-bottom-left" style="position: static; bottom: auto; left: auto;">
+            <h1 class="display" style="text-transform: uppercase;">Built Different,<br>Built to Last</h1>
+          </div>
 
-      <div class="hero-scroll-down animate-bounce">
-        Scroll Down &darr;
+          <div class="hero-scroll-down animate-bounce" style="position: static; bottom: auto; right: auto;">
+            Scroll Down &darr;
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 1.5: CEO Message -->
+    <section class="section border-bottom" style="background-color: var(--color-white);" id="ceoSection">
+      <div class="container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;">
+        <div>
+          <span class="label all-caps" style="color: var(--color-text-primary); font-weight: 800; display: block; margin-bottom: 20px;">&#x25CF; MESSAGE FROM CEO</span>
+          <h2 style="line-height: 0.95; margin-bottom: 40px; text-transform: uppercase;">DESIGN YOU<br>CAN FEEL</h2>
+          <img src="https://picsum.photos/600/700?random=500" alt="CEO Image" style="width: 100%; max-width: 450px;">
+        </div>
+        <div style="display: flex; flex-direction: column; justify-content: center; height: 100%; padding-top: 100px;">
+          <h3 style="font-weight: 500; line-height: 1.1; margin-bottom: 30px; letter-spacing: -0.02em;">
+            keep exploring.<br>work together.<br>grow brilliance.<br>
+            <span style="font-weight: 800;">We shape tomorrow.</span>
+          </h3>
+          <p style="font-size: 14px; color: var(--color-text-primary); max-width: 500px; margin-bottom: 20px;">
+            For over four decades, our vision has been rooted in the belief that great architecture shapes the way we live, work, and connect. At MKA, we don't just build structures; we craft enduring environments that stand as a testament to our commitment to quality, innovation, and our clients' dreams.
+          </p>
+          <p style="font-size: 14px; color: var(--color-text-primary); max-width: 500px; margin-bottom: 40px;">
+            As we look to the future, we remain dedicated to pushing the boundaries of design while honoring our deep-rooted principles of integrity and collaboration. I invite you to join us on this journey of creating spaces that truly inspire and leave a lasting legacy.
+            <br><br><b>— Abdul Majed Khan, CEO</b>
+          </p>
+          <div>
+            <a href="/about/index.html" class="btn">EXPLORE MORE ABOUT US</a>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- Section 2: Selected Projects -->
-    <section class="section selected-projects-section" style="padding-top: 0;">
-      <div class="sticky-projects-heading" style="position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10; pointer-events: none;">
+    <section class="section selected-projects-section" style="padding-top: 0; padding-bottom: 0px;">
+      <div class="sticky-projects-heading" style="position: sticky; top: 10vh; height: 80vh; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10; pointer-events: none;">
         <div class="container text-center gsap-reveal">
           <span class="label all-caps" style="color: var(--color-text-primary); font-weight: 800;">&#x25CF; PROJECTS</span>
-          <h2 class="display" style="font-size: clamp(48px, 8vw, 120px); line-height: 0.9; margin-top: var(--space-sm); text-transform: uppercase;">Selected<br>Projects</h2>
+          <h2 class="display" style="line-height: 0.9; margin-top: var(--space-sm); text-transform: uppercase;">Selected<br>Projects</h2>
         </div>
       </div>
 
-      <div class="projects-scroll-container" style="margin-top: -100vh; padding-top: 25vh;">
+      <div class="projects-scroll-container" style="margin-top: -100vh; padding-top: 25vh; padding-bottom: 0px;">
         <!-- Project 1 (Left) -->
         <a href="/projects/kallar-kahar-park/index.html" class="project-card project-left">
           <div class="project-img-wrapper">
@@ -451,10 +485,10 @@
             <span class="project-category">Health</span>
           </div>
         </a>
-      </div>
-
-      <div class="container text-center" style="margin-top: var(--space-lg);">
-        <a href="/projects/index.html" class="btn">View All Projects &rarr;</a>
+      <!-- CTA Button moved inside the scroll container -->
+        <div class="container text-center" style="margin-top: var(--space-xl); margin-bottom: var(--space-xl); position: relative; z-index: 20;">
+          <a href="/projects/index.html" class="btn" style="pointer-events: auto;">View All Projects &rarr;</a>
+        </div>
       </div>
     </section>
 
@@ -621,7 +655,7 @@
       <div class="premium-cta-overlay"></div>
       <div class="container gsap-reveal">
         <span class="label">• CONTACT US</span>
-        <h2>Let's Build Together</h2>
+        <h2>Let's Build<br>Together</h2>
         <a href="/contact/index.html" class="btn-cta">Send us an Enquiry</a>
       </div>
     </section>
@@ -727,13 +761,11 @@
         );
       });
 
-      // Selected Projects Alternating Scroll
-      // Left Projects stay on the far left (0vw to 5vw)
+      // Selected Projects Alternating Scroll - Moving away from center
       const leftProjects = document.querySelectorAll('.project-left');
       leftProjects.forEach(proj => {
-        // If mobile, disable horizontal scroll or change values
-        let startX = window.innerWidth > 900 ? "0vw" : "5vw";
-        let endX = window.innerWidth > 900 ? "5vw" : "0vw";
+        let startX = window.innerWidth > 900 ? "15vw" : "5vw";
+        let endX = window.innerWidth > 900 ? "-5vw" : "-10vw";
         
         gsap.fromTo(proj, 
           { x: startX },
@@ -750,11 +782,10 @@
         );
       });
 
-      // Right Projects stay on the far right (65vw to 70vw)
       const rightProjects = document.querySelectorAll('.project-right');
       rightProjects.forEach(proj => {
-        let startX = window.innerWidth > 900 ? "70vw" : "5vw";
-        let endX = window.innerWidth > 900 ? "65vw" : "10vw";
+        let startX = window.innerWidth > 900 ? "55vw" : "15vw";
+        let endX = window.innerWidth > 900 ? "75vw" : "30vw";
 
         gsap.fromTo(proj, 
           { x: startX },
@@ -797,6 +828,9 @@
   </script>
 </body>
 </html>
+
+
+
 
 
 
