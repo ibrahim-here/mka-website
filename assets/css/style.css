@@ -517,9 +517,14 @@ footer {
     margin-top: 0 !important;
     padding-top: 0 !important;
     gap: var(--space-xl) !important;
+    align-items: center !important;
   }
   .footer-grid {
     grid-template-columns: 1fr;
+  }
+  #ceoSection .container {
+    grid-template-columns: 1fr !important;
+    gap: 30px !important;
   }
 }
 
