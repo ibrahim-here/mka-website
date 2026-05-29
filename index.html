@@ -764,42 +764,48 @@
       // Selected Projects Alternating Scroll - Moving away from center
       const leftProjects = document.querySelectorAll('.project-left');
       leftProjects.forEach(proj => {
-        let startX = window.innerWidth > 900 ? "15vw" : "5vw";
-        let endX = window.innerWidth > 900 ? "-5vw" : "-10vw";
-        
-        gsap.fromTo(proj, 
-          { x: startX },
-          { 
-            x: endX,
-            ease: "none",
-            scrollTrigger: {
-              trigger: proj,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 1
+        if (window.innerWidth <= 600) {
+          gsap.fromTo(proj, 
+            { x: -50, opacity: 0 },
+            { 
+              x: 0, opacity: 1, duration: 1, ease: "power2.out",
+              scrollTrigger: { trigger: proj, start: "top 85%" }
             }
-          }
-        );
+          );
+        } else {
+          let startX = window.innerWidth > 900 ? "15vw" : "5vw";
+          let endX = window.innerWidth > 900 ? "-5vw" : "-10vw";
+          gsap.fromTo(proj, 
+            { x: startX },
+            { 
+              x: endX, ease: "none",
+              scrollTrigger: { trigger: proj, start: "top bottom", end: "bottom top", scrub: 1 }
+            }
+          );
+        }
       });
 
       const rightProjects = document.querySelectorAll('.project-right');
       rightProjects.forEach(proj => {
-        let startX = window.innerWidth > 900 ? "55vw" : "15vw";
-        let endX = window.innerWidth > 900 ? "75vw" : "30vw";
-
-        gsap.fromTo(proj, 
-          { x: startX },
-          { 
-            x: endX,
-            ease: "none",
-            scrollTrigger: {
-              trigger: proj,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 1
+        if (window.innerWidth <= 600) {
+          gsap.fromTo(proj, 
+            { x: 50, opacity: 0 },
+            { 
+              x: 0, opacity: 1, duration: 1, ease: "power2.out",
+              scrollTrigger: { trigger: proj, start: "top 85%" }
             }
-          }
-        );
+          );
+        } else {
+          let startX = window.innerWidth > 900 ? "55vw" : "15vw";
+          let endX = window.innerWidth > 900 ? "75vw" : "30vw";
+          gsap.fromTo(proj, 
+            { x: startX },
+            { 
+              x: endX, ease: "none",
+              scrollTrigger: { trigger: proj, start: "top bottom", end: "bottom top", scrub: 1 }
+            }
+          );
+        }
       });
 
       // Stats Count Up
