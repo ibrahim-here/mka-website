@@ -141,6 +141,14 @@
       position: relative;
       will-change: transform;
     }
+    
+    .project-left {
+      align-self: flex-start;
+    }
+    
+    .project-right {
+      align-self: flex-end;
+    }
 
     .project-img-wrapper {
       width: 100%;
@@ -441,7 +449,7 @@
         </div>
       </div>
 
-      <div class="projects-scroll-container" style="margin-top: -100vh; padding-top: 25vh; padding-bottom: 0px;">
+      <div class="container projects-scroll-container" style="margin-top: -100vh; padding-top: 25vh; padding-bottom: 0px;">
         <!-- Project 1 (Left) -->
         <a href="/projects/kallar-kahar-park/index.html" class="project-card project-left">
           <div class="project-img-wrapper">
@@ -773,12 +781,11 @@
             }
           );
         } else {
-          let startX = window.innerWidth > 900 ? "15vw" : "5vw";
-          let endX = window.innerWidth > 900 ? "-5vw" : "-10vw";
+          let startX = window.innerWidth > 900 ? window.innerWidth * 0.15 : window.innerWidth * 0.05;
           gsap.fromTo(proj, 
             { x: startX },
             { 
-              x: endX, ease: "none",
+              x: 0, ease: "none",
               scrollTrigger: { trigger: proj, start: "top bottom", end: "bottom top", scrub: 1 }
             }
           );
@@ -796,12 +803,11 @@
             }
           );
         } else {
-          let startX = window.innerWidth > 900 ? "55vw" : "15vw";
-          let endX = window.innerWidth > 900 ? "75vw" : "30vw";
+          let startX = window.innerWidth > 900 ? window.innerWidth * -0.15 : window.innerWidth * -0.05;
           gsap.fromTo(proj, 
             { x: startX },
             { 
-              x: endX, ease: "none",
+              x: 0, ease: "none",
               scrollTrigger: { trigger: proj, start: "top bottom", end: "bottom top", scrub: 1 }
             }
           );
