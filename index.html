@@ -149,6 +149,15 @@
     .project-right {
       align-self: flex-end;
     }
+    
+    .project-left:not(:first-child), .project-right:not(:first-child) {
+      margin-top: -10vw;
+    }
+    @media (max-width: 900px) {
+      .project-left:not(:first-child), .project-right:not(:first-child) {
+        margin-top: 0;
+      }
+    }
 
     .project-img-wrapper {
       width: 100%;
@@ -357,7 +366,7 @@
       
       <div class="nav-links">
         <a href="/index.html" class="active">HOME</a>
-        <a href="/about/index.html">STUDIO</a>
+        <a href="/about/index.html">ABOUT</a>
         <a href="/projects/index.html">PROJECTS</a>
         <a href="/services/index.html">SERVICES</a>
         <a href="/gallery/index.html">GALLERY</a>
@@ -441,8 +450,8 @@
     </section>
 
     <!-- Section 2: Selected Projects -->
-    <section class="section selected-projects-section" style="padding-top: 0; padding-bottom: 0px;">
-      <div class="sticky-projects-heading" style="position: sticky; top: 25vh; height: calc(220px + var(--space-xl)); display: flex; flex-direction: column; align-items: center; justify-content: flex-start; z-index: 10; pointer-events: none;">
+    <section class="section selected-projects-section" style="padding-top: 80px; padding-bottom: 0px;">
+      <div class="sticky-projects-heading" style="position: sticky; top: 25vh; height: calc(240px + var(--space-xl)); display: flex; flex-direction: column; align-items: center; justify-content: flex-start; z-index: 10; pointer-events: none;">
         <div class="container text-center gsap-reveal">
           <span class="label all-caps" style="color: var(--color-text-primary); font-weight: 800;">&#x25CF; PROJECTS</span>
           <h2 class="display" style="line-height: 0.9; margin-top: var(--space-sm); text-transform: uppercase;">Selected<br>Projects</h2>
@@ -647,7 +656,7 @@
         <a href="/gallery/index.html" class="btn-view-all">View All</a>
       </div>
 
-      <div class="carousel-container gsap-reveal">
+      <div class="container carousel-container gsap-reveal">
         <div class="carousel-track">
           <div class="carousel-slide"><img src="https://picsum.photos/800/1000?random=40" alt="Collection Item 1"></div>
           <div class="carousel-slide"><img src="https://picsum.photos/800/1000?random=41" alt="Collection Item 2"></div>
@@ -840,6 +849,8 @@
   </script>
 </body>
 </html>
+
+
 
 
 
