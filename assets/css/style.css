@@ -537,7 +537,7 @@ footer {
 
 .what-we-do-grid {
   display: grid;
-  grid-template-columns: 40% 60%;
+  grid-template-columns: 4fr 6fr;
   gap: var(--space-xl);
 }
 
