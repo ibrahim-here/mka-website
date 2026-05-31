@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chand Bagh School — MKA</title>
+  <meta name="description" content="A 1,500-acre landscape project by Majed Khan & Associates.">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/animations.css">
+  
+  <style>
+    /* Single Project specific styles */
+    .project-hero {
+      width: 100%;
+      height: 90vh;
+      overflow: hidden;
+      margin-top: 0; /* offset for nav removed so nav overlaps */
+      position: relative;
+    }
+    
+    .project-hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 40%;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+      pointer-events: none;
+    }
+    
+    .project-hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .project-identity {
+      display: grid;
+      grid-template-columns: 6fr 4fr;
+      padding-top: var(--space-xxl);
+      padding-bottom: var(--space-xxl);
+      gap: var(--space-xl);
+    }
+    
+    .project-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(40px, 6vw, 80px);
+      line-height: 1.1;
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-md);
+    }
+    
+    .project-desc {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--color-text-primary);
+    }
+    
+    .meta-table {
+      width: 100%;
+    }
+    
+    .meta-badge {
+      margin-bottom: var(--space-md);
+      display: inline-block;
+    }
+    
+    .meta-row {
+      display: flex;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+    
+    .meta-label {
+      flex: 1;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 12px;
+      color: var(--color-text-secondary);
+    }
+    
+    .meta-value {
+      flex: 2;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      color: var(--color-text-primary);
+    }
+    
+    /* Project Gallery */
+    .project-gallery {
+      column-count: 3;
+      column-gap: 8px;
+      margin-bottom: var(--space-xxl);
+    }
+    
+    .project-gallery img {
+      width: 100%;
+      margin-bottom: 8px;
+      break-inside: avoid;
+    }
+    
+    /* Prev / Next Nav */
+    .project-nav {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid var(--color-border);
+    }
+    
+    .nav-half {
+      padding: var(--space-xl) 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      transition: background-color 0.3s ease;
+      position: relative;
+    }
+    
+    .nav-prev {
+      border-right: 1px solid var(--color-border);
+      text-align: left;
+    }
+    
+    .nav-next {
+      text-align: right;
+    }
+    
+    .nav-half:hover {
+      background-color: #EDE9E2;
+    }
+    
+    .nav-arrow {
+      color: var(--color-accent);
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 24px;
+      margin-bottom: var(--space-xs);
+    }
+    
+    .nav-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 24px;
+      color: var(--color-text-primary);
+      margin-bottom: 4px;
+    }
+    
+    .nav-category {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+      color: var(--color-text-secondary);
+    }
+
+    @media (max-width: 900px) {
+      .project-identity {
+        grid-template-columns: 1fr;
+      }
+      .project-gallery {
+        column-count: 2;
+      }
+    }
+    
+    @media (max-width: 600px) {
+      .project-gallery {
+        column-count: 1;
+      }
+      .project-nav {
+        grid-template-columns: 1fr;
+      }
+      .nav-prev {
+        border-right: none;
+        border-bottom: 1px solid var(--color-border);
+      }
+      .nav-half {
+        padding: var(--space-lg) 20px;
+      }
+    }
+    /* Navbar specific overrides for this page */
+    .nav-links {
+      gap: 24px !important; /* Make links close to each other */
+    }
+    
+    .main-nav:not(.scrolled) .nav-logo,
+    .main-nav:not(.scrolled) .nav-links a {
+      color: #ffffff;
+    }
+    
+    .nav-btn {
+      padding: 10px 20px;
+      font-size: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Page Transition Overlay -->
+  <div class="page-transition-overlay"></div>
+
+  <!-- Navigation -->
+  <nav class="main-nav">
+    <div class="container nav-container">
+      <a href="/index.html" class="nav-logo"><img src="/assets/images/logo_MKA.png" alt="MKA Logo" style="height: 100px; width: auto; object-fit: contain; transform: rotate(-90deg);"></a>
+      
+      <div class="nav-links">
+        <a href="/index.html">HOME</a>
+        <a href="/about/index.html">ABOUT</a>
+        <a href="/projects/index.html" class="active">PROJECTS</a>
+        <a href="/services/index.html">SERVICES</a>
+        <a href="/gallery/index.html">GALLERY</a>
+      </div>
+
+      <a href="/contact/index.html" class="btn nav-btn">CONTACT US</a>
+
+      <div class="mobile-menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Overlay Menu -->
+  <div class="mobile-overlay">
+    <div class="nav-links">
+      <a href="/index.html">Home</a>
+      <a href="/projects/index.html">Projects</a>
+      <a href="/about/index.html">About</a>
+      <a href="/services/index.html">Services</a>
+      <a href="/gallery/index.html">Gallery</a>
+      <a href="/contact/index.html">Contact</a>
+    </div>
+  </div>
+
+  <main>
+    <!-- Hero Image -->
+    <section class="project-hero">
+      <img src="/assets/images/ricardo-gomez-angel-opFPVxMRpP8-unsplash.jpg" alt="Chand Bagh School">
+    </section>
+
+    <!-- Project Identity -->
+    <section class="container project-identity">
+      <div class="identity-left gsap-reveal">
+        <h1 class="project-title">Chand Bagh School</h1>
+        <p class="project-desc">A 1,500-acre soft and hard landscape project won through a national competition run by the National Highway Authority. The project integrates natural topography with advanced infrastructural planning to create a landmark recreational and transit hub.</p>
+      </div>
+      
+      <div class="identity-right gsap-reveal" style="animation-delay: 0.2s;">
+        <div class="meta-badge"><span class="badge">★ Competition Winner</span></div>
+        
+        <div class="meta-table">
+          <div class="meta-row">
+            <div class="meta-label">Category</div>
+            <div class="meta-value">Landscape</div>
+          </div>
+          <div class="meta-row">
+            <div class="meta-label">Location</div>
+            <div class="meta-value">Kallar Kahar</div>
+          </div>
+          <div class="meta-row">
+            <div class="meta-label">Area</div>
+            <div class="meta-value">1500 acres</div>
+          </div>
+          <div class="meta-row">
+            <div class="meta-label">Year</div>
+            <div class="meta-value">2003</div>
+          </div>
+          <div class="meta-row">
+            <div class="meta-label">Services</div>
+            <div class="meta-value">Architectural Design, Structural Design, Landscaping, Bill of Quantities, Water Systems, Electrical</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project Gallery -->
+    <section class="container gsap-reveal">
+      <div class="project-gallery">
+        <img src="https://picsum.photos/800/1000?random=102" loading="lazy" alt="Gallery Image 1">
+        <img src="https://picsum.photos/800/600?random=103" loading="lazy" alt="Gallery Image 2">
+        <img src="https://picsum.photos/800/800?random=104" loading="lazy" alt="Gallery Image 3">
+        <img src="https://picsum.photos/800/1200?random=105" loading="lazy" alt="Gallery Image 4">
+        <img src="https://picsum.photos/800/600?random=106" loading="lazy" alt="Gallery Image 5">
+        <img src="https://picsum.photos/800/900?random=107" loading="lazy" alt="Gallery Image 6">
+      </div>
+    </section>
+
+    <!-- Prev / Next -->
+    <section class="project-nav">
+      <a href="/projects/ds-textiles-mill/index.html" class="nav-half nav-prev">
+        <div class="nav-arrow">&larr;</div>
+        <div class="nav-title">D.S. Textiles Mill</div>
+        <div class="nav-category">Industrial</div>
+      </a>
+      <a href="/projects/sozo-water-park/index.html" class="nav-half nav-next">
+        <div class="nav-arrow">&rarr;</div>
+        <div class="nav-title">Sozo Water Park</div>
+        <div class="nav-category">Hospitality</div>
+      </a>
+    </section>
+  </main>
+
+  <!-- Section: Premium CTA -->
+  <section class="premium-cta">
+    <div class="premium-cta-overlay"></div>
+    <div class="container gsap-reveal">
+      <span class="label">• CONTACT US</span>
+      <h2>Let's Build<br>Together</h2>
+      <a href="/contact/index.html" class="btn-cta">Send us an Enquiry</a>
+    </div>
+  </section>
+
+  <!-- Premium Dark Footer -->
+  <footer class="premium-footer">
+    <div class="container">
+      <div class="footer-columns">
+        <div class="footer-col">
+          <span class="footer-col-title">• CONTACT</span>
+          <p>98-E Model Town, Lahore, Pakistan</p>
+          <a href="mailto:hello@archform.com">hello@archform.com</a>
+          <a href="tel:+924235881843">+92 42 35881843</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-title">• SITEMAP</span>
+          <a href="/index.html">Home</a>
+          <a href="/about/index.html">Studio</a>
+          <a href="/projects/index.html">Projects</a>
+          <a href="/gallery/index.html">Gallery</a>
+          <a href="/contact/index.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-title">• PROJECTS</span>
+          <a href="/projects/index.html">Etoile Grand</a>
+          <a href="/projects/index.html">Nebura Heights</a>
+          <a href="/projects/index.html">Solara Pavilion</a>
+          <a href="/projects/index.html">Elysian Spire</a>
+        </div>
+      </div>
+      <div class="footer-meta-row">
+        <div class="footer-socials">
+          <a href="#">INSTAGRAM</a>
+          <a href="#">TWITTER(X)</a>
+          <a href="#">LINKEDIN</a>
+        </div>
+        <div>© 2025 All rights reserved.</div>
+      </div>
+      <div class="footer-big-text">MKA</div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      gsap.registerPlugin(ScrollTrigger);
+
+      const reveals = document.querySelectorAll('.gsap-reveal');
+      reveals.forEach(reveal => {
+        gsap.fromTo(reveal, 
+          { y: 40, opacity: 0 },
+          { 
+            y: 0, opacity: 1, duration: 0.8, ease: "power3.out",
+            scrollTrigger: {
+              trigger: reveal,
+              start: "top 80%",
+            }
+          }
+        );
+      });
+    });
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

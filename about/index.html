@@ -10,9 +10,17 @@
   
   <style>
     /* About specific styles */
-    .about-header {
-      padding-top: calc(64px + var(--space-xxl));
-      padding-bottom: var(--space-xxl);
+    .about-header, .partners-section, .clients-section, .memberships-section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: calc(64px + var(--space-xl));
+      padding-bottom: var(--space-xl);
+    }
+    
+    h2, .partner-name {
+      font-family: 'Inter Display', sans-serif !important;
     }
     
     .story-grid {
@@ -171,15 +179,19 @@
           <p>Majed Khan & Associates was established in 1985 as a firm of consulting architects, engineers, town planners, and interior designers. Over four decades, the practice has completed more than 500 projects — from individual residences to 2,000-acre master plans.</p>
           <p>The firm's work spans commercial, religious, hospitality, health, education, transport, and industrial sectors across Pakistan and beyond. MKA has provided professional services to the National Highway Authority, Pizza Hut Pakistan, Defence Housing Authority, Lahore American School, the Hashoo Group, and numerous public and private sector clients.</p>
           <p>Based at 98-E Model Town, Lahore, and in practice since 1985, MKA operates under the leadership of Abdul Majed Khan and Muhammad Akbar, both long-standing members of Pakistan's professional architectural and engineering bodies.</p>
+          <a href="/contact/index.html" class="btn" style="margin-top: var(--space-md);">Let's Talk</a>
         </div>
       </div>
     </section>
 
     <!-- Section 2: Partners -->
-    <section class="section container border-top">
-      <div class="gsap-reveal">
-        <span class="label all-caps">Leadership</span>
-        <h2>Partners</h2>
+    <section class="section partners-section container border-top">
+      <div class="gsap-reveal" style="display: flex; justify-content: space-between; align-items: flex-end;">
+        <div>
+          <span class="label all-caps">Leadership</span>
+          <h2>Partners</h2>
+        </div>
+        <a href="/contact/index.html" class="btn" style="margin-bottom: var(--space-sm);">Let's Talk</a>
       </div>
 
       <div class="partners-grid gsap-stagger-list">
@@ -210,24 +222,32 @@
     </section>
 
     <!-- Section 3: Notable Clients -->
-    <section class="section container border-top">
-      <div class="gsap-reveal">
-        <span class="label all-caps">Who We've Worked With</span>
-        <div class="clients-list mt-4" style="margin-top: 24px;">
-          National Highway Authority &middot; Pizza Hut Pakistan &middot; Defence Housing Authority &middot; Lahore American School &middot; Hashoo Group (PC Hotels & Resorts) &middot; Sialkot Dry Port Trust &middot; Pakistan Engineering Congress &middot; Doon School Society of Pakistan &middot; Lahore Development Authority &middot; T.E.P.A. &middot; D.S. Textiles &middot; Sozo Water Park
+    <section class="section clients-section container border-top">
+      <div class="gsap-reveal" style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 24px;">
+        <div style="flex: 1; min-width: 300px;">
+          <span class="label all-caps">Who We've Worked With</span>
+          <h2 style="margin-top: 16px;">Notable Clients</h2>
+          <div class="clients-list mt-4" style="margin-top: 24px;">
+            National Highway Authority &middot; Pizza Hut Pakistan &middot; Defence Housing Authority &middot; Lahore American School &middot; Hashoo Group (PC Hotels & Resorts) &middot; Sialkot Dry Port Trust &middot; Pakistan Engineering Congress &middot; Doon School Society of Pakistan &middot; Lahore Development Authority &middot; T.E.P.A. &middot; D.S. Textiles &middot; Sozo Water Park
+          </div>
         </div>
+        <a href="/contact/index.html" class="btn" style="margin-top: 20px;">Let's Talk</a>
       </div>
     </section>
 
     <!-- Section 4: Memberships -->
-    <section class="section container border-top">
-      <div class="gsap-reveal">
-        <span class="label all-caps">Memberships</span>
-        <div class="memberships-list mt-4" style="margin-top: 24px;">
-          <p>PCATP — Pakistan Council of Architects and Town Planners</p>
-          <p>PEC — Pakistan Engineering Council</p>
-          <p>Pakistan Engineering Congress</p>
+    <section class="section memberships-section container border-top">
+      <div class="gsap-reveal" style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 24px;">
+        <div style="flex: 1; min-width: 300px;">
+          <span class="label all-caps">Memberships</span>
+          <h2 style="margin-top: 16px;">Professional Affiliations</h2>
+          <div class="memberships-list mt-4" style="margin-top: 24px;">
+            <p>PCATP — Pakistan Council of Architects and Town Planners</p>
+            <p>PEC — Pakistan Engineering Council</p>
+            <p>Pakistan Engineering Congress</p>
+          </div>
         </div>
+        <a href="/contact/index.html" class="btn" style="margin-top: 20px;">Let's Talk</a>
       </div>
     </section>
 
