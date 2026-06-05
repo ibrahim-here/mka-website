@@ -31,7 +31,7 @@ foreach ($file in $files) {
               "            <a href=`"/projects/index.html?category=commercial`">Commercial</a>`r`n" +
               "            <a href=`"/projects/index.html?category=residential`">Residential</a>`r`n" +
               "            <a href=`"/projects/index.html?category=industrial`">Industrial</a>`r`n" +
-              "            <a href=`"/projects/index.html?category=master-planning`">Master Planning</a>`r`n" +
+              "            <a href=`"/projects/index.html?category=master-planning`">Planning</a>`r`n" +
               "          </div>`r`n" +
               "        </div>`r`n" +
               "        <a href=`"/services/index.html`"$servicesActive>SERVICES</a>`r`n" +

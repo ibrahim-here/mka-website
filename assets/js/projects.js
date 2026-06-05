@@ -31,7 +31,16 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize
   initFilters();
   initViewToggles();
+  updateTriggerText();
   renderProjects();
+
+  function updateTriggerText() {
+    const triggerBtn = document.querySelector('.filter-trigger');
+    if (triggerBtn) {
+      const activeFilterObj = filters.find(f => f.id === currentFilter);
+      triggerBtn.textContent = currentFilter === 'all' ? 'FILTER BY CATEGORY ▼' : `${activeFilterObj.label.toUpperCase()} ▼`;
+    }
+  }
 
   function initFilters() {
     filterBar.innerHTML = '';
@@ -53,6 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.classList.add('active');
         
         currentFilter = filter.id;
+        updateTriggerText();
         renderProjects();
       });
       
