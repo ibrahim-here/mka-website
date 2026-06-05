@@ -208,7 +208,10 @@
       gap: 24px !important; /* Make links close to each other */
     }
     
-    .main-nav:not(.scrolled) .nav-logo,
+    .main-nav:not(.scrolled) .nav-logo img {
+      filter: invert(1) brightness(2);
+    }
+    
     .main-nav:not(.scrolled) .nav-links a {
       color: #ffffff;
     }
@@ -315,7 +318,7 @@
     </section>
 
     <!-- Prev / Next -->
-    <section class="project-nav">
+    <section class="project-nav container">
       <a href="/projects/ds-textiles-mill/index.html" class="nav-half nav-prev">
         <div class="nav-arrow">&larr;</div>
         <div class="nav-title">D.S. Textiles Mill</div>
