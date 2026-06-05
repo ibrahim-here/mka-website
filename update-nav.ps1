@@ -34,8 +34,6 @@ foreach ($file in $files) {
               "            <a href=`"/projects/index.html?category=master-planning`">Planning</a>`r`n" +
               "          </div>`r`n" +
               "        </div>`r`n" +
-              "        <a href=`"/services/index.html`"$servicesActive>SERVICES</a>`r`n" +
-              "        <a href=`"/gallery/index.html`"$galleryActive>GALLERY</a>`r`n" +
               "      </div>"
 
     $content = [System.Text.RegularExpressions.Regex]::Replace($content, '(?s)      <div class="nav-links">\s*<a href="/index\.html"[^>]*>.*?</div>', $newNav)
