@@ -18,7 +18,22 @@ foreach ($file in $files) {
     $newNav = "      <div class=`"nav-links`">`r`n" +
               "        <a href=`"/index.html`"$homeActive>HOME</a>`r`n" +
               "        <a href=`"/about/index.html`"$aboutActive>ABOUT</a>`r`n" +
-              "        <a href=`"/projects/index.html`"$projectsActive>PROJECTS</a>`r`n" +
+              "        <div class=`"dropdown-container`">`r`n" +
+              "          <a href=`"/projects/index.html`"$projectsActive>PROJECTS</a>`r`n" +
+              "          <div class=`"dropdown-menu`">`r`n" +
+              "            <a href=`"/projects/index.html?category=all`">All Projects</a>`r`n" +
+              "            <a href=`"/projects/index.html?category=landscape`">Landscape</a>`r`n" +
+              "            <a href=`"/projects/index.html?category=hospitality`">Hospitality</a>`r`n" +
+              "            <a href=`"/projects/index.html?category=religious`">Religious</a>`r`n" +
+              "            <a href=`"/projects/index.html?category=health`">Health</a>`r`n" +
+              "            <a href=`"/projects/index.html?category=transport`">Transport</a>`r`n" +
+              "            <a href=`"/projects/index.html?category=education`">Education</a>`r`n" +
+              "            <a href=`"/projects/index.html?category=commercial`">Commercial</a>`r`n" +
+              "            <a href=`"/projects/index.html?category=residential`">Residential</a>`r`n" +
+              "            <a href=`"/projects/index.html?category=industrial`">Industrial</a>`r`n" +
+              "            <a href=`"/projects/index.html?category=master-planning`">Master Planning</a>`r`n" +
+              "          </div>`r`n" +
+              "        </div>`r`n" +
               "        <a href=`"/services/index.html`"$servicesActive>SERVICES</a>`r`n" +
               "        <a href=`"/gallery/index.html`"$galleryActive>GALLERY</a>`r`n" +
               "      </div>"

@@ -16,7 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
     { id: 'competition', label: '★ Competition' }
   ];
 
-  let currentFilter = 'all';
+  const urlParams = new URLSearchParams(window.location.search);
+  const categoryParam = urlParams.get('category');
+  
+  let currentFilter = categoryParam && filters.find(f => f.id === categoryParam) ? categoryParam : 'all';
   let currentView = 'grid'; // grid or list
 
   const filterBar = document.getElementById('filter-bar');
