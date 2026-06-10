@@ -62,7 +62,7 @@ async function renderHomeProjects() {
   projects.forEach((project, index) => {
     const isLeft = index % 2 === 0;
     const card = document.createElement('a');
-    card.href = `../projects/project-detail.html?slug=${project.slug.current}`;
+    card.href = `/projects/project-detail.html?slug=${project.slug.current}`;
     card.addEventListener('click', () => localStorage.setItem('current_project_slug', project.slug.current));
     card.className = `project-card ${isLeft ? 'project-left' : 'project-right'}`;
     

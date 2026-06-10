@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     filteredProjects.forEach((p, index) => {
       // Grid Card
       const gridCard = document.createElement('a');
-      gridCard.href = `project-detail.html?slug=${p.slug.current}`;
+      gridCard.href = `/projects/project-detail.html?slug=${p.slug.current}`;
       gridCard.addEventListener('click', () => localStorage.setItem('current_project_slug', p.slug.current));
       gridCard.className = 'project-card-grid';
       
@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       // List Row
       const listRow = document.createElement('a');
-      listRow.href = `project-detail.html?slug=${p.slug.current}`;
+      listRow.href = `/projects/project-detail.html?slug=${p.slug.current}`;
       listRow.addEventListener('click', () => localStorage.setItem('current_project_slug', p.slug.current));
       listRow.className = 'project-list-row';
       
