@@ -92,32 +92,38 @@ async function renderHomeProjects() {
 }
 
 async function replaceDummyImages() {
-  const dummyImages = document.querySelectorAll('img[src*="picsum.photos"]');
-  if (dummyImages.length === 0) return;
+  // Wait a moment to allow scripts like gallery.js to inject their dummy images first
+  setTimeout(async () => {
+    const dummyImages = document.querySelectorAll('img[src*="picsum.photos"]');
+    if (dummyImages.length === 0) return;
 
-  // Fetch some nice gallery images from any project
-  const query = `*[_type == "project" && defined(gallery)] { "urls": gallery[0...3].asset->url }`;
-  const projects = await fetchSanityData(query);
-  
-  let allUrls = [];
-  if (projects) {
-    projects.forEach(p => { if (p.urls) allUrls = allUrls.concat(p.urls); });
-  }
+    // Fetch some nice gallery images from any project
+    const query = `*[_type == "project" && defined(gallery)] { "urls": gallery[0...3].asset->url }`;
+    const projects = await fetchSanityData(query);
+    
+    let allUrls = [];
+    if (projects) {
+      projects.forEach(p => { if (p.urls) allUrls = allUrls.concat(p.urls); });
+    }
 
-  if (allUrls.length > 0) {
-    let urlIndex = 0;
-    dummyImages.forEach(img => {
-      // Pick a URL, loop back to start if we run out
-      const url = allUrls[urlIndex % allUrls.length];
-      img.src = `${url}?w=800&h=600&fit=crop&auto=format`;
-      urlIndex++;
-    });
-  }
+    if (allUrls.length > 0) {
+      // Shuffle the URLs for variety
+      allUrls = allUrls.sort(() => Math.random() - 0.5);
+      
+      let urlIndex = 0;
+      dummyImages.forEach(img => {
+        // Pick a URL, loop back to start if we run out
+        const url = allUrls[urlIndex % allUrls.length];
+        img.src = `${url}?w=800&h=600&fit=crop&auto=format`;
+        urlIndex++;
+      });
+    }
+  }, 100);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/') {
     renderHomeProjects();
-    replaceDummyImages();
   }
+  replaceDummyImages();
 });
