@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Details — MKA</title>
+  <meta name="description" content="Project details and gallery.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/animations.css">
+  <style>
+    .project-hero {
+      padding-top: 120px;
+      padding-bottom: 40px;
+      text-align: center;
+    }
+    .project-title {
+      font-family: 'Inter Display', sans-serif;
+      font-weight: 500;
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+    .project-category {
+      font-family: 'Inter Display', sans-serif;
+      font-weight: 300;
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      padding: 0 40px 80px;
+    }
+    .gallery-item {
+      width: 100%;
+      height: 600px;
+      object-fit: cover;
+      background-color: #f5f5f5;
+    }
+    .gallery-item.main {
+      grid-column: 1 / -1;
+      height: 60vh;
+      margin-bottom: 20px;
+    }
+    .gallery-title {
+      grid-column: 1 / -1;
+      font-family: 'Inter Display', sans-serif;
+      font-size: 24px;
+      margin-bottom: 20px;
+      padding-top: 40px;
+      border-top: 1px solid var(--color-border);
+      text-align: center;
+    }
+    @media (max-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        padding: 0 20px 60px;
+      }
+      .gallery-item {
+        height: 400px;
+      }
+      .gallery-item.main {
+        height: 40vh;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="main-nav">
+    <div class="container nav-container">
+      <a href="/index.html" class="nav-logo"><img src="../assets/images/logo_MKA.png" alt="MKA Logo" style="height: 100px; width: auto; object-fit: contain; transform: rotate(-90deg);"></a>
+      <div class="nav-links">
+        <a href="/index.html">HOME</a>
+        <a href="/projects/index.html" class="active">PROJECTS</a>
+      </div>
+      <div class="mobile-menu-toggle"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="project-hero container" id="hero-section">
+      <h1 class="project-title" id="project-title">Loading...</h1>
+      <div class="project-category" id="project-category"></div>
+    </section>
+
+    <div class="gallery-grid" id="gallery-grid">
+      <!-- Images will be injected here -->
+    </div>
+  </main>
+
+  <footer class="premium-footer">
+    <div class="container">
+      <div class="footer-big-text">MKA</div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="../assets/js/sanity-client.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      let slug = urlParams.get('slug');
+      
+      // Fallback to localStorage in case local servers strip query parameters
+      if (!slug) {
+        slug = localStorage.getItem('current_project_slug');
+      }
+
+      if (!slug) {
+        document.getElementById('project-title').textContent = "No Project Selected";
+        return;
+      }
+
+      try {
+        const project = await fetchProjectBySlug(slug);
+        if (!project) {
+          document.getElementById('project-title').textContent = "Project Not Found";
+          return;
+        }
+
+        document.getElementById('project-title').textContent = project.title;
+        document.getElementById('project-category').textContent = project.category.replace('-', ' ');
+
+        const galleryGrid = document.getElementById('gallery-grid');
+        
+        // Add main image
+        if (project.mainImageUrl) {
+          const img = document.createElement('img');
+          img.src = `${project.mainImageUrl}?w=1600&auto=format`;
+          img.className = 'gallery-item main';
+          galleryGrid.appendChild(img);
+        }
+
+        // Add gallery images
+        if (project.galleryUrls && project.galleryUrls.length > 0) {
+          const titleEl = document.createElement('div');
+          titleEl.className = 'gallery-title';
+          titleEl.textContent = `Full Project Gallery (${project.galleryUrls.length} Images)`;
+          galleryGrid.appendChild(titleEl);
+
+          project.galleryUrls.forEach(url => {
+            const img = document.createElement('img');
+            img.src = `${url}?w=800&auto=format`;
+            img.className = 'gallery-item';
+            img.loading = 'lazy';
+            galleryGrid.appendChild(img);
+          });
+        }
+
+        gsap.fromTo('.gallery-item', 
+          { y: 50, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: "power3.out" }
+        );
+
+      } catch (e) {
+        console.error(e);
+      }
+    });
+  </script>
+</body>
+</html>

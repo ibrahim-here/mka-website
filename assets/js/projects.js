@@ -1,5 +1,6 @@
-document.addEventListener('DOMContentLoaded', () => {
-  if (typeof projects === 'undefined') return;
+document.addEventListener('DOMContentLoaded', async () => {
+  // Wait for the sanity-client function to be available
+  if (typeof fetchAllProjects === 'undefined') return;
 
   const filters = [
     { id: 'all', label: 'All' },
@@ -12,8 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { id: 'industrial', label: 'Industrial' },
     { id: 'health', label: 'Health' },
     { id: 'education', label: 'Education' },
-    { id: 'master-planning', label: 'Master Planning' },
-    { id: 'competition', label: '★ Competition' }
+    { id: 'master-planning', label: 'Master Planning' }
   ];
 
   const urlParams = new URLSearchParams(window.location.search);
@@ -27,6 +27,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const listContainer = document.getElementById('projects-list');
   const totalCountEl = document.getElementById('total-count');
   const viewBtns = document.querySelectorAll('.view-btn');
+
+  // Fetch projects from Sanity
+  let projects = [];
+  try {
+    projects = await fetchAllProjects();
+  } catch (error) {
+    console.error("Error fetching projects", error);
+  }
 
   // Initialize
   initFilters();
@@ -49,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Calculate count
       const count = filter.id === 'all' 
         ? projects.length 
-        : projects.filter(p => p.categories.includes(filter.id)).length;
+        : projects.filter(p => p.category === filter.id).length;
         
       const btn = document.createElement('button');
       btn.className = `filter-btn ${filter.id === currentFilter ? 'active' : ''}`;
@@ -57,7 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.textContent = filter.id === 'all' ? filter.label : `${filter.label} (${count})`;
       
       btn.addEventListener('click', () => {
-        // Update active class
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         
@@ -69,7 +76,9 @@ document.addEventListener('DOMContentLoaded', () => {
       filterBar.appendChild(btn);
     });
     
-    totalCountEl.textContent = `(${projects.length})`;
+    if (totalCountEl) {
+      totalCountEl.textContent = `(${projects.length})`;
+    }
   }
 
   function initViewToggles() {
@@ -95,54 +104,52 @@ document.addEventListener('DOMContentLoaded', () => {
     // Filter data
     const filteredProjects = currentFilter === 'all' 
       ? projects 
-      : projects.filter(p => p.categories.includes(currentFilter));
+      : projects.filter(p => p.category === currentFilter);
 
-    // Render Grid
     gridContainer.innerHTML = '';
-    // Render List
     listContainer.innerHTML = '';
 
     filteredProjects.forEach((p, index) => {
       // Grid Card
       const gridCard = document.createElement('a');
-      gridCard.href = `/projects/${p.slug}/index.html`;
+      gridCard.href = `project-detail.html?slug=${p.slug.current}`;
+      gridCard.addEventListener('click', () => localStorage.setItem('current_project_slug', p.slug.current));
       gridCard.className = 'project-card-grid';
       
-      let badgeHtml = p.isCompetition ? `<span class="badge">★ Award</span>` : '';
+      const imgSrc = p.imageUrl ? `${p.imageUrl}?w=600&h=800&fit=crop&auto=format` : 'https://picsum.photos/600/800';
       
       gridCard.innerHTML = `
         <div class="image-wrapper">
-          <img src="${p.thumbnail}" alt="${p.name}" loading="lazy">
+          <img src="${imgSrc}" alt="${p.title}" loading="lazy">
           <div class="image-overlay"></div>
         </div>
         <div class="info-block">
           <div class="title-row">
-            <span class="title">${p.name}</span>
-            ${badgeHtml}
+            <span class="title">${p.title}</span>
           </div>
-          <div class="meta">${p.category} &middot; ${p.location}</div>
+          <div class="meta">${p.category.replace('-', ' ')}</div>
         </div>
       `;
       gridContainer.appendChild(gridCard);
 
       // List Row
       const listRow = document.createElement('a');
-      listRow.href = `/projects/${p.slug}/index.html`;
+      listRow.href = `project-detail.html?slug=${p.slug.current}`;
+      listRow.addEventListener('click', () => localStorage.setItem('current_project_slug', p.slug.current));
       listRow.className = 'project-list-row';
       
       const numStr = (index + 1).toString().padStart(2, '0');
       
       listRow.innerHTML = `
         <div class="project-number">${numStr}</div>
-        <div class="project-name">${p.name} ${badgeHtml}</div>
-        <div class="project-category">${p.category} &middot; ${p.location}</div>
-        <div class="project-year">${p.year}</div>
+        <div class="project-name">${p.title}</div>
+        <div class="project-category">${p.category.replace('-', ' ')}</div>
       `;
       listContainer.appendChild(listRow);
     });
 
-    // Animate new elements in
-    if (window.gsap) {
+    if (window.gsap && window.ScrollTrigger) {
+      ScrollTrigger.refresh();
       if (currentView === 'grid') {
         gsap.fromTo(gridContainer.children, 
           { y: 30, opacity: 0 },
