@@ -84,6 +84,7 @@
     <section class="project-hero container" id="hero-section">
       <h1 class="project-title" id="project-title">Loading...</h1>
       <div class="project-category" id="project-category"></div>
+      <p class="project-description" id="project-description" style="max-width: 800px; margin: 24px auto 0; font-family: 'Inter Display', sans-serif; font-size: 16px; line-height: 1.6; color: var(--color-text-secondary);"></p>
     </section>
 
     <div class="gallery-grid" id="gallery-grid">
@@ -98,7 +99,7 @@
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="../assets/js/sanity-client.js"></script>
+  <script src="../assets/js/sanity-client.js?v=3"></script>
   <script>
     document.addEventListener('DOMContentLoaded', async () => {
       const urlParams = new URLSearchParams(window.location.search);
@@ -123,6 +124,9 @@
 
         document.getElementById('project-title').textContent = project.title;
         document.getElementById('project-category').textContent = project.category.replace('-', ' ');
+        if (project.description) {
+          document.getElementById('project-description').textContent = project.description;
+        }
 
         const galleryGrid = document.getElementById('gallery-grid');
         

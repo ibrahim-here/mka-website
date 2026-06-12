@@ -41,6 +41,7 @@ async function fetchProjectBySlug(slug) {
   const query = `*[_type == "project" && slug.current == "${slug}"][0] {
     title,
     category,
+    description,
     "mainImageUrl": mainImage.asset->url,
     "galleryUrls": gallery[].asset->url
   }`;
