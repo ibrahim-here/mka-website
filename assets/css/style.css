@@ -242,6 +242,12 @@ nav.main-nav.scrolled {
   position: relative;
 }
 
+@media (max-width: 900px) {
+  .nav-container {
+    padding: 0 25px !important;
+  }
+}
+
 .nav-logo {
   font-family: 'Inter Display', sans-serif;
   font-weight: 800;
@@ -328,7 +334,7 @@ nav.main-nav.hero-inverted .nav-logo img {
   width: 24px;
   height: 16px;
   position: absolute !important;
-  right: 20px;
+  right: 25px;
   top: 50%;
   transform: translateY(-50%);
   z-index: 9999 !important;
