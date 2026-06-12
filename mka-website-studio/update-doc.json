@@ -1,0 +1,33 @@
+[
+  {
+    "_createdAt": "2026-06-09T23:23:16Z",
+    "_id": "t6gIDz548GQeB4ZkbmgihZ",
+    "_rev": "MDh7A306aO3hJzqrDtq0cT",
+    "_type": "project",
+    "_updatedAt": "2026-06-12T09:58:41Z",
+    "category": "religious",
+    "description": "A neighbourhood mosque designed around congregational dignity. The plan organises prayer hall, ablution spaces, and minaret into a compact footprint without sacrificing spatial quality. Brick detailing on the facade references the local building tradition, while the interior achieves the calm that a mosque should — without ornamental excess. Built to serve a community, not to announce itself.",
+    "featured": false,
+    "gallery": [
+      {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-7b556c7463cfdca93284bd45b38185e88f8c3a84-1600x1200-jpg",
+          "_type": "reference"
+        }
+      }
+    ],
+    "mainImage": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-915ba630a57c1c8f043d1316e7302ba7ca360c27-1600x1200-jpg",
+        "_type": "reference"
+      }
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "project-1781047386077"
+    },
+    "title": "Gymkhana Masjid"
+  }
+]
