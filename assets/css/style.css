@@ -337,6 +337,10 @@ nav.main-nav.hero-inverted .nav-logo img {
   transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
 }
 
+nav.main-nav:not(.scrolled) .mobile-menu-toggle span {
+  background-color: var(--color-white);
+}
+
 .mobile-menu-toggle.active span {
   background-color: var(--color-white) !important;
 }
