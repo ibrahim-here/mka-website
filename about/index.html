@@ -11,7 +11,6 @@
   <style>
     /* About specific styles */
     .about-header, .partners-section, .clients-section, .memberships-section {
-      min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -25,7 +24,7 @@
     
     .story-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 4fr 6fr;
       gap: var(--space-xl);
       align-items: center;
     }
@@ -185,7 +184,7 @@
     <section class="section about-header container">
       <div class="story-grid">
         <div class="story-image gsap-reveal">
-          <img src="https://picsum.photos/600/800?random=150" alt="MKA Studio">
+          <img src="/assets/images/hero-mka-best.jpg" alt="MKA Studio">
         </div>
         <div class="story-text gsap-reveal">
           <span class="label all-caps">The Practice</span>
@@ -210,8 +209,8 @@
 
       <div class="partners-grid gsap-stagger-list">
         <div class="partner-card">
-          <div class="partner-image">
-            <img src="https://picsum.photos/600/800?random=200" alt="Abdul Majed Khan">
+          <div class="partner-image" style="background-color: #e0e0e0; display: flex; align-items: center; justify-content: center;">
+            <span style="color: #666; font-family: sans-serif; font-size: 14px; text-transform: uppercase; letter-spacing: 2px;">Image Pending</span>
           </div>
           <div class="partner-name">Abdul Majed Khan</div>
           <div class="partner-title">Managing Partner and Principal<br>N.D. Architecture, 1980, NCA Lahore</div>
@@ -222,8 +221,8 @@
         </div>
 
         <div class="partner-card">
-          <div class="partner-image">
-            <img src="https://picsum.photos/600/800?random=201" alt="Muhammad Akbar">
+          <div class="partner-image" style="background-color: #e0e0e0; display: flex; align-items: center; justify-content: center;">
+            <span style="color: #666; font-family: sans-serif; font-size: 14px; text-transform: uppercase; letter-spacing: 2px;">Image Pending</span>
           </div>
           <div class="partner-name">Muhammad Akbar</div>
           <div class="partner-title">Managing Partner<br>B.Sc. Civil Engineering, 1983, UET Lahore</div>

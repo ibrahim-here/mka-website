@@ -550,7 +550,7 @@ footer {
 
 .what-we-do-grid {
   display: grid;
-  grid-template-columns: 4fr 6fr;
+  grid-template-columns: 3fr 7fr;
   gap: var(--space-xl);
 }
 
@@ -826,7 +826,8 @@ footer {
   background-size: cover;
   background-position: center;
   position: relative;
-  height: 100vh;
+  height: 60vh;
+  min-height: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
