@@ -254,6 +254,13 @@ nav.main-nav.scrolled {
   font-size: 20px;
   letter-spacing: -0.02em;
   color: var(--color-black);
+  display: flex;
+  align-items: center;
+}
+
+.nav-logo img {
+  /* Offset the blank space caused by rotation to perfectly align left */
+  margin-left: calc((100px - 100%) / 2);
 }
 
 /* Logo inversion for dark background */
