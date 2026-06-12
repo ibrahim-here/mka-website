@@ -118,6 +118,25 @@
       }
       .story-text {
         order: 1;
+        text-align: center;
+        align-items: center;
+      }
+      .story-text h2 {
+        margin-bottom: 24px !important;
+      }
+      .gsap-reveal.section-heading-row {
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center;
+      }
+      .gsap-reveal.section-heading-row .btn {
+        margin-top: 16px !important;
+      }
+      .partner-card, .clients-section, .memberships-section {
+        text-align: center;
+      }
+      .partner-image {
+        margin: 0 auto 24px auto;
       }
     }
   </style>
@@ -182,7 +201,7 @@
   <main>
     <!-- Section 1: Firm Story -->
     <section class="section about-header container" style="padding-top: 180px;">
-      <div class="gsap-reveal" style="margin-bottom: var(--space-xl)">
+      <div class="gsap-reveal section-heading-row" style="margin-bottom: var(--space-xl); text-align: center;">
         <h1 class="display">About</h1>
       </div>
       <div class="story-grid" style="align-items: stretch;">
@@ -191,7 +210,7 @@
         </div>
         <div class="story-text gsap-reveal" style="display: flex; flex-direction: column; justify-content: center;">
           <span class="label all-caps">The Practice</span>
-          <h2>Forty Years of Practice</h2>
+          <h2 style="margin-bottom: 24px;">Forty Years of Practice</h2>
           <p>Majed Khan &amp; Associates was established in 1985 in Lahore as a practice of consulting architects, engineers, and town planners. Over four decades, the firm has completed more than five hundred projects across Pakistan and internationally — private residences, mosques, hospitals, hotels, shopping centres, industrial facilities, and master plans up to 2,000 acres.</p>
           <p>The work has always been broad. MKA has designed for the National Highway Authority, Defence Housing Authority, the Hashoo Group, Lahore American School, Sialkot Dry Port Trust, and dozens of private clients who return because the buildings perform as promised.</p>
           <p>The practice is led by Abdul Majed Khan and Muhammad Akbar from the Lahore studio at 98-E Model Town. Both are long-standing members of PCATP and PEC. The firm draws, details, and supervises its own work — a full-service model that keeps design intent intact from first sketch to final inspection.</p>
@@ -202,10 +221,10 @@
 
     <!-- Section 2: Partners -->
     <section class="section partners-section container border-top">
-      <div class="gsap-reveal" style="display: flex; justify-content: space-between; align-items: flex-end;">
+      <div class="gsap-reveal section-heading-row" style="display: flex; justify-content: space-between; align-items: flex-end;">
         <div>
           <span class="label all-caps">Leadership</span>
-          <h2>Partners</h2>
+          <h2 style="margin-bottom: 24px;">Partners</h2>
         </div>
         <a href="/contact/index.html" class="btn" style="margin-bottom: var(--space-sm);">Let's Talk</a>
       </div>
@@ -239,10 +258,10 @@
 
     <!-- Section 3: Notable Clients -->
     <section class="section clients-section container border-top" style="padding-bottom: 40px;">
-      <div class="gsap-reveal" style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 24px;">
+      <div class="gsap-reveal section-heading-row" style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 24px;">
         <div style="flex: 1; min-width: 300px;">
           <span class="label all-caps">Who We've Worked With</span>
-          <h2 style="margin-top: 16px;">Notable Clients</h2>
+          <h2 style="margin-top: 16px; margin-bottom: 24px;">Notable Clients</h2>
           <div class="clients-list mt-4" style="margin-top: 24px;">
             National Highway Authority &middot; Pizza Hut Pakistan &middot; Defence Housing Authority &middot; Lahore American School &middot; Hashoo Group (PC Hotels & Resorts) &middot; Sialkot Dry Port Trust &middot; Pakistan Engineering Congress &middot; Doon School Society of Pakistan &middot; Lahore Development Authority &middot; T.E.P.A. &middot; D.S. Textiles &middot; Sozo Water Park
           </div>
@@ -253,10 +272,10 @@
 
     <!-- Section 4: Memberships -->
     <section class="section memberships-section container" style="padding-top: 40px; padding-bottom: 80px;">
-      <div class="gsap-reveal" style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 24px;">
+      <div class="gsap-reveal section-heading-row" style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 24px;">
         <div style="flex: 1; min-width: 300px;">
           <span class="label all-caps">Memberships</span>
-          <h2 style="margin-top: 16px;">Professional Affiliations</h2>
+          <h2 style="margin-top: 16px; margin-bottom: 24px;">Professional Affiliations</h2>
           <div class="memberships-list mt-4" style="margin-top: 24px;">
             <p>PCATP — Pakistan Council of Architects and Town Planners</p>
             <p>PEC — Pakistan Engineering Council</p>
