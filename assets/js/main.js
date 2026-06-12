@@ -116,7 +116,7 @@ function initScrollNav() {
   }
 
   window.addEventListener('scroll', () => {
-    const heroSection = document.querySelector('.hero-section');
+    const heroSection = document.querySelector('.hero-section, .project-hero');
     const threshold = heroSection ? heroSection.offsetHeight - 10 : 50; // Slight offset so it happens right when it touches
 
     if (window.scrollY >= threshold) {
@@ -129,6 +129,7 @@ function initScrollNav() {
         logo.style.opacity = "0";
         logo.style.pointerEvents = "none";
       }
+      nav.classList.add('scrolled');
       if (heroSection) {
         nav.classList.remove('hero-inverted');
       }
@@ -140,6 +141,7 @@ function initScrollNav() {
         logo.style.opacity = "1";
         logo.style.pointerEvents = "auto";
       }
+      nav.classList.remove('scrolled');
       if (heroSection) {
         nav.classList.add('hero-inverted');
       }
