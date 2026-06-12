@@ -539,6 +539,12 @@ footer {
     grid-template-columns: 1fr !important;
     gap: 30px !important;
   }
+  .ceo-mobile-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
 }
 
 /* Accordion Section ("What We Do") */
@@ -822,9 +828,9 @@ footer {
 
 /* CTA Section Style */
 .premium-cta {
-  background-image: url('/assets/images/ricardo-gomez-angel-opFPVxMRpP8-unsplash.jpg');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), url('/assets/images/hero-mka-best.jpg');
   background-size: cover;
-  background-position: center;
+  background-position: center 30%;
   position: relative;
   height: 60vh;
   min-height: 500px;
