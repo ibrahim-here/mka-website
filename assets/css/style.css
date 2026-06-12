@@ -327,7 +327,10 @@ nav.main-nav.hero-inverted .nav-logo img {
   justify-content: space-between;
   width: 24px;
   height: 16px;
-  position: relative;
+  position: absolute !important;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
   z-index: 9999 !important;
   pointer-events: auto !important;
 }

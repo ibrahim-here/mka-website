@@ -261,7 +261,7 @@
 
       <a href="/contact/index.html" class="btn nav-btn">CONTACT US</a>
 
-      <div class="mobile-menu-toggle">
+      <div class="mobile-menu-toggle" onclick="event.stopPropagation(); document.querySelector('.mobile-overlay').classList.toggle('active'); this.classList.toggle('active'); const links = document.querySelectorAll('.mobile-overlay .nav-links a'); if(this.classList.contains('active')){ gsap.fromTo(links, {x:-30, opacity:0}, {x:0, opacity:1, duration:0.6, stagger:0.1, ease:'power3.out'}); }">
         <span></span>
         <span></span>
         <span></span>
@@ -434,6 +434,7 @@
   </script>
 </body>
 </html>
+
 
 
 
