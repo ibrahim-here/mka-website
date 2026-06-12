@@ -492,8 +492,12 @@ footer {
 }
 
 @media (max-width: 600px) {
+  :root {
+    --space-section: 80px;
+    --space-xl: 40px;
+  }
   .container {
-    padding: 0 15px;
+    padding: 0 25px;
   }
   h1 {
     font-size: clamp(40px, 12vw, 80px) !important;
@@ -519,8 +523,14 @@ footer {
   .projects-scroll-container {
     margin-top: 0 !important;
     padding-top: 0 !important;
-    gap: var(--space-xl) !important;
+    gap: 40px !important;
     align-items: center !important;
+  }
+  .project-info {
+    text-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
   }
   .footer-grid {
     grid-template-columns: 1fr;

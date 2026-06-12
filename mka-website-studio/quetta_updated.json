@@ -1,0 +1,131 @@
+[
+  {
+    "_createdAt": "2026-06-09T23:23:59Z",
+    "_id": "OaXqxzD07CB4OornBc88aa",
+    "_rev": "gPKpdWWWUWi3wmdwj9AsCV",
+    "_type": "project",
+    "_updatedAt": "2026-06-12T09:58:17Z",
+    "category": "hospitality",
+    "description": "Part of the broader Quetta Club complex, this hall was designed for multi-use assembly — scouting activities, institutional gatherings, light sports. The interior is column-free, which matters when the programme changes from week to week. Robust finishes, good ventilation through high-level louvres, and a straightforward structural system that keeps the long-term maintenance manageable.",
+    "featured": false,
+    "gallery": [
+      {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-dc29f08a89d55df088f95068381de9b5d74915cf-1080x748-jpg",
+          "_type": "reference"
+        }
+      },
+      {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-5ec59a9394cc6b62049cd084b6fe6c09093414a4-1080x748-jpg",
+          "_type": "reference"
+        }
+      },
+      {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-107bbbee7f3ddd112980bf038818ffc3e946fd2b-1080x748-jpg",
+          "_type": "reference"
+        }
+      },
+      {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-c8e6d915c373680c78014a420339d099f3e5d013-1080x748-jpg",
+          "_type": "reference"
+        }
+      },
+      {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-4d951e89655c1fe4983e8c23e0c8ab7c2100a354-1080x748-jpg",
+          "_type": "reference"
+        }
+      },
+      {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-8a705594c20586b4171a0e63948a3c46984bad25-1080x748-jpg",
+          "_type": "reference"
+        }
+      },
+      {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-c5efc1ff3303e32840d67ae726e2498670f0849e-1080x748-jpg",
+          "_type": "reference"
+        }
+      },
+      {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-6724ce17defe5cf134a50ff1fca2652698d45eeb-1080x748-jpg",
+          "_type": "reference"
+        }
+      },
+      {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-a356a68781104bec4c3549a50f630dddff153b73-1080x748-jpg",
+          "_type": "reference"
+        }
+      },
+      {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-70d9a0c83e4878eb37285648cc74320402d4cabf-1080x748-jpg",
+          "_type": "reference"
+        }
+      },
+      {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-b2eef459448e1060ae5d613ed8cae4e0d2879a3b-1080x748-jpg",
+          "_type": "reference"
+        }
+      },
+      {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-9890884aa90b7e28662b58b91a3e11e86f74297c-1080x748-jpg",
+          "_type": "reference"
+        }
+      },
+      {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-6970552f5bfde0d654ece4566e191d50fabda39d-1080x748-jpg",
+          "_type": "reference"
+        }
+      },
+      {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-e67f817842521c004fed177fa4efadd60f0fee62-1080x748-jpg",
+          "_type": "reference"
+        }
+      },
+      {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-03f03c0423a106fd7024a5f5529dac6926f5bdb0-1080x748-jpg",
+          "_type": "reference"
+        }
+      }
+    ],
+    "mainImage": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-dc29f08a89d55df088f95068381de9b5d74915cf-1080x748-jpg",
+        "_type": "reference"
+      }
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "project-1781047394944"
+    },
+    "title": "Quetta Club — Scouts Hall"
+  }
+]
