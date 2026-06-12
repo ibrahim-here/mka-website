@@ -496,8 +496,8 @@ footer {
     padding: 0 15px;
   }
   h1 {
-    font-size: 80px !important;
-    line-height: 70px !important;
+    font-size: clamp(40px, 12vw, 80px) !important;
+    line-height: 1 !important;
   }
   h2 {
     font-size: 35px !important;
@@ -1069,6 +1069,15 @@ footer.premium-footer .footer-big-text {
   .sticky-projects-heading div {
     text-align: center;
     align-items: center;
+    width: 100%;
+  }
+  
+  .hero-bottom-wrapper {
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 30px;
+    text-align: center;
   }
   
   /* Center project images horizontally */
