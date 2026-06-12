@@ -26,7 +26,22 @@
       position: relative;
       height: 100vh;
       width: 100%;
+      background-color: var(--color-bg);
       overflow: hidden;
+    }
+
+    @media (max-width: 900px) {
+      .what-we-do-left {
+        text-align: center;
+      }
+      .what-we-do-left .label, 
+      .what-we-do-left img, 
+      .what-we-do-left p, 
+      .what-we-do-left .btn-start {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        justify-content: center;
+      }
     }
     
     .hero-bg {
@@ -578,9 +593,9 @@
         <!-- Left Column: Heading and static image/details -->
         <div class="what-we-do-left gsap-reveal">
           <span class="label">• WHAT WE DO</span>
-          <h2>What<br>We Do</h2>
-          <img src="https://picsum.photos/600/600?random=16" alt="Crafting Form With Purpose" class="side-img">
-          <p>Architecture, engineering, interiors, and planning — delivered from concept through to construction.</p>
+          <h2 style="margin-top: 16px; margin-bottom: 32px; line-height: 1.1;">What We Do</h2>
+          <img src="https://picsum.photos/600/600?random=16" alt="Crafting Form With Purpose" class="side-img" style="margin-bottom: 32px;">
+          <p style="margin-bottom: 32px; max-width: 400px;">Architecture, engineering, interiors, and planning — delivered from concept through to construction.</p>
           <a href="/contact/index.html" class="btn-start">Start Your Next Project</a>
         </div>
 
