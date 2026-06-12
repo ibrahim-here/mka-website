@@ -33,29 +33,27 @@ document.addEventListener('DOMContentLoaded', () => {
   initCarousel();
 });
 
-function initMobileNav() {
+window.toggleMobileMenu = function(btn) {
   const overlay = document.querySelector('.mobile-overlay');
   if (!overlay) return;
 
-  // Use event delegation to catch clicks on any .mobile-menu-toggle
-  document.addEventListener('click', (e) => {
-    const toggle = e.target.closest('.mobile-menu-toggle');
-    if (!toggle) return;
-
-    overlay.classList.toggle('active');
-    toggle.classList.toggle('active');
-    
-    if (overlay.classList.contains('active')) {
-      // Animate links in
-      const links = overlay.querySelectorAll('.nav-links a');
-      if (window.gsap) {
-        gsap.fromTo(links, 
-          { x: -30, opacity: 0 }, 
-          { x: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: "power3.out" }
-        );
-      }
+  overlay.classList.toggle('active');
+  btn.classList.toggle('active');
+  
+  if (overlay.classList.contains('active')) {
+    // Animate links in
+    const links = overlay.querySelectorAll('.nav-links a');
+    if (window.gsap) {
+      gsap.fromTo(links, 
+        { x: -30, opacity: 0 }, 
+        { x: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: "power3.out" }
+      );
     }
-  });
+  }
+};
+
+function initMobileNav() {
+  // Now handled by inline onclick calls to bypass any attachment/timing issues
 }
 
 function initPageTransitions() {
