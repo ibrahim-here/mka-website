@@ -327,7 +327,8 @@ nav.main-nav.hero-inverted .nav-logo img {
   justify-content: space-between;
   width: 24px;
   height: 16px;
-  z-index: 105 !important;
+  position: relative;
+  z-index: 9999 !important;
   pointer-events: auto !important;
 }
 

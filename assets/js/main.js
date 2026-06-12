@@ -34,12 +34,14 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function initMobileNav() {
-  const toggle = document.querySelector('.mobile-menu-toggle');
   const overlay = document.querySelector('.mobile-overlay');
-  
-  if (!toggle || !overlay) return;
+  if (!overlay) return;
 
-  function toggleMenu() {
+  // Use event delegation to catch clicks on any .mobile-menu-toggle
+  document.addEventListener('click', (e) => {
+    const toggle = e.target.closest('.mobile-menu-toggle');
+    if (!toggle) return;
+
     overlay.classList.toggle('active');
     toggle.classList.toggle('active');
     
@@ -53,9 +55,7 @@ function initMobileNav() {
         );
       }
     }
-  }
-
-  toggle.addEventListener('click', toggleMenu);
+  });
 }
 
 function initPageTransitions() {
