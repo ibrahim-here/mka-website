@@ -2,31 +2,50 @@ document.addEventListener('DOMContentLoaded', () => {
   const track = document.getElementById('gallery-track');
   if (!track) return;
 
+  // ─────────────────────────────────────────────────────────
   // 1. Populate Gallery
-  // The prompt asks for 30-40 images with alternating sizes: medium, large, small, medium, large, small...
+  //    Images are displayed at full natural aspect ratio —
+  //    no cropping. Height is fixed by CSS; width is auto.
+  // ─────────────────────────────────────────────────────────
   const totalItems = 36;
-  const sizes = ['size-medium', 'size-large', 'size-small'];
   let html = '';
 
   for (let i = 0; i < totalItems; i++) {
-    const sizeClass = sizes[i % sizes.length];
-    // Vary the aspect ratios based on size for picsum
-    let w, h;
-    if (sizeClass === 'size-small') { w = 280; h = 360; }
-    else if (sizeClass === 'size-medium') { w = 420; h = 520; }
-    else { w = 620; h = 420; }
-    
+    // Vary picsum dimensions to get a natural mix of landscape / portrait images
+    const variants = [
+      { w: 800, h: 520 },  // landscape
+      { w: 520, h: 780 },  // portrait
+      { w: 700, h: 520 },  // landscape
+      { w: 400, h: 600 },  // tall portrait
+      { w: 900, h: 520 },  // wide landscape
+      { w: 520, h: 700 },  // portrait
+    ];
+    const { w, h } = variants[i % variants.length];
     const imgSrc = `https://picsum.photos/${w}/${h}?random=${300 + i}`;
-    
+
     html += `
-      <div class="gallery-item ${sizeClass}">
+      <div class="gallery-item">
         <img src="${imgSrc}" loading="lazy" alt="Gallery item ${i + 1}">
       </div>
     `;
   }
   track.innerHTML = html;
 
-  // 2. Drag to Scroll Logic (exactly as per prompt)
+  // ─────────────────────────────────────────────────────────
+  // 2. Mouse Wheel → Horizontal Scroll
+  //    When the user scrolls vertically over the gallery,
+  //    translate that into horizontal scrolling instead.
+  // ─────────────────────────────────────────────────────────
+  track.addEventListener('wheel', (e) => {
+    // Only intercept when the track is the scroll target
+    e.preventDefault();
+    // deltaY is the vertical scroll; redirect it horizontally
+    track.scrollLeft += e.deltaY + e.deltaX;
+  }, { passive: false });
+
+  // ─────────────────────────────────────────────────────────
+  // 3. Drag to Scroll (pointer events, with inertia/momentum)
+  // ─────────────────────────────────────────────────────────
   let isDragging = false;
   let startX;
   let scrollLeft;
@@ -57,18 +76,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!isDragging) return;
     isDragging = false;
     track.style.cursor = 'grab';
-    
+
     // Momentum / inertia on release
     const decelerate = () => {
       if (Math.abs(velocity) < 0.5) return;
       track.scrollLeft -= velocity;
-      velocity *= 0.93; // friction
+      velocity *= 0.93; // friction coefficient
       animFrame = requestAnimationFrame(decelerate);
     };
     decelerate();
   });
-  
-  // Prevent default image drag behavior that interrupts pointer events
+
+  // Prevent default browser image-drag from interfering
   track.addEventListener('dragstart', (e) => {
     e.preventDefault();
   });
