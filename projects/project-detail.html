@@ -223,12 +223,35 @@
 
         const galleryGrid = document.getElementById('gallery-grid');
         
-        // Add main image
-        if (project.mainImageUrl) {
-          const img = document.createElement('img');
-          img.src = `${project.mainImageUrl}?w=1600&auto=format`;
-          img.className = 'gallery-item main';
-          galleryGrid.appendChild(img);
+        // Add main image or video
+        if (slug === 'velodrome-peshawar') {
+          const videoContainer = document.createElement('div');
+          videoContainer.className = 'gallery-item main';
+          videoContainer.style.position = 'relative';
+          videoContainer.style.width = '100%';
+          videoContainer.style.aspectRatio = '16/9';
+          videoContainer.style.overflow = 'hidden';
+          videoContainer.style.backgroundColor = '#000';
+
+          const video = document.createElement('video');
+          video.src = '../assets/images/projects/velodrome-peshawar/walkthrough.mp4';
+          video.controls = true;
+          if (project.mainImageUrl) {
+            video.poster = `${project.mainImageUrl}?w=1600&auto=format`;
+          }
+          video.style.width = '100%';
+          video.style.height = '100%';
+          video.style.objectFit = 'contain';
+
+          videoContainer.appendChild(video);
+          galleryGrid.appendChild(videoContainer);
+        } else {
+          if (project.mainImageUrl) {
+            const img = document.createElement('img');
+            img.src = `${project.mainImageUrl}?w=1600&auto=format`;
+            img.className = 'gallery-item main';
+            galleryGrid.appendChild(img);
+          }
         }
 
         // Add gallery images
