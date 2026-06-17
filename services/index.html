@@ -159,6 +159,43 @@
       color: var(--color-text-secondary);
     }
 
+    /* Service photo strip (shown when accordion is open) */
+    .service-images {
+      display: flex;
+      gap: 10px;
+      margin-top: var(--space-md);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .service-images::-webkit-scrollbar { display: none; }
+    .service-images img {
+      height: 200px;
+      width: auto;
+      flex-shrink: 0;
+      border-radius: 4px;
+      background: #f0ede8;
+    }
+
+    /* "Send Enquiry" link at the bottom of each service expansion */
+    .service-enquiry-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: var(--space-md);
+      margin-bottom: var(--space-sm);
+      font-family: 'Inter Display', sans-serif;
+      font-weight: 500;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-text-primary);
+      text-decoration: none;
+      border-bottom: 1px solid currentColor;
+      padding-bottom: 2px;
+      transition: opacity 0.2s;
+    }
+    .service-enquiry-link:hover { opacity: 0.55; }
+
     @media (max-width: 900px) {
       .process-grid {
         flex-direction: column;
@@ -173,6 +210,7 @@
       .service-content-inner {
         padding-left: 0;
       }
+      .service-images img { height: 140px; }
     }
   </style>
 </head>
@@ -266,6 +304,15 @@
                 <li>3D rendering &amp; photorealistic visualisation</li>
                 <li><strong>Urdu-language construction drawings</strong> — a unique MKA service. We produce drawings labelled in Urdu so that site labourers and local contractors can read them directly, reducing errors on site. We have done this consistently since the 2005 earthquake rehabilitation work, and very few firms in Pakistan offer this.</li>
               </ul>
+              <div class="service-images">
+                <img src="/assets/images/projects/3006-shahbaz-manzil/3006mdl4 (37).jpg" alt="Shahbaz Manzil — MKA Architectural Design" loading="lazy">
+                <img src="/assets/images/projects/3007-iqbal-manzil/3007Mdl1 (11).jpg" alt="Iqbal Manzil — MKA Architectural Design" loading="lazy">
+                <img src="/assets/images/projects/3003-manga-madrassa/3003Modl3 (17).jpg" alt="Manga Madrassa — MKA Architectural Design" loading="lazy">
+              </div>
+              <div style="display: flex; gap: 24px; align-items: center; flex-wrap: wrap;">
+                <a href="/projects/index.html" class="service-enquiry-link">View related projects →</a>
+                <a href="/contact/index.html?service=architectural-design" class="service-enquiry-link">Send an enquiry →</a>
+              </div>
             </div>
           </div>
         </div>
@@ -290,6 +337,15 @@
                 <li>Economical material procurement — sourcing standard-quality materials at the best available price</li>
                 <li>Contract administration — tender documents, bills of quantities, bid evaluation, and final account settlement</li>
               </ul>
+              <div class="service-images">
+                <img src="/assets/images/projects/velodrome-peshawar/thumbnail.png" alt="Velodrome Peshawar — MKA Construction Management" loading="lazy">
+                <img src="/assets/images/projects/3404-al-faisal-mall/3404 corner lift A01.jpg" alt="Al Faisal Mall — MKA Construction Management" loading="lazy">
+                <img src="/assets/images/projects/3404-al-faisal-mall/3404 corner lift A02.jpg" alt="Al Faisal Mall — Construction Detail" loading="lazy">
+              </div>
+              <div style="display: flex; gap: 24px; align-items: center; flex-wrap: wrap;">
+                <a href="/projects/index.html" class="service-enquiry-link">View related projects →</a>
+                <a href="/contact/index.html?service=construction-management" class="service-enquiry-link">Send an enquiry →</a>
+              </div>
             </div>
           </div>
         </div>
@@ -313,6 +369,10 @@
                 <li>Underground and overhead water reservoirs</li>
                 <li>Bridges, flyovers, and infrastructure structures</li>
               </ul>
+              <div style="display: flex; gap: 24px; align-items: center; flex-wrap: wrap; margin-top: var(--space-md);">
+                <a href="/projects/index.html?category=industrial" class="service-enquiry-link">View industrial projects →</a>
+                <a href="/contact/index.html?service=structural-engineering" class="service-enquiry-link">Send an enquiry →</a>
+              </div>
             </div>
           </div>
         </div>
@@ -335,6 +395,10 @@
                 <li>Zoning, land use planning, and phasing</li>
                 <li>Landscaping within large-scale planning projects</li>
               </ul>
+              <div style="display: flex; gap: 24px; align-items: center; flex-wrap: wrap; margin-top: var(--space-md);">
+                <a href="/projects/index.html?category=master-planning" class="service-enquiry-link">View planning projects →</a>
+                <a href="/contact/index.html?service=town-planning" class="service-enquiry-link">Send an enquiry →</a>
+              </div>
             </div>
           </div>
         </div>
@@ -357,6 +421,15 @@
                 <li>Material, finish, and fixture specification</li>
                 <li>Furniture and joinery design</li>
               </ul>
+              <div class="service-images">
+                <img src="/assets/images/projects/3404-al-faisal-mall/3404 corner lift A01.jpg" alt="Al Faisal Mall Interior — MKA" loading="lazy">
+                <img src="/assets/images/projects/3404-al-faisal-mall/3404 corner lift A02.jpg" alt="Al Faisal Mall Interior Detail" loading="lazy">
+                <img src="/assets/images/projects/3007-iqbal-manzil/3007Mdl1 (11).jpg" alt="Iqbal Manzil Interior — MKA" loading="lazy">
+              </div>
+              <div style="display: flex; gap: 24px; align-items: center; flex-wrap: wrap;">
+                <a href="/projects/index.html" class="service-enquiry-link">View related projects →</a>
+                <a href="/contact/index.html?service=interior-design" class="service-enquiry-link">Send an enquiry →</a>
+              </div>
             </div>
           </div>
         </div>
@@ -379,6 +452,10 @@
                 <li>Residential garden design</li>
                 <li>Water features, fountains, and landscape infrastructure</li>
               </ul>
+              <div style="display: flex; gap: 24px; align-items: center; flex-wrap: wrap; margin-top: var(--space-md);">
+                <a href="/projects/index.html?category=landscape" class="service-enquiry-link">View landscape projects →</a>
+                <a href="/contact/index.html?service=landscape-design" class="service-enquiry-link">Send an enquiry →</a>
+              </div>
             </div>
           </div>
         </div>
@@ -401,6 +478,9 @@
                 <li>Series drawings for documentation packages</li>
                 <li>Urdu-annotated drawings (see Architectural Design)</li>
               </ul>
+              <div style="display: flex; gap: 24px; align-items: center; flex-wrap: wrap; margin-top: var(--space-md);">
+                <a href="/contact/index.html?service=cad-drawings" class="service-enquiry-link">Send an enquiry →</a>
+              </div>
             </div>
           </div>
         </div>
