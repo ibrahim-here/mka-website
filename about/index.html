@@ -150,31 +150,37 @@
       transition: color 0.25s ease;
     }
 
-    /* ── Interactive Logo Overlay ── */
-    .client-logo-overlay {
-      position: absolute;
-      inset: 0;
-      background: #ffffff;
+    /* ── Static Logo Tile ── */
+    .client-tile.static-logo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .client-tile.static-logo .client-logo-static {
+      height: 60px;
+      margin-bottom: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 24px;
-      opacity: 0;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      transform: scale(0.96);
-      z-index: 10;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
     }
 
-    .client-logo-overlay img {
+    .client-tile.static-logo .client-logo-static img {
       max-width: 100%;
       max-height: 100%;
       object-fit: contain;
     }
 
-    .client-tile.has-logo:hover .client-logo-overlay {
-      opacity: 1;
-      transform: scale(1);
+    .client-tile.static-logo .client-name {
+      font-size: 16px;
+      margin-bottom: 0;
+    }
+
+    .client-tile.static-logo:hover {
+      background-color: var(--color-bg); /* No black inversion for logo tiles */
     }
 
     /* ── Affiliations ─────────────────────────────────── */
@@ -457,12 +463,11 @@
       </div>
 
       <div class="clients-grid gsap-stagger-list">
-        <div class="client-tile has-logo">
-          <div class="client-name">National Highway Authority</div>
-          <div class="client-sector">Government / Infrastructure</div>
-          <div class="client-logo-overlay">
-            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/07/National_Highway_Authority_logo.svg/800px-National_Highway_Authority_logo.svg.png" alt="NHA Logo">
+        <div class="client-tile static-logo">
+          <div class="client-logo-static">
+            <img src="/assets/images/clients/nha.svg" alt="NHA Logo">
           </div>
+          <div class="client-name"><strong>NHA</strong></div>
         </div>
         <div class="client-tile">
           <div class="client-name">Defence Housing Authority</div>
