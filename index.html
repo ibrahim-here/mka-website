@@ -712,13 +712,9 @@
         <a href="/gallery/index.html" class="btn-view-all">View All</a>
       </div>
 
-      <div class="container carousel-container gsap-reveal">
-        <div class="carousel-track">
-          <div class="carousel-slide"><img src="https://picsum.photos/800/1000?random=40" alt="Collection Item 1"></div>
-          <div class="carousel-slide"><img src="https://picsum.photos/800/1000?random=41" alt="Collection Item 2"></div>
-          <div class="carousel-slide"><img src="https://picsum.photos/800/1000?random=42" alt="Collection Item 3"></div>
-          <div class="carousel-slide"><img src="https://picsum.photos/800/1000?random=43" alt="Collection Item 4"></div>
-          <div class="carousel-slide"><img src="https://picsum.photos/800/1000?random=44" alt="Collection Item 5"></div>
+      <div class="gallery-track-wrapper gsap-reveal" style="animation-delay: 0.2s;">
+        <div class="gallery-track" id="gallery-track">
+          <!-- Content injected by gallery.js for infinite scroll -->
         </div>
       </div>
     </section>
@@ -778,6 +774,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="/assets/js/sanity-client.js?v=2"></script>
   <script src="/assets/js/main.js?v=5"></script>
+  <script src="/assets/js/gallery.js"></script>
   <script>
     // Initialize Lenis for Smooth Scrolling
     const lenis = new Lenis({

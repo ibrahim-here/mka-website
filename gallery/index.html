@@ -9,98 +9,9 @@
   <link rel="stylesheet" href="/assets/css/animations.css">
   
   <style>
-    /* Gallery specific styles */
+    /* Gallery page specific adjustments */
     body {
       /* Allow vertical scrolling to see CTA and footer */
-    }
-    
-    .gallery-container {
-      min-height: 85vh;
-      display: flex;
-      flex-direction: column;
-      padding-bottom: var(--space-xl);
-    }
-    
-    .gallery-header {
-      padding-top: calc(64px + var(--space-lg));
-      text-align: center;
-      flex-shrink: 0;
-    }
-    
-    .gallery-header h1 {
-      margin-bottom: var(--space-xs);
-    }
-    
-    .gallery-header p {
-      font-family: 'Inter', sans-serif;
-      font-weight: 300;
-      font-size: 16px;
-      font-style: italic;
-      color: var(--color-text-secondary);
-      margin-bottom: 0;
-    }
-    
-    .gallery-track-wrapper {
-      flex-grow: 1;
-      display: flex;
-      align-items: center;
-      margin-top: var(--space-md);
-      margin-bottom: var(--space-xl);
-      /* Fixed track height so all images share the same row height */
-      height: 520px;
-    }
-    
-    .gallery-track {
-      display: flex;
-      gap: 14px;
-      overflow-x: scroll;
-      overflow-y: hidden;
-      cursor: grab;
-      scrollbar-width: none; /* Firefox */
-      -ms-overflow-style: none; /* IE */
-      padding: 0 40px;
-      height: 100%;
-      align-items: center;
-      user-select: none;
-      width: 100%;
-    }
-    
-    .gallery-track::-webkit-scrollbar { 
-      display: none; 
-    }
-    
-    .gallery-track:active {
-      cursor: grabbing;
-    }
-    
-    /* Each gallery item takes the full track height and auto-sizes its width
-       so images are NEVER cropped — full image always shown */
-    .gallery-item {
-      flex-shrink: 0;
-      height: 100%;
-      border-radius: 6px;
-      overflow: hidden;
-      position: relative;
-      background-color: #f0ede8;
-    }
-    
-    .gallery-item img,
-    .gallery-item video {
-      height: 100%;
-      width: auto;               /* natural width, preserves aspect ratio */
-      max-width: none;
-      display: block;
-      object-fit: unset;         /* do NOT crop — show full image */
-      pointer-events: none;
-    }
-
-    @media (max-width: 900px) {
-      .gallery-track-wrapper { height: 400px; }
-    }
-    
-    @media (max-width: 600px) {
-      .gallery-track { padding: 0 20px; }
-      .gallery-track-wrapper { height: 280px; }
     }
   </style>
 </head>
