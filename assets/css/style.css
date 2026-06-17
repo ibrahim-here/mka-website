@@ -1243,3 +1243,59 @@ footer.premium-footer .footer-big-text {
   .gallery-track-wrapper { height: 280px; }
 }
 
+
+/* ── GLOBAL RESPONSIVENESS ────────────────────────────────── */
+@media (max-width: 900px) {
+  :root {
+    --space-xl: 48px;
+    --space-lg: 32px;
+    --space-md: 16px;
+    --space-section: 60px;
+  }
+  
+  .display {
+    font-size: 70px;
+    line-height: 70px;
+  }
+  
+  h1 {
+    font-size: 60px;
+    line-height: 60px;
+  }
+  
+  h2 {
+    font-size: 48px;
+    line-height: 50px;
+  }
+  
+  h3 {
+    font-size: 32px;
+    line-height: 36px;
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
+    --space-section: 40px;
+  }
+
+  .display {
+    font-size: 50px;
+    line-height: 52px;
+  }
+  
+  h1 {
+    font-size: 42px;
+    line-height: 46px;
+  }
+  
+  h2 {
+    font-size: 36px;
+    line-height: 40px;
+  }
+  
+  h3 {
+    font-size: 26px;
+    line-height: 30px;
+  }
+}

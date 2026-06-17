@@ -1,42 +1,40 @@
-document.addEventListener('DOMContentLoaded', () => {
+window.initGalleryTrack = function(imageUrls) {
   const track = document.getElementById('gallery-track');
-  if (!track) return;
+  if (!track || !imageUrls || imageUrls.length === 0) return;
 
   // ─────────────────────────────────────────────────────────
-  // 1. Populate Gallery
+  // 1. Populate Gallery with Real Images
   //    Images are displayed at full natural aspect ratio —
   //    no cropping. Height is fixed by CSS; width is auto.
   // ─────────────────────────────────────────────────────────
-  const totalItems = 36;
   let html = '';
 
-  for (let i = 0; i < totalItems; i++) {
-    // Vary picsum dimensions to get a natural mix of landscape / portrait images
-    const variants = [
-      { w: 800, h: 520 },  // landscape
-      { w: 520, h: 780 },  // portrait
-      { w: 700, h: 520 },  // landscape
-      { w: 400, h: 600 },  // tall portrait
-      { w: 900, h: 520 },  // wide landscape
-      { w: 520, h: 700 },  // portrait
-    ];
-    const { w, h } = variants[i % variants.length];
-    const imgSrc = `https://picsum.photos/${w}/${h}?random=${300 + i}`;
-
+  imageUrls.forEach((url, i) => {
+    // Add Sanity image optimization params
+    const optimizedUrl = `${url}?h=1000&auto=format`;
     html += `
       <div class="gallery-item">
-        <img src="${imgSrc}" loading="lazy" alt="Gallery item ${i + 1}">
+        <img src="${optimizedUrl}" loading="lazy" alt="Gallery item ${i + 1}">
       </div>
     `;
+  });
+  
+  // Clone the gallery items enough times to fill the screen and allow seamless loop.
+  // If there are very few images, clone them more times.
+  const clonesNeeded = Math.max(3, Math.ceil(15 / imageUrls.length));
+  
+  let fullHtml = '';
+  for(let c=0; c < clonesNeeded; c++) {
+    fullHtml += html;
   }
   
-  // Clone the gallery items 3 times for a seamless infinite loop
-  track.innerHTML = html + html + html;
+  track.innerHTML = fullHtml;
 
   // Initialize scroll position to the middle set to allow scrolling left immediately
   setTimeout(() => {
-    const setWidth = track.scrollWidth / 3;
-    track.scrollLeft = setWidth;
+    const setWidth = track.scrollWidth / clonesNeeded;
+    // Scroll to the middle clone block
+    track.scrollLeft = setWidth * Math.floor(clonesNeeded / 2);
   }, 100);
 
   // ─────────────────────────────────────────────────────────
@@ -101,23 +99,38 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ─────────────────────────────────────────────────────────
-  // 4. Infinite Scroll Loop
+  // 4. Smooth Animation Loop
   // ─────────────────────────────────────────────────────────
-  track.addEventListener('scroll', () => {
-    if (track.scrollWidth === 0) return;
-    
-    // Total width is composed of 3 identical sets of images
-    const setWidth = track.scrollWidth / 3;
-    
-    // If we scroll into the 3rd set, silently jump back to the 2nd set
-    if (track.scrollLeft >= setWidth * 2) {
-      track.scrollLeft -= setWidth;
-      scrollLeft -= setWidth; // Update drag start reference if dragging
+  function animate() {
+    if (!isDragging) {
+      // Apply momentum
+      scrollLeft -= velocity;
+      track.scrollLeft = scrollLeft;
+      
+      // Decay velocity
+      velocity *= 0.95;
+      
+      // Stop animation when velocity is very small
+      if (Math.abs(velocity) < 0.1) velocity = 0;
+      
+      // Infinite Loop Logic!
+      // If we've scrolled past a third of the width, seamlessly jump back.
+      // The total width is made of N identical sets of images.
+      const setWidth = track.scrollWidth / clonesNeeded;
+      
+      if (track.scrollLeft >= track.scrollWidth - setWidth - track.clientWidth) {
+        // Jump back
+        track.scrollLeft -= setWidth;
+        scrollLeft -= setWidth;
+      } else if (track.scrollLeft <= setWidth / 2) {
+        // Jump forward
+        track.scrollLeft += setWidth;
+        scrollLeft += setWidth;
+      }
     }
-    // If we scroll into the 1st set, silently jump forward to the 2nd set
-    else if (track.scrollLeft <= 0) {
-      track.scrollLeft += setWidth;
-      scrollLeft += setWidth; // Update drag start reference if dragging
-    }
-  });
-});
+    
+    requestAnimationFrame(animate);
+  }
+  
+  animate();
+};

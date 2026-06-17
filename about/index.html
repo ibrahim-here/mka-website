@@ -265,6 +265,34 @@
       line-height: 1.7;
     }
 
+    .leader-social {
+      font-size: 14px;
+      color: var(--color-text-secondary);
+      text-decoration: underline;
+    }
+
+    /* ── Responsive Grids ─────────────────────────────── */
+    @media (max-width: 1024px) {
+      .clients-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    
+    @media (max-width: 900px) {
+      .clients-grid { grid-template-columns: repeat(2, 1fr); }
+      .affiliations-grid { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: repeat(2, 1fr); }
+      .leadership-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .clients-grid { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr; }
+      .client-tile.static-logo, 
+      .affiliation-tile, 
+      .leader-card { 
+        padding: 30px 20px; 
+      }
+    }
+
     /* ── Leadership ───────────────────────────────────── */
     .leadership-grid {
       display: grid;

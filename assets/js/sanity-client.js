@@ -67,8 +67,8 @@ async function renderHomeProjects() {
     card.addEventListener('click', () => localStorage.setItem('current_project_slug', project.slug.current));
     card.className = `project-card ${isLeft ? 'project-left' : 'project-right'}`;
     
-    // Default image if upload failed
-    const imgSrc = project.imageUrl ? `${project.imageUrl}?w=1000&auto=format` : 'https://picsum.photos/800/600?random=201';
+    // Default to an empty string if no image is uploaded
+    const imgSrc = project.imageUrl ? `${project.imageUrl}?w=1000&auto=format` : '';
 
     card.innerHTML = `
       <div class="project-img-wrapper">
@@ -92,39 +92,43 @@ async function renderHomeProjects() {
   }
 }
 
-async function replaceDummyImages() {
-  // Wait a moment to allow scripts like gallery.js to inject their dummy images first
-  setTimeout(async () => {
-    const dummyImages = document.querySelectorAll('img[src*="picsum.photos"]');
-    if (dummyImages.length === 0) return;
+async function fetchAndInitGallery() {
+  const track = document.getElementById('gallery-track');
+  if (!track) return;
 
-    // Fetch some nice gallery images from any project
-    const query = `*[_type == "project" && defined(gallery)] { "urls": gallery[0...3].asset->url }`;
-    const projects = await fetchSanityData(query);
-    
-    let allUrls = [];
-    if (projects) {
-      projects.forEach(p => { if (p.urls) allUrls = allUrls.concat(p.urls); });
-    }
+  // Fetch all gallery images from all projects
+  const query = `*[_type == "project" && defined(gallery)] { "urls": gallery[].asset->url }`;
+  const projects = await fetchSanityData(query);
+  
+  let allUrls = [];
+  if (projects) {
+    projects.forEach(p => { if (p.urls) allUrls = allUrls.concat(p.urls); });
+  }
 
-    if (allUrls.length > 0) {
-      // Shuffle the URLs for variety
-      allUrls = allUrls.sort(() => Math.random() - 0.5);
-      
-      let urlIndex = 0;
-      dummyImages.forEach(img => {
-        // Pick a URL, loop back to start if we run out
-        const url = allUrls[urlIndex % allUrls.length];
-        img.src = `${url}?w=800&auto=format`;
-        urlIndex++;
-      });
+  const wrapper = track.closest('.gallery-track-wrapper') || track.parentElement;
+
+  if (allUrls.length === 0) {
+    // Hide the entire gallery section if there are no images at all
+    if (wrapper) {
+      wrapper.style.display = 'none';
+      const sectionLabel = wrapper.previousElementSibling;
+      if (sectionLabel) sectionLabel.style.display = 'none';
     }
-  }, 100);
+    return;
+  }
+
+  // Ensure wrapper is visible
+  if (wrapper) wrapper.style.display = '';
+
+  // Call the global function in gallery.js
+  if (window.initGalleryTrack) {
+    window.initGalleryTrack(allUrls);
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/') {
     renderHomeProjects();
   }
-  replaceDummyImages();
+  fetchAndInitGallery();
 });
