@@ -4,138 +4,312 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About MKA — Architecture, Engineering, Planning</title>
-  <meta name="description" content="Majed Khan & Associates (MKA) is an architecture, engineering, and town planning firm founded in 1985 with 500+ completed projects across Pakistan.">
+  <meta name="description" content="Majed Khan & Associates (MKA) — 40 years of architecture, engineering and town planning. 500+ projects. Trusted by NHA, DHA, Hashoo Group, PC Hotels and dozens more.">
   <link rel="stylesheet" href="/assets/css/style.css">
   <link rel="stylesheet" href="/assets/css/animations.css">
-  
+
   <style>
-    /* About specific styles */
-    .about-header, .partners-section, .clients-section, .memberships-section {
+    /* ── Page Layout ──────────────────────────────────── */
+    h2 { font-family: 'Inter Display', sans-serif !important; }
+
+    /* ── Hero Intro ───────────────────────────────────── */
+    .about-hero {
+      padding-top: 180px;
+      padding-bottom: 80px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .about-hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-intro-label {
+      font-family: 'Inter Display', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    .about-intro h1 {
+      font-size: clamp(44px, 6vw, 80px);
+      line-height: 1.0;
+      margin-bottom: 32px;
+      font-weight: 600;
+    }
+
+    .about-intro p {
+      font-family: 'Inter Display', sans-serif;
+      font-weight: 300;
+      font-size: 17px;
+      line-height: 1.85;
+      color: var(--color-text-secondary);
+      max-width: 540px;
+    }
+
+    .about-hero-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ── Trust Stats Bar ──────────────────────────────── */
+    .trust-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .trust-item {
+      padding: 48px 40px;
+      border-right: 1px solid var(--color-border);
+      text-align: center;
+    }
+
+    .trust-item:last-child { border-right: none; }
+
+    .trust-number {
+      font-family: 'Inter Display', sans-serif;
+      font-size: clamp(40px, 5vw, 72px);
+      font-weight: 700;
+      line-height: 1;
+      color: var(--color-text-primary);
+      margin-bottom: 8px;
+    }
+
+    .trust-label {
+      font-family: 'Inter Display', sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+    }
+
+    /* ── Clients Grid ─────────────────────────────────── */
+    .section-label-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .clients-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background-color: var(--color-border);
+      border: 1px solid var(--color-border);
+      margin-bottom: 0;
+    }
+
+    .client-tile {
+      background-color: var(--color-bg);
+      padding: 36px 28px;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding-top: calc(64px + var(--space-xl));
-      padding-bottom: var(--space-xl);
+      transition: background-color 0.25s ease;
     }
-    
-    h2, .partner-name {
-      font-family: 'Inter Display', sans-serif !important;
+
+    .client-tile:hover {
+      background-color: var(--color-text-primary);
     }
-    
-    .story-grid {
+
+    .client-tile:hover .client-name,
+    .client-tile:hover .client-sector {
+      color: var(--color-bg);
+    }
+
+    .client-name {
+      font-family: 'Inter Display', sans-serif;
+      font-weight: 500;
+      font-size: 15px;
+      color: var(--color-text-primary);
+      line-height: 1.3;
+      transition: color 0.25s ease;
+      margin-bottom: 4px;
+    }
+
+    .client-sector {
+      font-family: 'Inter Display', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      transition: color 0.25s ease;
+    }
+
+    /* ── Affiliations ─────────────────────────────────── */
+    .affiliations-grid {
       display: grid;
-      grid-template-columns: 4fr 6fr;
-      gap: var(--space-xl);
-      align-items: center;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background-color: var(--color-border);
+      border: 1px solid var(--color-border);
     }
-    
-    .story-image {
-      aspect-ratio: 3/4;
-      overflow: hidden;
+
+    .affiliation-tile {
+      background-color: var(--color-bg);
+      padding: 48px 40px;
     }
-    
-    .story-image img {
-      width: 100%;
-      height: auto;   /* no cropping — full image shown */
+
+    .affiliation-badge {
+      font-family: 'Inter Display', sans-serif;
+      font-weight: 700;
+      font-size: 28px;
+      letter-spacing: -0.02em;
+      color: var(--color-text-primary);
+      margin-bottom: 12px;
     }
-    
-    .partners-grid {
+
+    .affiliation-name {
+      font-family: 'Inter Display', sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ── Why Choose Us ────────────────────────────────── */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+    }
+
+    .why-item {
+      border-top: 2px solid var(--color-text-primary);
+      padding-top: 24px;
+    }
+
+    .why-number {
+      font-family: 'Inter Display', sans-serif;
+      font-weight: 300;
+      font-size: 48px;
+      color: var(--color-border);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .why-title {
+      font-family: 'Inter Display', sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--color-text-primary);
+      margin-bottom: 10px;
+    }
+
+    .why-desc {
+      font-family: 'Inter Display', sans-serif;
+      font-weight: 300;
+      font-size: 14px;
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+    }
+
+    /* ── Leadership ───────────────────────────────────── */
+    .leadership-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: var(--space-xl);
-      margin-top: var(--space-lg);
+      gap: 1px;
+      background-color: var(--color-border);
+      border: 1px solid var(--color-border);
     }
-    
-    .partner-card {
-      border-top: 1px solid var(--color-border);
-      padding-top: 32px;
+
+    .leader-card {
+      background-color: var(--color-bg);
+      padding: 48px 40px;
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 28px;
+      align-items: start;
     }
-    
-    .partner-image {
-      aspect-ratio: 3/4;
+
+    .leader-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
       overflow: hidden;
-      margin-bottom: var(--space-md);
+      flex-shrink: 0;
+      background: #e8e5e0;
     }
-    
-    .partner-image img {
+
+    .leader-avatar img {
       width: 100%;
-      height: auto;   /* no cropping — full image shown */
-      filter: grayscale(100%);
-      transition: filter 0.6s ease;
+      height: 100%;
+      object-fit: cover;
     }
-    
-    .partner-card:hover .partner-image img {
-      filter: grayscale(0%);
-    }
-    
-    .partner-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 400;
+
+    .leader-initials {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter Display', sans-serif;
+      font-weight: 600;
       font-size: 32px;
-      margin-bottom: var(--space-xs);
+      color: var(--color-text-secondary);
     }
-    
-    .partner-title {
-      font-family: 'Inter', sans-serif;
-      font-weight: 400;
+
+    .leader-name {
+      font-family: 'Inter Display', sans-serif;
+      font-weight: 600;
+      font-size: 20px;
+      color: var(--color-text-primary);
+      margin-bottom: 4px;
+    }
+
+    .leader-title {
+      font-family: 'Inter Display', sans-serif;
+      font-weight: 300;
+      font-size: 13px;
+      color: var(--color-text-muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .leader-bio {
+      font-family: 'Inter Display', sans-serif;
+      font-weight: 300;
       font-size: 14px;
       color: var(--color-text-secondary);
-      margin-bottom: var(--space-sm);
-    }
-    
-    .partner-bio {
-      font-family: 'Inter', sans-serif;
-      font-weight: 300;
-      font-size: 14px;
-      color: var(--color-text-primary);
-      line-height: 1.8;
+      line-height: 1.75;
     }
 
-    .clients-list {
-      font-family: 'Inter', sans-serif;
-      font-weight: 300;
-      font-size: 16px;
-      color: var(--color-text-secondary);
-      line-height: 2;
+    /* ── Responsive ───────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .clients-grid { grid-template-columns: repeat(3, 1fr); }
+      .why-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
-    .memberships-list p {
-      font-family: 'Inter', sans-serif;
-      font-weight: 300;
-      font-size: 16px;
-      color: var(--color-text-primary);
-      margin-bottom: var(--space-xs);
+    @media (max-width: 768px) {
+      .about-hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      .trust-bar { grid-template-columns: repeat(2, 1fr); }
+      .trust-item { border-bottom: 1px solid var(--color-border); }
+      .clients-grid { grid-template-columns: repeat(2, 1fr); }
+      .affiliations-grid { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr 1fr; }
+      .leadership-grid { grid-template-columns: 1fr; }
+      .leader-card { grid-template-columns: 80px 1fr; }
+      .leader-avatar { width: 80px; height: 80px; }
     }
 
-    @media (max-width: 900px) {
-      .story-grid, .partners-grid {
-        grid-template-columns: 1fr;
-      }
-      .story-image {
-        order: 2;
-      }
-      .story-text {
-        order: 1;
-        text-align: center;
-        align-items: center;
-      }
-      .story-text h2 {
-        margin-bottom: 24px !important;
-      }
-      .gsap-reveal.section-heading-row {
-        flex-direction: column !important;
-        align-items: center !important;
-        text-align: center;
-      }
-      .gsap-reveal.section-heading-row .btn {
-        margin-top: 16px !important;
-      }
-      .partner-card, .clients-section, .memberships-section {
-        text-align: center;
-      }
-      .partner-image {
-        margin: 0 auto 24px auto;
-      }
+    @media (max-width: 480px) {
+      .trust-bar { grid-template-columns: 1fr 1fr; }
+      .clients-grid { grid-template-columns: 1fr 1fr; }
+      .why-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -197,85 +371,212 @@
   </div>
 
   <main>
-    <!-- Section 1: Firm Story -->
-    <section class="section about-header container" style="padding-top: 180px;">
-      <div class="gsap-reveal section-heading-row" style="margin-bottom: var(--space-xl); text-align: center;">
-        <h1 class="display">About</h1>
-      </div>
-      <div class="story-grid" style="align-items: stretch;">
-        <div class="story-image gsap-reveal" style="height: 100%; min-height: 400px; aspect-ratio: auto;">
-          <img src="/assets/images/hero-mka-best.jpg" alt="MKA Studio" style="width: 100%; height: auto;">
+
+    <!-- ══════════════════════════════════════════════════
+         SECTION 1: SHORT INTRO
+    ══════════════════════════════════════════════════ -->
+    <section class="about-hero container">
+      <div class="about-hero-grid">
+        <div class="about-intro gsap-reveal">
+          <span class="about-intro-label">• Est. 1985, Lahore</span>
+          <h1>Forty Years<br>of Practice</h1>
+          <p>Majed Khan &amp; Associates is a full-service architecture, engineering, and town planning firm. Five hundred completed projects. One studio. Full design and construction responsibility on every job — from first sketch to final handover.</p>
+          <a href="/contact/index.html" class="btn" style="margin-top: 32px; display: inline-block;">Start a Conversation</a>
         </div>
-        <div class="story-text gsap-reveal" style="display: flex; flex-direction: column; justify-content: center;">
-          <span class="label all-caps">The Practice</span>
-          <h2 style="margin-bottom: 24px;">Forty Years of Practice</h2>
-          <p>Majed Khan &amp; Associates was established in 1985 in Lahore as a practice of consulting architects, engineers, and town planners. Over four decades, the firm has completed more than five hundred projects across Pakistan and internationally — private residences, mosques, hospitals, hotels, shopping centres, industrial facilities, and master plans up to 2,000 acres.</p>
-          <p>The work has always been broad. MKA has designed for the National Highway Authority, Defence Housing Authority, the Hashoo Group, Lahore American School, Sialkot Dry Port Trust, and dozens of private clients who return because the buildings perform as promised.</p>
-          <p>The practice is led by Abdul Majed Khan and Muhammad Akbar from the Lahore studio at 98-E Model Town. Both are long-standing members of PCATP and PEC. The firm draws, details, and supervises its own work — a full-service model that keeps design intent intact from first sketch to final inspection.</p>
-          <a href="/contact/index.html" class="btn" style="margin-top: var(--space-md); align-self: flex-start;">Let's Talk</a>
+
+        <div class="about-hero-image gsap-reveal" style="animation-delay: 0.15s;">
+          <img src="/assets/images/hero-mka-best.jpg" alt="MKA Studio — Lahore">
         </div>
       </div>
     </section>
 
-    <!-- Section 2: Partners -->
-    <section class="section partners-section container border-top" style="display: none !important;">
-      <div class="gsap-reveal section-heading-row" style="display: flex; justify-content: space-between; align-items: flex-end;">
+    <!-- ══════════════════════════════════════════════════
+         SECTION 2: TRUST STATS
+    ══════════════════════════════════════════════════ -->
+    <div class="trust-bar gsap-stagger-list">
+      <div class="trust-item">
+        <div class="trust-number">500<span style="font-size:0.5em; font-weight:300;">+</span></div>
+        <div class="trust-label">Projects Completed</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-number">40<span style="font-size:0.5em; font-weight:300;">+</span></div>
+        <div class="trust-label">Years of Practice</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-number">50<span style="font-size:0.5em; font-weight:300;">+</span></div>
+        <div class="trust-label">Clients Served</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-number">10<span style="font-size:0.5em; font-weight:300;">+</span></div>
+        <div class="trust-label">Sectors Covered</div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════
+         SECTION 3: TRUSTED BY — CLIENT LOGOS GRID
+    ══════════════════════════════════════════════════ -->
+    <section class="section container border-top">
+      <div class="section-label-row gsap-reveal">
+        <div>
+          <span class="label all-caps">Who We've Worked With</span>
+          <h2 style="margin-top: 12px;">Trusted By</h2>
+        </div>
+        <p style="font-family:'Inter Display',sans-serif; font-weight:300; font-size:15px; color:var(--color-text-secondary); max-width:340px; text-align:right; line-height:1.7;">
+          Government bodies, private developers, hospitality groups, and institutions across Pakistan.
+        </p>
+      </div>
+
+      <div class="clients-grid gsap-stagger-list">
+        <div class="client-tile">
+          <div class="client-name">National Highway Authority</div>
+          <div class="client-sector">Government / Infrastructure</div>
+        </div>
+        <div class="client-tile">
+          <div class="client-name">Defence Housing Authority</div>
+          <div class="client-sector">Government / Real Estate</div>
+        </div>
+        <div class="client-tile">
+          <div class="client-name">Hashoo Group</div>
+          <div class="client-sector">Hospitality (PC Hotels &amp; Resorts)</div>
+        </div>
+        <div class="client-tile">
+          <div class="client-name">Lahore American School</div>
+          <div class="client-sector">Education</div>
+        </div>
+        <div class="client-tile">
+          <div class="client-name">Sialkot Dry Port Trust</div>
+          <div class="client-sector">Transport / Industrial</div>
+        </div>
+        <div class="client-tile">
+          <div class="client-name">Pakistan Engineering Congress</div>
+          <div class="client-sector">Professional Body</div>
+        </div>
+        <div class="client-tile">
+          <div class="client-name">Pizza Hut Pakistan</div>
+          <div class="client-sector">Commercial / Hospitality</div>
+        </div>
+        <div class="client-tile">
+          <div class="client-name">Lahore Development Authority</div>
+          <div class="client-sector">Government / Urban Planning</div>
+        </div>
+        <div class="client-tile">
+          <div class="client-name">D.S. Textiles</div>
+          <div class="client-sector">Industrial / Commercial</div>
+        </div>
+        <div class="client-tile">
+          <div class="client-name">Sozo Water Park</div>
+          <div class="client-sector">Leisure / Hospitality</div>
+        </div>
+        <div class="client-tile">
+          <div class="client-name">Doon School Society of Pakistan</div>
+          <div class="client-sector">Education</div>
+        </div>
+        <div class="client-tile">
+          <div class="client-name">T.E.P.A.</div>
+          <div class="client-sector">Government / Environment</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════
+         SECTION 4: PROFESSIONAL AFFILIATIONS
+    ══════════════════════════════════════════════════ -->
+    <section class="section container border-top">
+      <div class="section-label-row gsap-reveal">
+        <div>
+          <span class="label all-caps">Credentials</span>
+          <h2 style="margin-top: 12px;">Professional Affiliations</h2>
+        </div>
+      </div>
+
+      <div class="affiliations-grid gsap-stagger-list">
+        <div class="affiliation-tile">
+          <div class="affiliation-badge">PCATP</div>
+          <div class="affiliation-name">Pakistan Council of Architects and Town Planners<br>
+            <span style="font-size:12px; color:var(--color-text-muted); display:block; margin-top:6px;">The statutory regulatory body for architecture in Pakistan. All MKA architects are registered members.</span>
+          </div>
+        </div>
+        <div class="affiliation-tile">
+          <div class="affiliation-badge">PEC</div>
+          <div class="affiliation-name">Pakistan Engineering Council<br>
+            <span style="font-size:12px; color:var(--color-text-muted); display:block; margin-top:6px;">The national body licensing engineers in Pakistan. MKA's engineering team carries full PEC registration.</span>
+          </div>
+        </div>
+        <div class="affiliation-tile">
+          <div class="affiliation-badge">PEC</div>
+          <div class="affiliation-name">Pakistan Engineering Congress<br>
+            <span style="font-size:12px; color:var(--color-text-muted); display:block; margin-top:6px;">One of the oldest engineering institutions in Pakistan. MKA is an active member organisation.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════
+         SECTION 5: WHY CHOOSE US
+    ══════════════════════════════════════════════════ -->
+    <section class="section container border-top">
+      <div class="section-label-row gsap-reveal">
+        <div>
+          <span class="label all-caps">The Difference</span>
+          <h2 style="margin-top: 12px;">Why Choose MKA</h2>
+        </div>
+      </div>
+
+      <div class="why-grid gsap-stagger-list">
+        <div class="why-item">
+          <div class="why-number">01</div>
+          <div class="why-title">Full Scope Under One Roof</div>
+          <div class="why-desc">Architecture, structural engineering, CAD documentation, and full-time construction supervision — all done in-house. No outsourcing. No coordination gaps.</div>
+        </div>
+        <div class="why-item">
+          <div class="why-number">02</div>
+          <div class="why-title">Urdu Construction Drawings</div>
+          <div class="why-desc">Since the 2005 earthquake, we have produced construction drawings annotated in Urdu so site labourers can read them directly. Very few firms in Pakistan offer this.</div>
+        </div>
+        <div class="why-item">
+          <div class="why-number">03</div>
+          <div class="why-title">40 Years. 500+ Projects.</div>
+          <div class="why-desc">Established 1985. Every project type, every climate zone, every budget. The track record speaks before we do.</div>
+        </div>
+        <div class="why-item">
+          <div class="why-number">04</div>
+          <div class="why-title">Flexible Engagement</div>
+          <div class="why-desc">Engage us for the whole process or for just one part: design only, drawings only, supervision only, or procurement only. We fit around your project.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════
+         SECTION 6: LEADERSHIP (compact)
+    ══════════════════════════════════════════════════ -->
+    <section class="section container border-top">
+      <div class="section-label-row gsap-reveal">
         <div>
           <span class="label all-caps">Leadership</span>
-          <h2 style="margin-bottom: 24px;">Partners</h2>
+          <h2 style="margin-top: 12px;">The Partners</h2>
         </div>
       </div>
 
-      <div class="partners-grid gsap-stagger-list">
-        <div class="partner-card">
-          <div class="partner-image" style="height: 400px; aspect-ratio: auto; margin-bottom: var(--space-md);">
-            <img src="/assets/images/ceo-image.jpg" alt="Abdul Majed Khan" style="height: 100%; width: 100%; object-fit: contain; object-position: left top;">
+      <div class="leadership-grid gsap-stagger-list">
+        <div class="leader-card">
+          <div class="leader-avatar">
+            <img src="/assets/images/ceo-image.jpg" alt="Abdul Majed Khan" style="width:100%;height:100%;object-fit:cover;">
           </div>
-          <div class="partner-name">Abdul Majed Khan</div>
-          <div class="partner-title">Managing Partner and Principal<br>N.D. Architecture, 1980, NCA Lahore</div>
-          <div class="partner-bio">
-            <p>N.D. Architecture, NCA Lahore, 1980. Member PCATP.</p>
-            <p>Abdul Majed Khan has led the practice since its founding. His design work spans mosques, residences, hotels, hospitals, and commercial buildings across Pakistan. Before establishing MKA, he worked with PEPAC Limited and Turner International (New York) on World Bank-funded projects, including polytechnic training centres and the renovation of the American Embassy in Islamabad. Forty years of continuous practice.</p>
+          <div>
+            <div class="leader-name">Abdul Majed Khan</div>
+            <div class="leader-title">Managing Partner &amp; Principal Architect</div>
+            <div class="leader-bio">N.D. Architecture, NCA Lahore, 1980. Member PCATP. Leads the practice and all design work. Prior experience with PEPAC Limited and Turner International (New York) on World Bank projects, including the American Embassy renovation in Islamabad.</div>
           </div>
         </div>
 
-        <div class="partner-card">
-          <div class="partner-image" style="background-color: #e0e0e0; display: flex; align-items: center; justify-content: center;">
-            <span style="color: #666; font-family: sans-serif; font-size: 14px; text-transform: uppercase; letter-spacing: 2px;">Image Pending</span>
+        <div class="leader-card">
+          <div class="leader-avatar">
+            <div class="leader-initials">MA</div>
           </div>
-          <div class="partner-name">Muhammad Akbar</div>
-          <div class="partner-title">Managing Partner<br>B.Sc. Civil Engineering, 1983, UET Lahore</div>
-          <div class="partner-bio">
-            <p>B.Sc. Civil Engineering, UET Lahore, 1983. Member PEC.</p>
-            <p>Muhammad Akbar manages the engineering and construction side of every MKA project. His structural work includes a 180,000 sq ft religious complex in Lahore, branches for MCB, Union Bank, and Bank of Punjab, and industrial facilities across the country. Over thirty-five years of construction management, structural design, and cost evaluation — the discipline that keeps projects on budget and on programme.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 3: Notable Clients -->
-    <section class="section clients-section container border-top" style="padding-bottom: 40px;">
-      <div class="gsap-reveal section-heading-row" style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 24px;">
-        <div style="flex: 1; min-width: 300px;">
-          <span class="label all-caps">Who We've Worked With</span>
-          <h2 style="margin-top: 16px; margin-bottom: 24px;">Notable Clients</h2>
-          <div class="clients-list mt-4" style="margin-top: 24px;">
-            National Highway Authority &middot; Pizza Hut Pakistan &middot; Defence Housing Authority &middot; Lahore American School &middot; Hashoo Group (PC Hotels & Resorts) &middot; Sialkot Dry Port Trust &middot; Pakistan Engineering Congress &middot; Doon School Society of Pakistan &middot; Lahore Development Authority &middot; T.E.P.A. &middot; D.S. Textiles &middot; Sozo Water Park
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 4: Memberships -->
-    <section class="section memberships-section container" style="padding-top: 40px; padding-bottom: 80px;">
-      <div class="gsap-reveal section-heading-row" style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 24px;">
-        <div style="flex: 1; min-width: 300px;">
-          <span class="label all-caps">Memberships</span>
-          <h2 style="margin-top: 16px; margin-bottom: 24px;">Professional Affiliations</h2>
-          <div class="memberships-list mt-4" style="margin-top: 24px;">
-            <p>PCATP — Pakistan Council of Architects and Town Planners</p>
-            <p>PEC — Pakistan Engineering Council</p>
-            <p>Pakistan Engineering Congress</p>
+          <div>
+            <div class="leader-name">Muhammad Akbar</div>
+            <div class="leader-title">Managing Partner &amp; Principal Engineer</div>
+            <div class="leader-bio">B.Sc. Civil Engineering, UET Lahore, 1983. Member PEC. Leads all structural engineering, construction management, and cost control. 35+ years of site supervision across industrial, commercial, and institutional projects nationwide.</div>
           </div>
         </div>
       </div>
@@ -325,7 +626,7 @@
           <a href="#">TWITTER(X)</a>
           <a href="#">LINKEDIN</a>
         </div>
-        <div>© 2026 Majed Khan & Associates. All rights reserved.</div>
+        <div>© 2026 Majed Khan &amp; Associates. All rights reserved.</div>
       </div>
       <div class="footer-big-text">MKA</div>
     </div>
@@ -342,29 +643,22 @@
 
       const reveals = document.querySelectorAll('.gsap-reveal');
       reveals.forEach(reveal => {
-        gsap.fromTo(reveal, 
+        gsap.fromTo(reveal,
           { y: 40, opacity: 0 },
-          { 
+          {
             y: 0, opacity: 1, duration: 0.8, ease: "power3.out",
-            scrollTrigger: {
-              trigger: reveal,
-              start: "top 80%",
-            }
+            scrollTrigger: { trigger: reveal, start: "top 85%" }
           }
         );
       });
 
       const staggers = document.querySelectorAll('.gsap-stagger-list');
       staggers.forEach(list => {
-        const children = list.children;
-        gsap.fromTo(children, 
+        gsap.fromTo(list.children,
           { y: 30, opacity: 0 },
-          { 
-            y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: "power2.out",
-            scrollTrigger: {
-              trigger: list,
-              start: "top 80%",
-            }
+          {
+            y: 0, opacity: 1, duration: 0.6, stagger: 0.08, ease: "power2.out",
+            scrollTrigger: { trigger: list, start: "top 85%" }
           }
         );
       });
@@ -372,18 +666,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
