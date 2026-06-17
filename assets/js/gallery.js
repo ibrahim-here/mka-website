@@ -29,7 +29,15 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     `;
   }
-  track.innerHTML = html;
+  
+  // Clone the gallery items 3 times for a seamless infinite loop
+  track.innerHTML = html + html + html;
+
+  // Initialize scroll position to the middle set to allow scrolling left immediately
+  setTimeout(() => {
+    const setWidth = track.scrollWidth / 3;
+    track.scrollLeft = setWidth;
+  }, 100);
 
   // ─────────────────────────────────────────────────────────
   // 2. Mouse Wheel → Horizontal Scroll
@@ -90,5 +98,26 @@ document.addEventListener('DOMContentLoaded', () => {
   // Prevent default browser image-drag from interfering
   track.addEventListener('dragstart', (e) => {
     e.preventDefault();
+  });
+
+  // ─────────────────────────────────────────────────────────
+  // 4. Infinite Scroll Loop
+  // ─────────────────────────────────────────────────────────
+  track.addEventListener('scroll', () => {
+    if (track.scrollWidth === 0) return;
+    
+    // Total width is composed of 3 identical sets of images
+    const setWidth = track.scrollWidth / 3;
+    
+    // If we scroll into the 3rd set, silently jump back to the 2nd set
+    if (track.scrollLeft >= setWidth * 2) {
+      track.scrollLeft -= setWidth;
+      scrollLeft -= setWidth; // Update drag start reference if dragging
+    }
+    // If we scroll into the 1st set, silently jump forward to the 2nd set
+    else if (track.scrollLeft <= 0) {
+      track.scrollLeft += setWidth;
+      scrollLeft += setWidth; // Update drag start reference if dragging
+    }
   });
 });
