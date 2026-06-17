@@ -121,12 +121,13 @@
       position: relative;
     }
 
-    .client-tile:not(.has-logo):hover {
+    .client-tile.text-only:hover {
       background-color: var(--color-text-primary);
+      color: var(--color-bg);
     }
 
-    .client-tile:not(.has-logo):hover .client-name,
-    .client-tile:not(.has-logo):hover .client-sector {
+    .client-tile.text-only:hover .client-name,
+    .client-tile.text-only:hover .client-sector {
       color: var(--color-bg);
     }
 
@@ -186,11 +187,16 @@
     .client-tile.static-logo .client-name {
       font-size: 16px;
       margin-bottom: 4px;
+      transition: transform 0.2s ease;
     }
 
     .client-tile.static-logo:hover {
       background-color: var(--color-bg); /* No black inversion for logo tiles */
       color: var(--color-text-primary);
+    }
+    
+    .client-tile.static-logo:hover .client-name {
+      transform: scale(1.05);
     }
 
     .client-tile.static-logo:hover .client-sector {
@@ -510,91 +516,91 @@
             <img src="/assets/images/clients/nha-new.png" alt="NHA Logo">
           </div>
           <div class="client-name"><strong>National Highway Authority</strong></div>
-          <a href="/projects/index.html" class="client-sector">Government / Infrastructure</a>
+          <a href="/projects/index.html?category=transport" class="client-sector">Government / Infrastructure</a>
         </div>
         <div class="client-tile static-logo">
           <div class="client-logo-static">
             <img src="/assets/images/clients/dha-new.png" alt="DHA Logo">
           </div>
           <div class="client-name"><strong>Defence Housing Authority</strong></div>
-          <a href="/projects/dha-phase-8-sector-plan/index.html" class="client-sector">Government / Real Estate</a>
+          <a href="/projects/index.html?category=master-planning" class="client-sector">Government / Real Estate</a>
         </div>
         <div class="client-tile static-logo">
           <div class="client-logo-static">
             <img src="/assets/images/clients/hashoo.png" alt="Hashoo Group Logo">
           </div>
           <div class="client-name"><strong>Hashoo Group</strong></div>
-          <a href="/projects/hashoo-group-corporate-hq/index.html" class="client-sector">Hospitality (PC Hotels &amp; Resorts)</a>
+          <a href="/projects/index.html?category=hospitality" class="client-sector">Hospitality (PC Hotels &amp; Resorts)</a>
         </div>
         <div class="client-tile static-logo">
           <div class="client-logo-static">
             <img src="/assets/images/clients/las.png" alt="Lahore American School Logo">
           </div>
           <div class="client-name"><strong>Lahore American School</strong></div>
-          <a href="/projects/index.html" class="client-sector">Education</a>
+          <a href="/projects/index.html?category=education" class="client-sector">Education</a>
         </div>
         <div class="client-tile static-logo">
           <div class="client-logo-static">
             <img src="/assets/images/clients/sdpt.png" alt="Sialkot Dry Port Trust Logo">
           </div>
           <div class="client-name"><strong>Sialkot Dry Port Trust</strong></div>
-          <a href="/projects/sialkot-dry-port/index.html" class="client-sector">Transport / Industrial</a>
+          <a href="/projects/index.html?category=industrial" class="client-sector">Transport / Industrial</a>
         </div>
         <div class="client-tile static-logo">
           <div class="client-logo-static">
             <img src="/assets/images/clients/pec-congress.png" alt="Pakistan Engineering Congress Logo">
           </div>
           <div class="client-name"><strong>Pakistan Engineering Congress</strong></div>
-          <a href="/projects/index.html" class="client-sector">Professional Body</a>
+          <a href="/projects/index.html?category=all" class="client-sector">Professional Body</a>
         </div>
         <div class="client-tile static-logo">
           <div class="client-logo-static">
             <img src="/assets/images/clients/pec-council.png" alt="Pakistan Engineering Council Logo">
           </div>
           <div class="client-name"><strong>Pakistan Engineering Council</strong></div>
-          <a href="/projects/index.html" class="client-sector">Regulatory Body</a>
+          <a href="/projects/index.html?category=all" class="client-sector">Regulatory Body</a>
         </div>
         <div class="client-tile static-logo">
           <div class="client-logo-static">
             <img src="/assets/images/clients/pizza-hut.png" alt="Pizza Hut Pakistan Logo">
           </div>
           <div class="client-name"><strong>Pizza Hut Pakistan</strong></div>
-          <a href="/projects/index.html" class="client-sector">Commercial / Hospitality</a>
+          <a href="/projects/index.html?category=commercial" class="client-sector">Commercial / Hospitality</a>
         </div>
         <div class="client-tile static-logo">
           <div class="client-logo-static">
             <img src="/assets/images/clients/lda.png" alt="Lahore Development Authority Logo">
           </div>
           <div class="client-name"><strong>Lahore Development Authority</strong></div>
-          <a href="/projects/index.html" class="client-sector">Government / Urban Planning</a>
+          <a href="/projects/index.html?category=master-planning" class="client-sector">Government / Urban Planning</a>
         </div>
         <div class="client-tile static-logo">
           <div class="client-logo-static">
             <img src="/assets/images/clients/ds-textiles.png" alt="D.S. Textiles Logo">
           </div>
           <div class="client-name"><strong>D.S. Textiles</strong></div>
-          <a href="/projects/ds-textiles-mill/index.html" class="client-sector">Industrial / Commercial</a>
+          <a href="/projects/index.html?category=industrial" class="client-sector">Industrial / Commercial</a>
         </div>
         <div class="client-tile static-logo">
           <div class="client-logo-static">
             <img src="/assets/images/clients/suzo-water-park.png" alt="Sozo Water Park Logo">
           </div>
           <div class="client-name"><strong>Sozo Water Park</strong></div>
-          <a href="/projects/sozo-water-park/index.html" class="client-sector">Leisure / Hospitality</a>
+          <a href="/projects/index.html?category=hospitality" class="client-sector">Leisure / Hospitality</a>
         </div>
         <div class="client-tile static-logo">
           <div class="client-logo-static">
             <img src="/assets/images/clients/doon-school.png" alt="The Doon School Logo">
           </div>
           <div class="client-name"><strong>The Doon School</strong></div>
-          <a href="/projects/index.html" class="client-sector">Education</a>
+          <a href="/projects/index.html?category=education" class="client-sector">Education</a>
         </div>
         <div class="client-tile static-logo">
           <div class="client-logo-static">
             <img src="/assets/images/clients/tepa.png" alt="T.E.P.A. Logo">
           </div>
           <div class="client-name"><strong>T.E.P.A.</strong></div>
-          <a href="/projects/index.html" class="client-sector">Government / Environment</a>
+          <a href="/projects/index.html?category=master-planning" class="client-sector">Government / Environment</a>
         </div>
       </div>
     </section>
