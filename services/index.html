@@ -97,6 +97,24 @@
       flex: 1;
       padding-right: var(--space-md);
       position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Badge shown on each step to signal it is standalone-hireable */
+    .standalone-badge {
+      display: inline-block;
+      font-family: 'Inter Display', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-primary);
+      border: 1px solid var(--color-border);
+      border-radius: 20px;
+      padding: 4px 12px;
+      margin-bottom: 16px;
+      width: fit-content;
     }
     
     .process-step:not(:last-child)::after {
@@ -496,35 +514,58 @@
 
     </section>
 
-    <!-- Section 2: How We Work -->
+    <!-- Section 2: How We Engage -->
     <section class="section container border-top">
-      <div class="gsap-reveal">
-        <span class="label all-caps">How We Work</span>
-        <h2>How We Work</h2>
+
+      <!-- Heading + intro that immediately sets the flexible tone -->
+      <div class="gsap-reveal" style="max-width: 760px; margin-bottom: var(--space-xl);">
+        <span class="label all-caps">Process</span>
+        <h2 style="margin-top: 12px; margin-bottom: 20px;">How We Engage</h2>
+        <p style="font-family:'Inter Display',sans-serif; font-weight:300; font-size:17px; line-height:1.85; color:var(--color-text-secondary);">
+          We offer each of these services independently — or as a complete end-to-end process. You do not have to start from the beginning. If you only need documentation, or only need supervision, you can engage us for exactly that, and nothing more.
+        </p>
       </div>
 
       <div class="process-grid gsap-stagger-list">
+
         <div class="process-step">
+          <span class="standalone-badge">Available standalone</span>
           <div class="process-number">01</div>
           <div class="process-title">Consultation</div>
-          <div class="process-desc">We meet to understand the brief, visit the site, and establish the programme, budget, and timeline. You tell us how much of the process you need us for.</div>
+          <div class="process-desc">We meet, study the site, and help define the brief, budget, and programme. Useful even if you plan to engage another firm for design — an independent second opinion.</div>
         </div>
+
         <div class="process-step">
+          <span class="standalone-badge">Available standalone</span>
           <div class="process-number">02</div>
           <div class="process-title">Design</div>
-          <div class="process-desc">Concept design through to detailed design, with client review at each stage. 3D renderings are produced where useful. Nothing proceeds without approval.</div>
+          <div class="process-desc">Concept through to detailed design, with 3D renderings where useful. We can design a project even if you intend to manage construction separately.</div>
         </div>
+
         <div class="process-step">
+          <span class="standalone-badge">Available standalone</span>
           <div class="process-number">03</div>
           <div class="process-title">Documentation</div>
-          <div class="process-desc">Construction drawings, structural details, specifications, and tender documents in AutoCAD. Drawings can be annotated in Urdu for site labourers on request.</div>
+          <div class="process-desc">Construction drawings, structural details, AutoCAD drafting, and tender documents — produced from your existing design or concept. Urdu-annotated drawings available on request.</div>
         </div>
+
         <div class="process-step">
+          <span class="standalone-badge">Available standalone</span>
           <div class="process-number">04</div>
-          <div class="process-title">Construction</div>
-          <div class="process-desc">Full-time supervision from foundation to handover. Quality control, programme tracking, material procurement, and cost monitoring — until the building is complete.</div>
+          <div class="process-title">Supervision &amp; Construction</div>
+          <div class="process-desc">Full-time site presence from foundation to handover. Quality control, material procurement, and cost monitoring. Engage us even if MKA did not produce the drawings.</div>
         </div>
+
       </div>
+
+      <!-- Bottom note to reinforce the message -->
+      <div class="gsap-reveal" style="margin-top: 48px; padding: 28px 36px; background: var(--color-text-primary); color: var(--color-bg);">
+        <p style="font-family:'Inter Display',sans-serif; font-weight:400; font-size:15px; line-height:1.75; margin:0;">
+          <strong>You can start at any stage.</strong> &nbsp;If your project is already designed and you need drawings — come to us at step 03. If your drawings are ready and you need someone on site — come to us at step 04. We will fit in wherever you need us.
+        </p>
+        <a href="/contact/index.html" class="service-enquiry-link" style="color: var(--color-bg); border-color: var(--color-bg); margin-top: 16px;">Tell us what you need →</a>
+      </div>
+
     </section>
 
 
