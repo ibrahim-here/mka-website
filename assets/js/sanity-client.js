@@ -68,7 +68,7 @@ async function renderHomeProjects() {
     card.className = `project-card ${isLeft ? 'project-left' : 'project-right'}`;
     
     // Default image if upload failed
-    const imgSrc = project.imageUrl ? `${project.imageUrl}?w=800&h=1000&fit=crop&auto=format` : 'https://picsum.photos/800/600?random=201';
+    const imgSrc = project.imageUrl ? `${project.imageUrl}?w=1000&auto=format` : 'https://picsum.photos/800/600?random=201';
 
     card.innerHTML = `
       <div class="project-img-wrapper">
@@ -115,7 +115,7 @@ async function replaceDummyImages() {
       dummyImages.forEach(img => {
         // Pick a URL, loop back to start if we run out
         const url = allUrls[urlIndex % allUrls.length];
-        img.src = `${url}?w=800&h=600&fit=crop&auto=format`;
+        img.src = `${url}?w=800&auto=format`;
         urlIndex++;
       });
     }

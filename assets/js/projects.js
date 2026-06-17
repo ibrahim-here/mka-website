@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       gridCard.addEventListener('click', () => localStorage.setItem('current_project_slug', p.slug.current));
       gridCard.className = 'project-card-grid';
       
-      const imgSrc = p.imageUrl ? `${p.imageUrl}?w=600&h=800&fit=crop&auto=format` : 'https://picsum.photos/600/800';
+      const imgSrc = p.imageUrl ? `${p.imageUrl}?w=1000&auto=format` : 'https://picsum.photos/800/600';
       
       gridCard.innerHTML = `
         <div class="image-wrapper">
