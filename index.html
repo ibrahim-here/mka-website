@@ -140,87 +140,76 @@
       background-color: var(--color-white);
     }
 
-    /* Selected Projects */
+    /* ── Selected Projects ─────────────────────────────────── */
     .selected-projects-section {
-      overflow: clip;
       background-color: var(--color-bg);
-      position: relative;
-      padding-top: 0;
-    }
-    
-    .text-center {
-      text-align: center;
+      padding-top: 100px;
+      padding-bottom: 100px;
     }
 
-    .projects-scroll-container {
+    .projects-section-header {
       display: flex;
-      flex-direction: column;
-      gap: 15vh;
-      padding-bottom: 20vh;
-      position: relative;
-      z-index: 5;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 60px;
     }
 
+    /* Each row = two project cards side by side */
+    .projects-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    /* Individual project card */
     .project-card {
       display: block;
-      width: 28vw; /* Reduced card width to leave space in the center */
-      max-width: 500px;
+      text-decoration: none;
       position: relative;
-      will-change: transform;
-    }
-    
-    .project-left {
-      align-self: flex-start;
-    }
-    
-    .project-right {
-      align-self: flex-end;
-    }
-    
-    .project-left:not(:first-child), .project-right:not(:first-child) {
-      margin-top: -10vw;
-    }
-    @media (max-width: 900px) {
-      .project-left:not(:first-child), .project-right:not(:first-child) {
-        margin-top: 0;
-      }
-      .project-left, .project-right {
-        align-self: center !important;
-      }
-      .project-card {
-        width: 90vw;
-        max-width: 500px;
-      }
     }
 
+    /* Image wrapper: NO fixed height, NO overflow:hidden, NO aspect-ratio
+       The image sets its own height — full photo always visible */
     .project-img-wrapper {
       width: 100%;
-      aspect-ratio: 387 / 499;
-      overflow: hidden;
-      margin-bottom: var(--space-sm);
+      margin-bottom: 16px;
+      background: #f0ede8;
     }
 
     .project-img-wrapper img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.6s ease;
+      height: auto;            /* full image, never cropped */
+      display: block;
+      transition: opacity 0.4s ease;
     }
 
     .project-card:hover .project-img-wrapper img {
-      transform: scale(1.05);
+      opacity: 0.88;
     }
 
     .project-info h3 {
-      font-size: clamp(24px, 3vw, 32px);
+      font-size: clamp(18px, 2vw, 26px);
       margin-bottom: 4px;
+      font-weight: 500;
     }
 
     .project-info .project-category {
-      font-size: 14px;
+      font-size: 12px;
       color: var(--color-text-secondary);
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
+    }
+
+    @media (max-width: 768px) {
+      .projects-row {
+        grid-template-columns: 1fr;
+      }
+      .projects-section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+      }
     }
 
     /* Stats Bar */
@@ -517,62 +506,64 @@
     </section>
 
     <!-- Section 2: Selected Projects -->
-    <section class="section selected-projects-section" style="padding-top: 80px; padding-bottom: 0px;">
-      <div class="sticky-projects-heading" style="position: sticky; top: 25vh; height: calc(240px + var(--space-xl)); display: flex; flex-direction: column; align-items: center; justify-content: flex-start; z-index: 10; pointer-events: none; padding-bottom: 40px;">
-        <div class="container text-center gsap-reveal">
-          <span class="label all-caps" style="color: var(--color-text-primary); font-weight: 800;">&#x25CF; PROJECTS</span>
-          <h2 class="display" style="line-height: 0.9; margin-top: var(--space-sm); text-transform: uppercase;">Selected<br>Projects</h2>
+    <section class="section selected-projects-section">
+      <div class="container">
+
+        <!-- Section header -->
+        <div class="projects-section-header gsap-reveal">
+          <div>
+            <span class="label all-caps" style="font-weight: 800;">&#x25CF; PROJECTS</span>
+            <h2 class="display" style="line-height: 0.9; margin-top: var(--space-sm); text-transform: uppercase;">Selected<br>Projects</h2>
+          </div>
+          <a href="/projects/index.html" class="btn" style="flex-shrink: 0;">View All Projects &rarr;</a>
         </div>
-      </div>
 
-      <div class="container projects-scroll-container" style="padding-top: 0px; padding-bottom: 0px;">
-        <!-- Project 1 (Left) -->
-        <a href="/projects/kallar-kahar-park/index.html" class="project-card project-left">
-          <div class="project-img-wrapper">
-            <img src="https://picsum.photos/800/600?random=201" alt="Kallar Kahar Park">
-          </div>
-          <div class="project-info">
-            <h3>Kallar Kahar Park</h3>
-            <span class="project-category">Landscape</span>
-          </div>
-        </a>
+        <!-- Row 1: Left card (landscape) + Right card (portrait/tall) -->
+        <div class="projects-row gsap-reveal" style="animation-delay: 0.1s;">
+          <a href="/projects/kallar-kahar-park/index.html" class="project-card">
+            <div class="project-img-wrapper">
+              <img src="/assets/images/projects/3006-shahbaz-manzil/3006mdl4 (37).jpg" alt="Shahbaz Manzil">
+            </div>
+            <div class="project-info">
+              <h3>Shahbaz Manzil</h3>
+              <span class="project-category">Residential</span>
+            </div>
+          </a>
 
-        <!-- Project 2 (Right) -->
-        <a href="/projects/hashoo-group-corporate-hq/index.html" class="project-card project-right">
-          <div class="project-img-wrapper">
-            <img src="/assets/images/hero-mka-best.jpg" alt="Hashoo Group Corporate HQ">
-          </div>
-          <div class="project-info">
-            <h3>Hashoo Group Corporate HQ</h3>
-            <span class="project-category">Landscape</span>
-          </div>
-        </a>
-
-        <!-- Project 3 (Left) -->
-        <a href="/projects/index.html" class="project-card project-left">
-          <div class="project-img-wrapper">
-            <img src="https://picsum.photos/800/600?random=203" alt="Masjid Ibrahim Complex">
-          </div>
-          <div class="project-info">
-            <h3>Masjid Ibrahim Complex</h3>
-            <span class="project-category">Religious</span>
-          </div>
-        </a>
-
-        <!-- Project 4 (Right) -->
-        <a href="/projects/index.html" class="project-card project-right">
-          <div class="project-img-wrapper">
-            <img src="https://picsum.photos/800/600?random=204" alt="Paediatric Block">
-          </div>
-          <div class="project-info">
-            <h3>Paediatric Block, Mayo Hospital</h3>
-            <span class="project-category">Health</span>
-          </div>
-        </a>
-      <!-- CTA Button moved inside the scroll container -->
-        <div class="container text-center" style="margin-top: 0; margin-bottom: var(--space-xl); position: relative; z-index: 20;">
-          <a href="/projects/index.html" class="btn" style="pointer-events: auto;">View All Projects &rarr;</a>
+          <a href="/projects/hashoo-group-corporate-hq/index.html" class="project-card">
+            <div class="project-img-wrapper">
+              <img src="/assets/images/projects/3007-iqbal-manzil/3007Mdl1 (11).jpg" alt="Iqbal Manzil">
+            </div>
+            <div class="project-info">
+              <h3>Iqbal Manzil</h3>
+              <span class="project-category">Residential</span>
+            </div>
+          </a>
         </div>
+
+        <!-- Row 2: Right card (portrait) + Left card (wide) -->
+        <div class="projects-row gsap-reveal" style="animation-delay: 0.2s;">
+          <a href="/projects/manga-madrassa/index.html" class="project-card">
+            <div class="project-img-wrapper">
+              <img src="/assets/images/projects/3003-manga-madrassa/3003Modl3 (17).jpg" alt="Manga Madrassa">
+            </div>
+            <div class="project-info">
+              <h3>Manga Madrassa</h3>
+              <span class="project-category">Religious &bull; Education</span>
+            </div>
+          </a>
+
+          <a href="/projects/velodrome-peshawar/index.html" class="project-card">
+            <div class="project-img-wrapper">
+              <img src="/assets/images/projects/velodrome-peshawar/thumbnail.png" alt="Velodrome Peshawar">
+            </div>
+            <div class="project-info">
+              <h3>Velodrome Peshawar</h3>
+              <span class="project-category">Transport &bull; Sports</span>
+            </div>
+          </a>
+        </div>
+
       </div>
     </section>
 
