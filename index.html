@@ -201,15 +201,13 @@
       letter-spacing: 0.12em;
     }
 
+    /* Stagger: alternate cards sit lower so layout feels editorial */
+    .projects-row:nth-child(odd)  .project-card:last-child  { margin-top: 80px; }
+    .projects-row:nth-child(even) .project-card:first-child { margin-top: 80px; }
+
     @media (max-width: 768px) {
-      .projects-row {
-        grid-template-columns: 1fr;
-      }
-      .projects-section-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 20px;
-      }
+      .projects-row:nth-child(odd)  .project-card:last-child,
+      .projects-row:nth-child(even) .project-card:first-child { margin-top: 0; }
     }
 
     /* Stats Bar */
