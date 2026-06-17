@@ -35,6 +35,7 @@ window.initGalleryTrack = function(imageUrls) {
     const setWidth = track.scrollWidth / clonesNeeded;
     // Scroll to the middle clone block
     track.scrollLeft = setWidth * Math.floor(clonesNeeded / 2);
+    scrollLeft = track.scrollLeft; // Synchronize our internal variable
   }, 100);
 
   // ─────────────────────────────────────────────────────────
@@ -47,6 +48,7 @@ window.initGalleryTrack = function(imageUrls) {
     e.preventDefault();
     // deltaY is the vertical scroll; redirect it horizontally
     track.scrollLeft += e.deltaY + e.deltaX;
+    scrollLeft = track.scrollLeft; // Sync internal variable
   }, { passive: false });
 
   // ─────────────────────────────────────────────────────────
@@ -54,7 +56,7 @@ window.initGalleryTrack = function(imageUrls) {
   // ─────────────────────────────────────────────────────────
   let isDragging = false;
   let startX;
-  let scrollLeft;
+  let scrollLeft = 0;
   let velocity = 0;
   let lastX;
   let animFrame;
@@ -99,23 +101,28 @@ window.initGalleryTrack = function(imageUrls) {
   });
 
   // ─────────────────────────────────────────────────────────
-  // 4. Smooth Animation Loop
+  // 4. Smooth Animation Loop (with Auto-Scroll)
   // ─────────────────────────────────────────────────────────
+  const autoScrollSpeed = 1.5; // Pixels per frame to constantly move
+
   function animate() {
     if (!isDragging) {
-      // Apply momentum
-      scrollLeft -= velocity;
+      // If the user isn't dragging, apply either the dying momentum or the constant auto-scroll
+      let currentVelocity = velocity;
+      
+      if (Math.abs(velocity) < 0.1) {
+        // Momentum is dead, apply constant auto-scroll (negative to move content left)
+        currentVelocity = -autoScrollSpeed;
+      } else {
+        // Decay the manual drag momentum
+        velocity *= 0.95;
+      }
+
+      scrollLeft -= currentVelocity;
       track.scrollLeft = scrollLeft;
-      
-      // Decay velocity
-      velocity *= 0.95;
-      
-      // Stop animation when velocity is very small
-      if (Math.abs(velocity) < 0.1) velocity = 0;
       
       // Infinite Loop Logic!
       // If we've scrolled past a third of the width, seamlessly jump back.
-      // The total width is made of N identical sets of images.
       const setWidth = track.scrollWidth / clonesNeeded;
       
       if (track.scrollLeft >= track.scrollWidth - setWidth - track.clientWidth) {
