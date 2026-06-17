@@ -97,10 +97,9 @@
     
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background-color: var(--color-border); /* creates the hairline grid effect */
-      border: 1px solid var(--color-border);
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 40px;
     }
     
     .project-card-grid {
@@ -111,19 +110,23 @@
     
     .project-card-grid .image-wrapper {
       position: relative;
-      overflow: hidden;
-      aspect-ratio: 16 / 9;
-      background-color: #f0ede8;
+      background: #f0ede8;
+      margin-bottom: 16px;
     }
     
     .project-card-grid img {
       width: 100%;
-      height: 100%;
-      object-fit: contain;
+      height: auto;
+      display: block;
+      transition: opacity 0.4s ease;
+    }
+
+    .project-card-grid:hover .image-wrapper img {
+      opacity: 0.88;
     }
     
     .project-card-grid .info-block {
-      padding: 16px;
+      padding: 0;
     }
     
     .project-card-grid .title-row {
@@ -135,16 +138,23 @@
     
     .project-card-grid .title {
       font-family: 'Inter Display', sans-serif;
+      font-size: clamp(18px, 2vw, 26px);
       font-weight: 500;
-      font-size: 14px;
       color: var(--color-text-primary);
     }
     
     .project-card-grid .meta {
       font-family: 'Inter Display', sans-serif;
-      font-weight: 300;
+      font-weight: 400;
       font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
       color: var(--color-text-secondary);
+    }
+
+    /* Stagger: alternate cards sit lower so layout feels editorial */
+    .projects-grid .project-card-grid:nth-child(even) {
+      margin-top: 80px;
     }
     
     /* List View (reused mostly from style.css / animations.css) */
@@ -164,7 +174,10 @@
 
     @media (max-width: 900px) {
       .projects-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
+      }
+      .projects-grid .project-card-grid:nth-child(even) {
+        margin-top: 0;
       }
     }
     
