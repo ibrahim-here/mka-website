@@ -33,6 +33,17 @@ document.addEventListener('DOMContentLoaded', () => {
   initCarousel();
 });
 
+// Handle Back/Forward Cache (bfcache) navigation
+window.addEventListener('pageshow', (e) => {
+  if (e.persisted) {
+    const overlay = document.querySelector('.page-transition-overlay');
+    if (overlay) {
+      overlay.style.opacity = '0';
+      overlay.style.display = 'none';
+    }
+  }
+});
+
 window.toggleMobileMenu = function(btn) {
   const overlay = document.querySelector('.mobile-overlay');
   if (!overlay) return;
