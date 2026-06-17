@@ -112,12 +112,14 @@
     .project-card-grid .image-wrapper {
       position: relative;
       overflow: hidden;
-      /* No fixed aspect-ratio — image sets its own height */
+      aspect-ratio: 16 / 9;
+      background-color: #f0ede8;
     }
     
     .project-card-grid img {
       width: 100%;
-      height: auto;   /* no cropping — full image shown */
+      height: 100%;
+      object-fit: contain;
     }
     
     .project-card-grid .info-block {
