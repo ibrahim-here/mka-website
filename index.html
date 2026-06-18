@@ -385,19 +385,25 @@
     .accordion-images {
       margin-top: 24px;
       display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
+      gap: 10px;
+      overflow-x: auto;
+      scrollbar-width: none;
     }
+    .accordion-images::-webkit-scrollbar { display: none; }
     .accordion-images img {
-      width: 140px;
-      height: 90px;
-      object-fit: cover;
+      height: 200px;
+      width: auto;
+      flex-shrink: 0;
       border-radius: 4px;
+      background: #f0ede8;
       box-shadow: 0 4px 12px rgba(0,0,0,0.05);
       transition: transform 0.3s ease;
     }
+    @media (max-width: 900px) {
+      .accordion-images img { height: 140px; }
+    }
     .accordion-images img:hover {
-      transform: scale(1.05);
+      transform: scale(1.02);
     }
 
   </style>
