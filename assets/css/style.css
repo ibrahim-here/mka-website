@@ -855,8 +855,8 @@ footer {
   background-size: cover;
   background-position: center 30%;
   position: relative;
-  height: 60vh;
-  min-height: 500px;
+  height: 45vh;
+  min-height: 350px;
   display: flex;
   flex-direction: column;
   align-items: center;

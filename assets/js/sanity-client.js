@@ -97,12 +97,24 @@ async function fetchAndInitGallery() {
   if (!track) return;
 
   // Fetch all gallery images from all projects
-  const query = `*[_type == "project" && defined(gallery)] { "urls": gallery[].asset->url }`;
+  const query = `*[_type == "project"] { 
+    "main": mainImage.asset->url,
+    "gallery": gallery[].asset->url 
+  }`;
   const projects = await fetchSanityData(query);
   
   let allUrls = [];
   if (projects) {
-    projects.forEach(p => { if (p.urls) allUrls = allUrls.concat(p.urls); });
+    projects.forEach(p => { 
+      if (p.main) allUrls.push(p.main);
+      if (p.gallery && Array.isArray(p.gallery)) allUrls = allUrls.concat(p.gallery); 
+    });
+  }
+
+  // Shuffle the array to ensure images don't look repetitive
+  for (let i = allUrls.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [allUrls[i], allUrls[j]] = [allUrls[j], allUrls[i]];
   }
 
   const wrapper = track.closest('.gallery-track-wrapper') || track.parentElement;
