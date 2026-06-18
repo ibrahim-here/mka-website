@@ -383,10 +383,6 @@
     }
 
 
-    @keyframes accordion-marquee {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(calc(-50% - 5px)); /* half the track width plus half a gap */ }
-    }
     .accordion-images {
       margin-top: 24px;
       overflow: hidden;
@@ -396,10 +392,6 @@
       display: flex;
       gap: 10px;
       width: max-content;
-      animation: accordion-marquee 15s linear infinite;
-    }
-    .accordion-images:hover .accordion-images-track {
-      animation-play-state: paused;
     }
     .accordion-images img {
       height: 200px;

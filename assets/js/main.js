@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   initHoverTextAnimation();
+  initAccordionMarquees();
 
   // Global Page Load Stagger (if main content wrapper exists)
   const mainContent = document.querySelector('main');
@@ -292,5 +293,74 @@ function initHoverTextAnimation() {
       wrapper.innerHTML = `<span class="hover-text-visible">${text}</span><span class="hover-text-hidden">${text}</span>`;
       el.replaceChild(wrapper, textNode);
     }
+  });
+}
+
+function initAccordionMarquees() {
+  const wrappers = document.querySelectorAll('.accordion-images');
+  wrappers.forEach(wrapper => {
+    const track = wrapper.querySelector('.accordion-images-track');
+    if (!track) return;
+    
+    const originalContent = track.innerHTML;
+    track.innerHTML = originalContent + originalContent + originalContent + originalContent;
+    
+    wrapper.style.overflowX = 'hidden';
+    wrapper.style.cursor = 'grab';
+    
+    let isDragging = false;
+    let startX, scrollLeftPos = 0;
+    let velocity = 0, lastX;
+    const autoScrollSpeed = 0.5;
+
+    wrapper.addEventListener('pointerdown', (e) => {
+      isDragging = true;
+      startX = e.pageX - wrapper.offsetLeft;
+      scrollLeftPos = wrapper.scrollLeft;
+      lastX = e.pageX;
+      wrapper.style.cursor = 'grabbing';
+    });
+
+    wrapper.addEventListener('pointermove', (e) => {
+      if (!isDragging) return;
+      e.preventDefault();
+      const x = e.pageX - wrapper.offsetLeft;
+      const walk = (x - startX) * 1.5;
+      velocity = e.pageX - lastX;
+      lastX = e.pageX;
+      wrapper.scrollLeft = scrollLeftPos - walk;
+    });
+
+    document.addEventListener('pointerup', () => {
+      if (!isDragging) return;
+      isDragging = false;
+      wrapper.style.cursor = 'grab';
+    });
+    
+    wrapper.addEventListener('dragstart', e => e.preventDefault());
+
+    function animate() {
+      if (!isDragging) {
+        if (Math.abs(velocity) < 0.1) {
+          velocity = -autoScrollSpeed; 
+        } else {
+          velocity *= 0.95; 
+        }
+        wrapper.scrollLeft -= velocity;
+        
+        const setWidth = track.scrollWidth / 4;
+        if (wrapper.scrollLeft >= track.scrollWidth - setWidth - wrapper.clientWidth) {
+          wrapper.scrollLeft -= setWidth;
+        } else if (wrapper.scrollLeft <= 0 && velocity > 0) {
+          wrapper.scrollLeft += setWidth;
+        }
+      }
+      requestAnimationFrame(animate);
+    }
+    
+    setTimeout(() => {
+      wrapper.scrollLeft = track.scrollWidth / 4; 
+      animate();
+    }, 100);
   });
 }
