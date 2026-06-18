@@ -621,6 +621,10 @@ footer {
 
 /* .btn-start now shares base styles with .btn */
 
+.what-we-do-right {
+  min-width: 0; /* Prevents grid blowout from inner horizontal scrolling elements */
+}
+
 /* Accordion Accordion */
 .accordion-container {
   display: flex;
