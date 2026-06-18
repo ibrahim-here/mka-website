@@ -71,7 +71,10 @@
 
 html {
   font-size: 16px;
-  scroll-behavior: initial; /* GSAP handles smooth scrolling better if needed, or normal scroll */
+  scroll-behavior: initial;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
 }
 
 body {
@@ -83,6 +86,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
 }
 
 /* Typography */
