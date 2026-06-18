@@ -361,6 +361,9 @@
       .projects-scroll-container {
         padding-top: var(--space-md) !important;
       }
+      .projects-row {
+        grid-template-columns: 1fr;
+      }
     }
     
     @media (max-width: 600px) {
@@ -373,7 +376,7 @@
         bottom: 40px;
       }
       .project-card {
-        width: 80vw;
+        width: 100%;
         max-width: none;
       }
       .stats-grid {
