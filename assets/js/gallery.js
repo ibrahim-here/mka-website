@@ -1,6 +1,6 @@
-window.initGalleryTrack = function(imageUrls) {
+window.initGalleryTrack = function(images) {
   const track = document.getElementById('gallery-track');
-  if (!track || !imageUrls || imageUrls.length === 0) return;
+  if (!track || !images || images.length === 0) return;
 
   // ─────────────────────────────────────────────────────────
   // 1. Populate Gallery with Real Images
@@ -9,19 +9,21 @@ window.initGalleryTrack = function(imageUrls) {
   // ─────────────────────────────────────────────────────────
   let html = '';
 
-  imageUrls.forEach((url, i) => {
+  images.forEach((item, i) => {
     // Add Sanity image optimization params
-    const optimizedUrl = `${url}?h=1000&auto=format`;
+    const optimizedUrl = `${item.url}?h=1000&auto=format`;
     html += `
       <div class="gallery-item">
-        <img src="${optimizedUrl}" loading="lazy" alt="Gallery item ${i + 1}">
+        <a href="/projects/project-detail.html?slug=${item.slug}" onclick="localStorage.setItem('current_project_slug', '${item.slug}')" class="gallery-link">
+          <img src="${optimizedUrl}" loading="lazy" alt="Gallery item ${i + 1}" draggable="false">
+        </a>
       </div>
     `;
   });
   
   // Clone the gallery items enough times to fill the screen and allow seamless loop.
   // If there are very few images, clone them more times.
-  const clonesNeeded = Math.max(3, Math.ceil(15 / imageUrls.length));
+  const clonesNeeded = Math.max(3, Math.ceil(15 / images.length));
   
   let fullHtml = '';
   for(let c=0; c < clonesNeeded; c++) {
@@ -44,11 +46,21 @@ window.initGalleryTrack = function(imageUrls) {
   //    translate that into horizontal scrolling instead.
   // ─────────────────────────────────────────────────────────
   track.addEventListener('wheel', (e) => {
-    // Only intercept when the track is the scroll target
-    e.preventDefault();
-    // deltaY is the vertical scroll; redirect it horizontally
-    track.scrollLeft += e.deltaY + e.deltaX;
-    scrollLeft = track.scrollLeft; // Sync internal variable
+    // Only intercept when the user is primarily scrolling horizontally
+    // or if we strictly want to map vertical to horizontal.
+    // To allow scrolling down the page, we only prevent default if horizontal scroll is larger
+    // OR if we just want to add the delta to track, we don't prevent default.
+    // Actually, mapping vertical to horizontal while preventing default breaks vertical page scrolling.
+    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+      e.preventDefault();
+      track.scrollLeft += e.deltaX;
+      scrollLeft = track.scrollLeft;
+    } else {
+      // Let vertical scroll pass through to the page so user can reach the footer!
+      // But we can optionally still move the track slightly
+      track.scrollLeft += e.deltaY * 0.3;
+      scrollLeft = track.scrollLeft;
+    }
   }, { passive: false });
 
   // ─────────────────────────────────────────────────────────
@@ -61,8 +73,11 @@ window.initGalleryTrack = function(imageUrls) {
   let lastX;
   let animFrame;
 
+  let hasDragged = false;
+
   track.addEventListener('pointerdown', (e) => {
     isDragging = true;
+    hasDragged = false;
     startX = e.pageX - track.offsetLeft;
     scrollLeft = track.scrollLeft;
     lastX = e.pageX;
@@ -73,6 +88,7 @@ window.initGalleryTrack = function(imageUrls) {
   track.addEventListener('pointermove', (e) => {
     if (!isDragging) return;
     e.preventDefault();
+    hasDragged = true;
     const x = e.pageX - track.offsetLeft;
     const walk = (x - startX) * 1.5;
     velocity = e.pageX - lastX;
@@ -94,6 +110,14 @@ window.initGalleryTrack = function(imageUrls) {
     };
     decelerate();
   });
+
+  // Prevent clicking on links if we were dragging
+  track.addEventListener('click', (e) => {
+    if (hasDragged) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  }, true);
 
   // Prevent default browser image-drag from interfering
   track.addEventListener('dragstart', (e) => {

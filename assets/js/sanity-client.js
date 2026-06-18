@@ -98,28 +98,31 @@ async function fetchAndInitGallery() {
 
   // Fetch all gallery images from all projects
   const query = `*[_type == "project"] { 
+    "slug": slug.current,
     "main": mainImage.asset->url,
     "gallery": gallery[].asset->url 
   }`;
   const projects = await fetchSanityData(query);
   
-  let allUrls = [];
+  let allImages = [];
   if (projects) {
     projects.forEach(p => { 
-      if (p.main) allUrls.push(p.main);
-      if (p.gallery && Array.isArray(p.gallery)) allUrls = allUrls.concat(p.gallery); 
+      if (p.main) allImages.push({ url: p.main, slug: p.slug });
+      if (p.gallery && Array.isArray(p.gallery)) {
+        p.gallery.forEach(url => allImages.push({ url: url, slug: p.slug }));
+      }
     });
   }
 
   // Shuffle the array to ensure images don't look repetitive
-  for (let i = allUrls.length - 1; i > 0; i--) {
+  for (let i = allImages.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [allUrls[i], allUrls[j]] = [allUrls[j], allUrls[i]];
+    [allImages[i], allImages[j]] = [allImages[j], allImages[i]];
   }
 
   const wrapper = track.closest('.gallery-track-wrapper') || track.parentElement;
 
-  if (allUrls.length === 0) {
+  if (allImages.length === 0) {
     // Hide the entire gallery section if there are no images at all
     if (wrapper) {
       wrapper.style.display = 'none';
@@ -134,7 +137,7 @@ async function fetchAndInitGallery() {
 
   // Call the global function in gallery.js
   if (window.initGalleryTrack) {
-    window.initGalleryTrack(allUrls);
+    window.initGalleryTrack(allImages);
   }
 }
 
