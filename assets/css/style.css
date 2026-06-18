@@ -96,23 +96,23 @@ h1, h2, h3, h4, h5, h6 {
 
 h1.display {
   font-weight: 700;
-  font-size: 100px;
-  line-height: 95px;
+  font-size: clamp(48px, 8vw, 100px);
+  line-height: 1;
   letter-spacing: -0.05em;
 }
 
 h2 {
-  font-size: 70px;
+  font-size: clamp(36px, 6vw, 70px);
   font-weight: 700;
-  line-height: 66.5px;
+  line-height: 1.05;
   letter-spacing: -0.03em;
   color: #000000;
 }
 
 h3 {
-  font-size: 40px;
+  font-size: clamp(24px, 4vw, 40px);
   font-weight: 600;
-  line-height: 40px;
+  line-height: 1.1;
   letter-spacing: 0;
   color: #000000;
 }
@@ -1051,6 +1051,13 @@ footer.premium-footer .footer-big-text {
 
 /* Responsive Adjustments */
 @media (max-width: 900px) {
+  :root {
+    --space-lg: 32px;
+    --space-xl: 48px;
+    --space-xxl: 64px;
+    --space-section: 80px;
+  }
+  
   .what-we-do-grid {
     grid-template-columns: 1fr;
     gap: var(--space-lg);
