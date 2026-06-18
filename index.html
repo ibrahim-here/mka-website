@@ -382,14 +382,25 @@
       }
     }
 
+
+    @keyframes accordion-marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(calc(-50% - 5px)); /* half the track width plus half a gap */ }
+    }
     .accordion-images {
       margin-top: 24px;
+      overflow: hidden;
+      width: 100%;
+    }
+    .accordion-images-track {
       display: flex;
       gap: 10px;
-      overflow-x: auto;
-      scrollbar-width: none;
+      width: max-content;
+      animation: accordion-marquee 15s linear infinite;
     }
-    .accordion-images::-webkit-scrollbar { display: none; }
+    .accordion-images:hover .accordion-images-track {
+      animation-play-state: paused;
+    }
     .accordion-images img {
       height: 200px;
       width: auto;
@@ -405,6 +416,7 @@
     .accordion-images img:hover {
       transform: scale(1.02);
     }
+
 
   </style>
 </head>
@@ -635,8 +647,16 @@
               <div class="accordion-content">
                 <p class="accordion-desc">Residential, commercial, institutional, and religious buildings. From initial concept to construction documentation.</p>
                 <a href="/contact/index.html" class="accordion-btn">Get Started</a>
-                <div class="accordion-images">
-                  <img src="/assets/images/projects/3006-shahbaz-manzil/3006mdl4 (37).jpg" alt="Architectural Design">
+                                <div class="accordion-images">
+                  <div class="accordion-images-track">
+                    <img src="/assets/images/projects/3006-shahbaz-manzil/3006mdl4 (37).jpg" alt="Architectural Design">
+                    <img src="/assets/images/projects/3007-iqbal-manzil/3007Mdl1 (11).jpg" alt="Architectural Design">
+                    <img src="/assets/images/projects/3003-manga-madrassa/3003Modl3 (17).jpg" alt="Architectural Design">
+                    <!-- Duplicate for infinite scroll -->
+                    <img src="/assets/images/projects/3006-shahbaz-manzil/3006mdl4 (37).jpg" alt="Architectural Design">
+                    <img src="/assets/images/projects/3007-iqbal-manzil/3007Mdl1 (11).jpg" alt="Architectural Design">
+                    <img src="/assets/images/projects/3003-manga-madrassa/3003Modl3 (17).jpg" alt="Architectural Design">
+                  </div>
                 </div>
               </div>
             </div>
@@ -653,8 +673,16 @@
               <div class="accordion-content">
                 <p class="accordion-desc">Interior planning and material specification for commercial and residential projects. Coordinated with the architectural design.</p>
                 <a href="/contact/index.html" class="accordion-btn">Get Started</a>
-                <div class="accordion-images">
-                  <img src="/assets/images/projects/3007-iqbal-manzil/3007Mdl1 (11).jpg" alt="Interior Spaces">
+                                <div class="accordion-images">
+                  <div class="accordion-images-track">
+                    <img src="/assets/images/projects/3007-iqbal-manzil/3007Mdl1 (11).jpg" alt="Interior Spaces">
+                    <img src="/assets/images/projects/3404-al-faisal-mall/3404 corner lift A01.jpg" alt="Interior Spaces">
+                    <img src="/assets/images/projects/3404-al-faisal-mall/3404 corner lift A02.jpg" alt="Interior Spaces">
+                    <!-- Duplicate for infinite scroll -->
+                    <img src="/assets/images/projects/3007-iqbal-manzil/3007Mdl1 (11).jpg" alt="Interior Spaces">
+                    <img src="/assets/images/projects/3404-al-faisal-mall/3404 corner lift A01.jpg" alt="Interior Spaces">
+                    <img src="/assets/images/projects/3404-al-faisal-mall/3404 corner lift A02.jpg" alt="Interior Spaces">
+                  </div>
                 </div>
               </div>
             </div>
@@ -671,8 +699,16 @@
               <div class="accordion-content">
                 <p class="accordion-desc">Master plans, residential schemes, and infrastructure layout for developments ranging from neighbourhood scale to 2,000 acres.</p>
                 <a href="/contact/index.html" class="accordion-btn">Get Started</a>
-                <div class="accordion-images">
-                  <img src="/assets/images/projects/3003-manga-madrassa/3003Modl3 (17).jpg" alt="Urban Planning">
+                                <div class="accordion-images">
+                  <div class="accordion-images-track">
+                    <img src="/assets/images/ricardo-gomez-angel-opFPVxMRpP8-unsplash.jpg" alt="Urban Planning">
+                    <img src="/assets/images/projects/3003-manga-madrassa/3003Modl3 (17).jpg" alt="Urban Planning">
+                    <img src="/assets/images/projects/3404-al-faisal-mall/3404 corner lift A01.jpg" alt="Urban Planning">
+                    <!-- Duplicate for infinite scroll -->
+                    <img src="/assets/images/ricardo-gomez-angel-opFPVxMRpP8-unsplash.jpg" alt="Urban Planning">
+                    <img src="/assets/images/projects/3003-manga-madrassa/3003Modl3 (17).jpg" alt="Urban Planning">
+                    <img src="/assets/images/projects/3404-al-faisal-mall/3404 corner lift A01.jpg" alt="Urban Planning">
+                  </div>
                 </div>
               </div>
             </div>
@@ -689,8 +725,16 @@
               <div class="accordion-content">
                 <p class="accordion-desc">Climate-responsive design using local materials, natural ventilation, and passive cooling strategies appropriate to the Pakistani context.</p>
                 <a href="/contact/index.html" class="accordion-btn">Get Started</a>
-                <div class="accordion-images">
-                  <img src="/assets/images/projects/3404-al-faisal-mall/3404 corner lift A01.jpg" alt="Sustainable Solutions">
+                                <div class="accordion-images">
+                  <div class="accordion-images-track">
+                    <img src="/assets/images/projects/3404-al-faisal-mall/3404 corner lift A01.jpg" alt="Sustainable Solutions">
+                    <img src="/assets/images/hero-mka-best.jpg" alt="Sustainable Solutions">
+                    <img src="/assets/images/projects/3006-shahbaz-manzil/3006mdl4 (37).jpg" alt="Sustainable Solutions">
+                    <!-- Duplicate for infinite scroll -->
+                    <img src="/assets/images/projects/3404-al-faisal-mall/3404 corner lift A01.jpg" alt="Sustainable Solutions">
+                    <img src="/assets/images/hero-mka-best.jpg" alt="Sustainable Solutions">
+                    <img src="/assets/images/projects/3006-shahbaz-manzil/3006mdl4 (37).jpg" alt="Sustainable Solutions">
+                  </div>
                 </div>
               </div>
             </div>
@@ -707,8 +751,16 @@
               <div class="accordion-content">
                 <p class="accordion-desc">On-site supervision, cost control, and contract administration. We stay on the project until it is built.</p>
                 <a href="/contact/index.html" class="accordion-btn">Get Started</a>
-                <div class="accordion-images">
-                  <img src="/assets/images/projects/velodrome-peshawar/thumbnail.png" alt="Project Delivery">
+                                <div class="accordion-images">
+                  <div class="accordion-images-track">
+                    <img src="/assets/images/projects/velodrome-peshawar/thumbnail.png" alt="Project Delivery">
+                    <img src="/assets/images/projects/3404-al-faisal-mall/3404 corner lift A02.jpg" alt="Project Delivery">
+                    <img src="/assets/images/projects/3007-iqbal-manzil/3007Mdl1 (11).jpg" alt="Project Delivery">
+                    <!-- Duplicate for infinite scroll -->
+                    <img src="/assets/images/projects/velodrome-peshawar/thumbnail.png" alt="Project Delivery">
+                    <img src="/assets/images/projects/3404-al-faisal-mall/3404 corner lift A02.jpg" alt="Project Delivery">
+                    <img src="/assets/images/projects/3007-iqbal-manzil/3007Mdl1 (11).jpg" alt="Project Delivery">
+                  </div>
                 </div>
               </div>
             </div>
