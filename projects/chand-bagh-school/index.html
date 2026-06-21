@@ -270,7 +270,7 @@
   </nav>
 
   <!-- Mobile Overlay Menu -->
-  <div class="mobile-overlay" onclick="if(event.target === this) window.toggleMobileMenu()">
+  <div class="mobile-overlay" onclick="if(event.target === this) { this.classList.remove('active'); document.body.style.overflow=''; document.querySelectorAll('.mobile-menu-toggle').forEach(btn => btn.classList.remove('active')); }">
     <div class="nav-links">
       <a href="/index.html">Home</a>
       <a href="/projects/index.html">Projects</a>

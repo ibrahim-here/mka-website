@@ -320,7 +320,12 @@ function initAccordionMarquees() {
     if (!track) return;
     
     const originalContent = track.innerHTML;
-    track.innerHTML = originalContent + originalContent + originalContent + originalContent;
+    const clonesNeeded = 10;
+    let newContent = '';
+    for(let c=0; c < clonesNeeded; c++) {
+      newContent += originalContent;
+    }
+    track.innerHTML = newContent;
     
     wrapper.style.overflowX = 'hidden';
     wrapper.style.cursor = 'grab';
@@ -328,7 +333,7 @@ function initAccordionMarquees() {
     let isDragging = false;
     let startX, scrollLeftPos = 0;
     let velocity = 0, lastX;
-    const autoScrollSpeed = 0.3;
+    const autoScrollSpeed = 0.5; // Slightly faster than 0.3 for a good pace
 
     wrapper.addEventListener('pointerdown', (e) => {
       isDragging = true;
@@ -365,10 +370,10 @@ function initAccordionMarquees() {
         }
         wrapper.scrollLeft -= velocity;
         
-        const setWidth = track.scrollWidth / 4;
-        if (wrapper.scrollLeft >= setWidth * 2.5) {
+        const setWidth = track.scrollWidth / clonesNeeded;
+        if (wrapper.scrollLeft >= setWidth * (clonesNeeded - 2)) {
           wrapper.scrollLeft -= setWidth;
-        } else if (wrapper.scrollLeft <= setWidth * 0.5) {
+        } else if (wrapper.scrollLeft <= setWidth) {
           wrapper.scrollLeft += setWidth;
         }
       }

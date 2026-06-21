@@ -2,30 +2,23 @@ import os
 
 def fix_file(filepath):
     try:
-        with open(filepath, 'r', encoding='utf-8', errors='ignore') as f:
+        with open(filepath, 'r', encoding='utf-8') as f:
             content = f.read()
         
         updated = False
         
-        old_btn = '<button class="mobile-close-btn" aria-label="Close menu">&times;</button>'
-        new_btn = '<button class="mobile-close-btn" aria-label="Close menu" onclick="window.toggleMobileMenu()">&times;</button>'
+        old_btn_1 = '<button class="mobile-close-btn" aria-label="Close menu" onclick="window.toggleMobileMenu()">&times;</button>'
+        new_btn = '<button class="mobile-close-btn" aria-label="Close menu" onclick="document.querySelector(\'.mobile-overlay\').classList.remove(\'active\'); document.body.style.overflow=\'\'; document.querySelectorAll(\'.mobile-menu-toggle\').forEach(btn => btn.classList.remove(\'active\'));">&times;</button>'
         
-        # also check if the button doesn't have aria-label
-        old_btn_2 = '<button class="mobile-close-btn">&times;</button>'
-        new_btn_2 = '<button class="mobile-close-btn" onclick="window.toggleMobileMenu()">&times;</button>'
+        old_overlay_1 = '<div class="mobile-overlay" onclick="if(event.target === this) window.toggleMobileMenu()">'
+        new_overlay = '<div class="mobile-overlay" onclick="if(event.target === this) { this.classList.remove(\'active\'); document.body.style.overflow=\'\'; document.querySelectorAll(\'.mobile-menu-toggle\').forEach(btn => btn.classList.remove(\'active\')); }">'
         
-        if old_btn in content:
-            content = content.replace(old_btn, new_btn)
-            updated = True
-        elif old_btn_2 in content:
-            content = content.replace(old_btn_2, new_btn_2)
+        if old_btn_1 in content:
+            content = content.replace(old_btn_1, new_btn)
             updated = True
 
-        old_overlay = '<div class="mobile-overlay">'
-        new_overlay = '<div class="mobile-overlay" onclick="if(event.target === this) window.toggleMobileMenu()">'
-        
-        if old_overlay in content:
-            content = content.replace(old_overlay, new_overlay)
+        if old_overlay_1 in content:
+            content = content.replace(old_overlay_1, new_overlay)
             updated = True
             
         if updated:
