@@ -448,8 +448,8 @@
   </nav>
 
   <!-- Mobile Overlay Menu -->
-  <div class="mobile-overlay">
-    <button class="mobile-close-btn" aria-label="Close menu">&times;</button>
+  <div class="mobile-overlay" onclick="if(event.target === this) window.toggleMobileMenu()">
+    <button class="mobile-close-btn" aria-label="Close menu" onclick="window.toggleMobileMenu()">&times;</button>
     <div class="nav-links">
       <a href="/index.html">Home</a>
       <a href="/projects/index.html">Projects</a>

@@ -328,7 +328,7 @@ function initAccordionMarquees() {
     let isDragging = false;
     let startX, scrollLeftPos = 0;
     let velocity = 0, lastX;
-    const autoScrollSpeed = 1.5;
+    const autoScrollSpeed = 0.3;
 
     wrapper.addEventListener('pointerdown', (e) => {
       isDragging = true;
@@ -359,16 +359,16 @@ function initAccordionMarquees() {
     function animate() {
       if (!isDragging) {
         if (Math.abs(velocity) < 0.1) {
-        velocity = -autoScrollSpeed; 
+          velocity = -autoScrollSpeed; 
         } else {
           velocity *= 0.95; 
         }
         wrapper.scrollLeft -= velocity;
         
         const setWidth = track.scrollWidth / 4;
-        if (wrapper.scrollLeft >= track.scrollWidth - setWidth - wrapper.clientWidth) {
+        if (wrapper.scrollLeft >= setWidth * 2.5) {
           wrapper.scrollLeft -= setWidth;
-        } else if (wrapper.scrollLeft <= 0 && velocity > 0) {
+        } else if (wrapper.scrollLeft <= setWidth * 0.5) {
           wrapper.scrollLeft += setWidth;
         }
       }
