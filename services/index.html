@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="/assets/images/logo_MKA.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Services MKA — Architecture, Engineering, Planning</title>
   <meta name="description" content="MKA offers architectural design, structural engineering, town planning, and interior design services.">
@@ -196,21 +197,20 @@
 
     /* "Send Enquiry" link at the bottom of each service expansion */
     .service-enquiry-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: var(--space-md);
-      margin-bottom: var(--space-sm);
       font-family: 'Inter Display', sans-serif;
-      font-weight: 500;
       font-size: 13px;
-      letter-spacing: 0.06em;
+      font-weight: 500;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
       color: var(--color-text-primary);
       text-decoration: none;
-      border-bottom: 1px solid currentColor;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-bottom: 1px solid var(--color-text-primary);
       padding-bottom: 2px;
-      transition: opacity 0.2s;
+      transition: opacity 0.3s ease;
+      cursor: pointer;
     }
     .service-enquiry-link:hover { opacity: 0.55; }
 
@@ -279,6 +279,7 @@
 
   <!-- Mobile Overlay Menu -->
   <div class="mobile-overlay">
+    <button class="mobile-close-btn" aria-label="Close menu">&times;</button>
     <div class="nav-links">
       <a href="/index.html">Home</a>
       <a href="/projects/index.html">Projects</a>
@@ -295,7 +296,7 @@
       <div class="gsap-reveal text-center" style="margin: 0 auto var(--space-xl) auto; display: flex; flex-direction: column; align-items: center; justify-content: center;">
         <span class="label all-caps">Capabilities</span>
         <h1 class="display">Services</h1>
-        <p style="font-family: 'Inter Display', sans-serif; font-weight: 300; font-size: 18px; color: var(--color-text-primary); max-width: 680px; margin-top: 24px; line-height: 1.6; text-align: left;">
+        <p style="font-family: 'Inter Display', sans-serif; font-weight: 300; font-size: 18px; color: var(--color-text-primary); max-width: 680px; margin: 24px auto 0; line-height: 1.6; text-align: center;">
           We offer flexible engagement models tailored to your needs. Whether you require comprehensive architectural and construction management, or specialized support such as conceptual design, technical drafting, or on-site supervision &mdash; we adapt our scope to fit your project.
         </p>
       </div>
@@ -329,7 +330,7 @@
               </div>
               <div style="display: flex; gap: 24px; align-items: center; flex-wrap: wrap;">
                 <a href="/projects/index.html" class="service-enquiry-link">View related projects →</a>
-                <a href="/contact/index.html?service=architectural-design" class="service-enquiry-link">Send an enquiry →</a>
+
               </div>
             </div>
           </div>
@@ -362,7 +363,7 @@
               </div>
               <div style="display: flex; gap: 24px; align-items: center; flex-wrap: wrap;">
                 <a href="/projects/index.html" class="service-enquiry-link">View related projects →</a>
-                <a href="/contact/index.html?service=construction-management" class="service-enquiry-link">Send an enquiry →</a>
+
               </div>
             </div>
           </div>
@@ -394,7 +395,7 @@
               </div>
               <div style="display: flex; gap: 24px; align-items: center; flex-wrap: wrap; margin-top: var(--space-md);">
                 <a href="/projects/index.html?category=industrial" class="service-enquiry-link">View industrial projects →</a>
-                <a href="/contact/index.html?service=structural-engineering" class="service-enquiry-link">Send an enquiry →</a>
+
               </div>
             </div>
           </div>
@@ -425,7 +426,7 @@
               </div>
               <div style="display: flex; gap: 24px; align-items: center; flex-wrap: wrap; margin-top: var(--space-md);">
                 <a href="/projects/index.html?category=master-planning" class="service-enquiry-link">View planning projects →</a>
-                <a href="/contact/index.html?service=town-planning" class="service-enquiry-link">Send an enquiry →</a>
+
               </div>
             </div>
           </div>
@@ -456,7 +457,7 @@
               </div>
               <div style="display: flex; gap: 24px; align-items: center; flex-wrap: wrap;">
                 <a href="/projects/index.html" class="service-enquiry-link">View related projects →</a>
-                <a href="/contact/index.html?service=interior-design" class="service-enquiry-link">Send an enquiry →</a>
+
               </div>
             </div>
           </div>
@@ -487,7 +488,7 @@
               </div>
               <div style="display: flex; gap: 24px; align-items: center; flex-wrap: wrap; margin-top: var(--space-md);">
                 <a href="/projects/index.html?category=landscape" class="service-enquiry-link">View landscape projects →</a>
-                <a href="/contact/index.html?service=landscape-design" class="service-enquiry-link">Send an enquiry →</a>
+
               </div>
             </div>
           </div>
@@ -517,7 +518,7 @@
                 <a href="/projects/index.html"><img src="/assets/images/projects/3404-al-faisal-mall/3404 corner lift A01.jpg" alt="CAD Design Al Faisal Mall" loading="lazy"></a>
               </div>
               <div style="display: flex; gap: 24px; align-items: center; flex-wrap: wrap; margin-top: var(--space-md);">
-                <a href="/contact/index.html?service=cad-drawings" class="service-enquiry-link">Send an enquiry →</a>
+
               </div>
             </div>
           </div>
@@ -549,7 +550,7 @@
               </div>
               <div style="display: flex; gap: 24px; align-items: center; flex-wrap: wrap; margin-top: var(--space-md);">
                 <a href="/projects/index.html" class="service-enquiry-link">View projects →</a>
-                <a href="/contact/index.html?service=3d-rendering" class="service-enquiry-link">Send an enquiry →</a>
+
               </div>
             </div>
           </div>

@@ -127,7 +127,7 @@ window.initGalleryTrack = function(images) {
   // ─────────────────────────────────────────────────────────
   // 4. Smooth Animation Loop (with Auto-Scroll)
   // ─────────────────────────────────────────────────────────
-  const autoScrollSpeed = 1.5; // Pixels per frame to constantly move
+  const autoScrollSpeed = 0.5; // Pixels per frame to constantly move
 
   function animate() {
     if (!isDragging) {
@@ -146,14 +146,13 @@ window.initGalleryTrack = function(images) {
       track.scrollLeft = scrollLeft;
       
       // Infinite Loop Logic!
-      // If we've scrolled past a third of the width, seamlessly jump back.
       const setWidth = track.scrollWidth / clonesNeeded;
       
-      if (track.scrollLeft >= track.scrollWidth - setWidth - track.clientWidth) {
+      if (track.scrollLeft >= setWidth * (clonesNeeded - 1.5)) {
         // Jump back
         track.scrollLeft -= setWidth;
         scrollLeft -= setWidth;
-      } else if (track.scrollLeft <= setWidth / 2) {
+      } else if (track.scrollLeft <= setWidth * 0.5) {
         // Jump forward
         track.scrollLeft += setWidth;
         scrollLeft += setWidth;

@@ -21,6 +21,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   
   let currentFilter = categoryParam && filters.find(f => f.id === categoryParam) ? categoryParam : 'all';
   let currentView = 'grid'; // grid or list
+  
+  let currentPage = 1;
+  const itemsPerPage = 12;
 
   const filterBar = document.getElementById('filter-bar');
   const gridContainer = document.getElementById('projects-grid');
@@ -41,6 +44,14 @@ document.addEventListener('DOMContentLoaded', async () => {
   initViewToggles();
   updateTriggerText();
   renderProjects();
+
+  const loadMoreBtn = document.getElementById('load-more-btn');
+  if (loadMoreBtn) {
+    loadMoreBtn.addEventListener('click', () => {
+      currentPage++;
+      renderProjects(true);
+    });
+  }
 
   function updateTriggerText() {
     const triggerBtn = document.querySelector('.filter-trigger');
@@ -69,6 +80,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         btn.classList.add('active');
         
         currentFilter = filter.id;
+        currentPage = 1; // Reset to first page
         updateTriggerText();
         renderProjects();
       });
@@ -100,16 +112,34 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  function renderProjects() {
+  function renderProjects(append = false) {
     // Filter data
     const filteredProjects = currentFilter === 'all' 
       ? projects 
       : projects.filter(p => p.category === currentFilter);
 
-    gridContainer.innerHTML = '';
-    listContainer.innerHTML = '';
+    if (!append) {
+      gridContainer.innerHTML = '';
+      listContainer.innerHTML = '';
+    }
 
-    filteredProjects.forEach((p, index) => {
+    const startIndex = append ? (currentPage - 1) * itemsPerPage : 0;
+    const endIndex = currentPage * itemsPerPage;
+    const projectsToRender = filteredProjects.slice(startIndex, endIndex);
+
+    const loadMoreContainer = document.getElementById('load-more-container');
+    if (loadMoreContainer) {
+      if (endIndex >= filteredProjects.length) {
+        loadMoreContainer.style.display = 'none';
+      } else {
+        loadMoreContainer.style.display = 'block';
+      }
+    }
+
+    const newGridItems = [];
+    const newListItems = [];
+
+    projectsToRender.forEach((p, idx) => {
       // Grid Card
       const gridCard = document.createElement('a');
       gridCard.href = `/projects/project-detail.html?slug=${p.slug.current}`;
@@ -131,6 +161,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         </div>
       `;
       gridContainer.appendChild(gridCard);
+      newGridItems.push(gridCard);
 
       // List Row
       const listRow = document.createElement('a');
@@ -138,7 +169,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       listRow.addEventListener('click', () => localStorage.setItem('current_project_slug', p.slug.current));
       listRow.className = 'project-list-row';
       
-      const numStr = (index + 1).toString().padStart(2, '0');
+      const actualIndex = startIndex + idx;
+      const numStr = (actualIndex + 1).toString().padStart(2, '0');
       
       listRow.innerHTML = `
         <div class="project-number">${numStr}</div>
@@ -146,17 +178,18 @@ document.addEventListener('DOMContentLoaded', async () => {
         <div class="project-category">${p.category.replace('-', ' ')}</div>
       `;
       listContainer.appendChild(listRow);
+      newListItems.push(listRow);
     });
 
     if (window.gsap && window.ScrollTrigger) {
       ScrollTrigger.refresh();
       if (currentView === 'grid') {
-        gsap.fromTo(gridContainer.children, 
+        gsap.fromTo(newGridItems, 
           { y: 30, opacity: 0 },
           { y: 0, opacity: 1, duration: 0.5, stagger: 0.05, ease: "power2.out" }
         );
       } else {
-        gsap.fromTo(listContainer.children, 
+        gsap.fromTo(newListItems, 
           { y: 30, opacity: 0 },
           { y: 0, opacity: 1, duration: 0.5, stagger: 0.05, ease: "power2.out" }
         );

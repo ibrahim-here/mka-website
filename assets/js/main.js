@@ -45,12 +45,12 @@ window.addEventListener('pageshow', (e) => {
   }
 });
 
-window.toggleMobileMenu = function(btn) {
+window.toggleMobileMenu = function(element) {
   const overlay = document.querySelector('.mobile-overlay');
-  if (!overlay) return;
-
+  const toggleBtn = element || document.querySelector('.mobile-menu-toggle');
+  if(toggleBtn) toggleBtn.classList.toggle('active');
   overlay.classList.toggle('active');
-  btn.classList.toggle('active');
+  document.body.style.overflow = overlay.classList.contains('active') ? 'hidden' : '';
   
   if (overlay.classList.contains('active')) {
     // Animate links in
@@ -65,7 +65,24 @@ window.toggleMobileMenu = function(btn) {
 };
 
 function initMobileNav() {
-  // Now handled by inline onclick calls to bypass any attachment/timing issues
+  const mobileCloseBtn = document.querySelector('.mobile-close-btn');
+  if (mobileCloseBtn) {
+    mobileCloseBtn.addEventListener('click', () => {
+      window.toggleMobileMenu();
+    });
+  }
+
+  // Close when clicking anywhere outside nav-links in overlay
+  const mobileOverlay = document.querySelector('.mobile-overlay');
+  if (mobileOverlay) {
+    mobileOverlay.addEventListener('click', (e) => {
+      // e.target is the element that was actually clicked
+      // If it's the overlay itself and not a child (like nav-links), close the menu
+      if (e.target === mobileOverlay) {
+        window.toggleMobileMenu();
+      }
+    });
+  }
 }
 
 function initPageTransitions() {
@@ -311,7 +328,7 @@ function initAccordionMarquees() {
     let isDragging = false;
     let startX, scrollLeftPos = 0;
     let velocity = 0, lastX;
-    const autoScrollSpeed = 0.5;
+    const autoScrollSpeed = 1.5;
 
     wrapper.addEventListener('pointerdown', (e) => {
       isDragging = true;
@@ -342,7 +359,7 @@ function initAccordionMarquees() {
     function animate() {
       if (!isDragging) {
         if (Math.abs(velocity) < 0.1) {
-          velocity = -autoScrollSpeed; 
+        velocity = -autoScrollSpeed; 
         } else {
           velocity *= 0.95; 
         }

@@ -432,7 +432,28 @@ nav.main-nav:not(.scrolled) .mobile-menu-toggle span {
 
 .mobile-overlay.active {
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
+}
+
+.mobile-close-btn {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  background: transparent;
+  border: none;
+  color: var(--color-bg);
+  font-size: 40px;
+  cursor: pointer;
+  z-index: 1001;
+  padding: 10px;
+  line-height: 1;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.mobile-close-btn:hover {
+  transform: rotate(90deg);
+  opacity: 0.7;
 }
 
 .mobile-overlay .nav-links {
@@ -441,6 +462,52 @@ nav.main-nav:not(.scrolled) .mobile-menu-toggle span {
   align-items: flex-start;
   gap: var(--space-xs);
   margin-left: -19px;
+}
+
+.mobile-overlay .premium-cta h2 {
+  font-family: 'Inter Display', sans-serif;
+  font-size: clamp(60px, 8vw, 100px); /* Reduced slightly from clamp(80px, 10vw, 140px) */
+  font-weight: 300;
+  line-height: 1;
+  color: #FFFFFF;
+  margin-bottom: 0;
+  letter-spacing: -0.02em;
+}
+
+/* Logo Carousel Section */
+.clients-carousel-section {
+  width: 100%;
+  overflow: hidden;
+  background: var(--color-bg);
+  padding: 60px 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.clients-track {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  width: max-content;
+  animation: scrollClients 30s linear infinite;
+}
+
+.clients-track img {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.6;
+  filter: grayscale(100%);
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+.clients-track img:hover {
+  opacity: 1;
+  filter: grayscale(0%);
+}
+
+@keyframes scrollClients {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-50% - 40px)); } /* 40px is half the gap */
 }
 
 .mobile-overlay .nav-links a {
