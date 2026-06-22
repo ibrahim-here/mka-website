@@ -1365,14 +1365,18 @@ footer.premium-footer .footer-big-text {
   .btn-cta {
     padding: 12px 24px !important;
     font-size: 12px !important;
-    margin-top: 16px !important;
+    margin: 0 !important;
+  }
+  .premium-cta .container {
+    gap: 24px !important;
   }
   .premium-cta h2 {
     font-size: 48px !important;
     line-height: 1 !important;
+    margin: 0 !important;
   }
   .premium-cta .label {
-    margin-bottom: 16px !important;
+    margin: 0 !important;
   }
 
   /* 3. About Section Centered & Padded */
