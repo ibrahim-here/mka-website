@@ -949,6 +949,11 @@ footer {
   color: var(--color-white);
   text-transform: uppercase;
   margin-bottom: 0;
+  font-family: 'Inter Display', sans-serif;
+  font-size: clamp(60px, 13vw, 180px);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  font-weight: 400;
 }
 
 /* .btn-cta shares base styles with .btn */
