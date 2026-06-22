@@ -1367,6 +1367,10 @@ footer.premium-footer .footer-big-text {
     font-size: 12px !important;
     margin-top: 16px !important;
   }
+  .premium-cta h2 {
+    font-size: 48px !important;
+    line-height: 1 !important;
+  }
 
   /* 3. About Section Centered & Padded */
   .about-hero, .studio-grid, .credentials, .credentials-content {
