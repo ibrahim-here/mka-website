@@ -950,10 +950,10 @@ footer {
   text-transform: uppercase;
   margin-bottom: 0;
   font-family: 'Inter Display', sans-serif;
-  font-size: clamp(60px, 13vw, 180px);
-  line-height: 0.9;
-  letter-spacing: -0.03em;
-  font-weight: 400;
+  font-size: clamp(40px, 8vw, 100px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-weight: 300;
 }
 
 /* .btn-cta shares base styles with .btn */
