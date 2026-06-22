@@ -67,7 +67,8 @@ window.toggleMobileMenu = function(element) {
 function initMobileNav() {
   const mobileCloseBtn = document.querySelector('.mobile-close-btn');
   if (mobileCloseBtn) {
-    mobileCloseBtn.addEventListener('click', () => {
+    mobileCloseBtn.addEventListener('click', (e) => {
+      e.stopPropagation(); // prevent bubbling to overlay
       window.toggleMobileMenu();
     });
   }
@@ -76,9 +77,8 @@ function initMobileNav() {
   const mobileOverlay = document.querySelector('.mobile-overlay');
   if (mobileOverlay) {
     mobileOverlay.addEventListener('click', (e) => {
-      // e.target is the element that was actually clicked
-      // If it's the overlay itself and not a child (like nav-links), close the menu
-      if (e.target === mobileOverlay) {
+      // If the user didn't click on a link, close it.
+      if (!e.target.closest('a') && !e.target.closest('.mobile-close-btn')) {
         window.toggleMobileMenu();
       }
     });
