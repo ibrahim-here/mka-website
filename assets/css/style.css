@@ -442,7 +442,7 @@ nav.main-nav:not(.scrolled) .mobile-menu-toggle span {
   right: 40px;
   background: transparent;
   border: none;
-  color: var(--color-text-primary);
+  color: var(--color-white);
   font-size: 40px;
   cursor: pointer;
   z-index: 1001;

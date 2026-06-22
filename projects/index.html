@@ -310,7 +310,7 @@
   </nav>
 
   <!-- Mobile Overlay Menu -->
-  <div class="mobile-overlay" onclick="if(event.target === this) { this.classList.remove('active'); document.body.style.overflow=''; document.querySelectorAll('.mobile-menu-toggle').forEach(btn => btn.classList.remove('active')); }">
+  <div class="mobile-overlay" onclick="if(!event.target.closest('a')) { this.classList.remove('active'); document.body.style.overflow=''; document.querySelectorAll('.mobile-menu-toggle').forEach(btn => btn.classList.remove('active')); }">
     <button class="mobile-close-btn" aria-label="Close menu" onclick="document.querySelector('.mobile-overlay').classList.remove('active'); document.body.style.overflow=''; document.querySelectorAll('.mobile-menu-toggle').forEach(btn => btn.classList.remove('active'));">&times;</button>
     <div class="nav-links">
       <a href="/index.html">Home</a>
