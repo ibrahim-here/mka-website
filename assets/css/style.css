@@ -1356,6 +1356,7 @@ footer.premium-footer .footer-big-text {
 
   /* 2. CTA Section 50vh Height */
   .premium-cta {
+    height: 50vh !important;
     min-height: 50vh !important;
     display: flex;
     flex-direction: column;
