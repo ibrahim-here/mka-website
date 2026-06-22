@@ -1399,10 +1399,10 @@ footer.premium-footer .footer-big-text {
   }
 
   /* 4. Services Section Centered & Padded */
-  .services-hero, .accordion-content, .what-we-do-left {
+  .services-hero, .accordion-content, .what-we-do-left, .how-we-work-intro, .process-note {
     text-align: center !important;
   }
-  .services-hero p, .what-we-do-left p {
+  .services-hero p, .what-we-do-left p, .how-we-work-intro p, .process-note p {
     text-align: center !important;
     margin-left: auto !important;
     margin-right: auto !important;
@@ -1418,13 +1418,17 @@ footer.premium-footer .footer-big-text {
     position: absolute;
     right: 20px;
   }
-  .accordion-btn {
-    margin: 0 auto !important;
+  .accordion-btn, .service-enquiry-link {
+    margin-left: auto !important;
+    margin-right: auto !important;
     display: inline-block !important;
   }
-  .what-we-do {
+  .what-we-do, .how-we-work-section {
     padding-top: var(--space-xl) !important;
     padding-bottom: var(--space-xl) !important;
+  }
+  .process-note {
+    margin-bottom: 40px !important;
   }
 }
 
