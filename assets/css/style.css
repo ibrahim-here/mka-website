@@ -438,22 +438,26 @@ nav.main-nav:not(.scrolled) .mobile-menu-toggle span {
 
 .mobile-close-btn {
   position: absolute;
-  top: 40px;
-  right: 40px;
+  top: 30px;
+  right: 30px;
   background: transparent;
-  border: none;
+  border: 1px solid transparent;
+  border-radius: 50%;
   color: var(--color-white);
-  font-size: 40px;
+  font-size: 32px;
   cursor: pointer;
   z-index: 1001;
-  padding: 10px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   line-height: 1;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition: border-color 0.3s ease;
 }
 
 .mobile-close-btn:hover {
-  transform: rotate(90deg);
-  opacity: 0.7;
+  border-color: var(--color-white);
 }
 
 .mobile-overlay .nav-links {

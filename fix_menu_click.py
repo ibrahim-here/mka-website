@@ -7,8 +7,8 @@ def fix_file(filepath):
         
         updated = False
         
-        old_overlay = '<div class="mobile-overlay" onclick="if(event.target === this) { this.classList.remove(\'active\'); document.body.style.overflow=\'\'; document.querySelectorAll(\'.mobile-menu-toggle\').forEach(btn => btn.classList.remove(\'active\')); }">'
-        new_overlay = '<div class="mobile-overlay" onclick="if(!event.target.closest(\'a\')) { this.classList.remove(\'active\'); document.body.style.overflow=\'\'; document.querySelectorAll(\'.mobile-menu-toggle\').forEach(btn => btn.classList.remove(\'active\')); }">'
+        old_overlay = '<div class="mobile-overlay" onclick="if(!event.target.closest(\'a\')) { this.classList.remove(\'active\'); document.body.style.overflow=\'\'; document.querySelectorAll(\'.mobile-menu-toggle\').forEach(btn => btn.classList.remove(\'active\')); }">'
+        new_overlay = '<div class="mobile-overlay" onclick="if(!event.target.closest(\'a\')) { document.querySelector(\'.mobile-overlay\').classList.remove(\'active\'); document.body.style.overflow=\'\'; document.querySelectorAll(\'.mobile-menu-toggle\').forEach(btn => btn.classList.remove(\'active\')); }">'
         
         if old_overlay in content:
             content = content.replace(old_overlay, new_overlay)
