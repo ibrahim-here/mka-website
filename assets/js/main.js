@@ -48,11 +48,19 @@ window.addEventListener('pageshow', (e) => {
 window.toggleMobileMenu = function(element) {
   const overlay = document.querySelector('.mobile-overlay');
   const toggleBtn = element || document.querySelector('.mobile-menu-toggle');
+  const scrollMenuBtn = document.getElementById('scrollMenuBtn');
+
   if(toggleBtn) toggleBtn.classList.toggle('active');
   overlay.classList.toggle('active');
-  document.body.style.overflow = overlay.classList.contains('active') ? 'hidden' : '';
   
-  if (overlay.classList.contains('active')) {
+  const isActive = overlay.classList.contains('active');
+  document.body.style.overflow = isActive ? 'hidden' : '';
+  
+  if (scrollMenuBtn) {
+    scrollMenuBtn.textContent = isActive ? 'CLOSE' : 'MENU';
+  }
+  
+  if (isActive) {
     // Animate links in
     const links = overlay.querySelectorAll('.nav-links a');
     if (window.gsap) {
@@ -65,20 +73,12 @@ window.toggleMobileMenu = function(element) {
 };
 
 function initMobileNav() {
-  const mobileCloseBtn = document.querySelector('.mobile-close-btn');
-  if (mobileCloseBtn) {
-    mobileCloseBtn.addEventListener('click', (e) => {
-      e.stopPropagation(); // prevent bubbling to overlay
-      window.toggleMobileMenu();
-    });
-  }
-
   // Close when clicking anywhere outside nav-links in overlay
   const mobileOverlay = document.querySelector('.mobile-overlay');
   if (mobileOverlay) {
     mobileOverlay.addEventListener('click', (e) => {
       // If the user didn't click on a link, close it.
-      if (!e.target.closest('a') && !e.target.closest('.mobile-close-btn')) {
+      if (!e.target.closest('a')) {
         window.toggleMobileMenu();
       }
     });

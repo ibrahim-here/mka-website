@@ -436,30 +436,6 @@ nav.main-nav:not(.scrolled) .mobile-menu-toggle span {
   pointer-events: auto;
 }
 
-.mobile-close-btn {
-  position: absolute;
-  top: 30px;
-  right: 30px;
-  background: transparent;
-  border: 1px solid transparent;
-  border-radius: 50%;
-  color: var(--color-white);
-  font-size: 32px;
-  cursor: pointer;
-  z-index: 1001;
-  width: 50px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
-  transition: border-color 0.3s ease;
-}
-
-.mobile-close-btn:hover {
-  border-color: var(--color-white);
-}
-
 .mobile-overlay .nav-links {
   display: flex;
   flex-direction: column;
