@@ -195,7 +195,13 @@
 
       <!-- Right Column -->
       <div class="contact-right gsap-reveal" style="animation-delay: 0.2s;">
-        <form class="contact-form" action="#" method="POST">
+        
+        <!-- Success Notification (Hidden by default) -->
+        <div id="formNotification" style="display: none; margin-bottom: 24px; padding: 16px 24px; background: rgba(255,255,255,0.05); border-left: 3px solid var(--color-text-primary); color: var(--color-text-primary); font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 300;">
+          Form submitted. We'll get back shortly.
+        </div>
+
+        <form class="contact-form" id="contactForm" style="margin-top: 0;">
           <input type="text" name="name" placeholder="Your Name" required>
           <input type="email" name="email" placeholder="Your Email" required>
           <select name="project_type" required>
@@ -209,7 +215,7 @@
           </select>
           <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
           
-          <button type="submit" class="btn form-submit">Send an Enquiry &rarr;</button>
+          <button type="submit" class="btn form-submit" id="submitBtn">Send an Enquiry &rarr;</button>
         </form>
       </div>
 
@@ -274,6 +280,64 @@
         { y: 30, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.8, stagger: 0.2, ease: "power3.out", delay: 0.3 }
       );
+
+      // Handle Contact Form Submission via FormSubmit AJAX
+      const contactForm = document.getElementById('contactForm');
+      const formNotification = document.getElementById('formNotification');
+      const submitBtn = document.getElementById('submitBtn');
+
+      if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          // Update button text to show loading state
+          const originalBtnText = submitBtn.innerHTML;
+          submitBtn.innerHTML = 'Sending...';
+          submitBtn.disabled = true;
+
+          // Gather form data
+          const formData = new FormData(contactForm);
+          const data = {
+            name: formData.get('name'),
+            email: formData.get('email'),
+            project_type: formData.get('project_type'),
+            message: formData.get('message'),
+            _cc: "moaazmazhry@gmail.com",
+            _subject: "New Enquiry from MKA Website"
+          };
+
+          // Send POST request to FormSubmit
+          fetch("https://formsubmit.co/ajax/mkaoffice@gmail.com", {
+            method: "POST",
+            headers: { 
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify(data)
+          })
+          .then(response => response.json())
+          .then(data => {
+            // Show success notification
+            formNotification.style.display = 'block';
+            // Clear form
+            contactForm.reset();
+            // Reset button
+            submitBtn.innerHTML = originalBtnText;
+            submitBtn.disabled = false;
+            
+            // Auto hide notification after 5 seconds
+            setTimeout(() => {
+              formNotification.style.display = 'none';
+            }, 5000);
+          })
+          .catch(error => {
+            console.error('Error submitting form:', error);
+            alert('There was an error sending your message. Please try again.');
+            submitBtn.innerHTML = originalBtnText;
+            submitBtn.disabled = false;
+          });
+        });
+      }
     });
   </script>
 </body>
