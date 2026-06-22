@@ -1354,9 +1354,9 @@ footer.premium-footer .footer-big-text {
     margin-right: auto !important;
   }
 
-  /* 2. CTA Section 100vh Height */
+  /* 2. CTA Section 50vh Height */
   .premium-cta {
-    min-height: 100vh !important;
+    min-height: 50vh !important;
     display: flex;
     flex-direction: column;
     justify-content: center;
