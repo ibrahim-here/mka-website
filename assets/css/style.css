@@ -950,7 +950,7 @@ footer {
   text-transform: uppercase;
   margin-bottom: 0;
   font-family: 'Inter Display', sans-serif;
-  font-size: clamp(50px, 8vw, 120px);
+  font-size: clamp(40px, 6.4vw, 96px);
   line-height: 0.95;
   letter-spacing: -0.04em;
   font-weight: 800;
