@@ -1354,13 +1354,18 @@ footer.premium-footer .footer-big-text {
     margin-right: auto !important;
   }
 
-  /* 2. CTA Section 50vh Height */
+  /* 2. CTA Section 50vh Height & Smaller Button */
   .premium-cta {
     height: 50vh !important;
     min-height: 50vh !important;
     display: flex;
     flex-direction: column;
     justify-content: center;
+  }
+  .btn-cta {
+    padding: 12px 24px !important;
+    font-size: 12px !important;
+    margin-top: 16px !important;
   }
 
   /* 3. About Section Centered & Padded */
