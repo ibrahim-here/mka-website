@@ -333,7 +333,8 @@ function initAccordionMarquees() {
     let isDragging = false;
     let startX, scrollLeftPos = 0;
     let velocity = 0, lastX;
-    const autoScrollSpeed = 0.5; // Slightly faster than 0.3 for a good pace
+    const autoScrollSpeed = 0.8; // Slightly faster and smoother
+    let currentScroll = 0;
 
     wrapper.addEventListener('pointerdown', (e) => {
       isDragging = true;
@@ -351,6 +352,7 @@ function initAccordionMarquees() {
       velocity = e.pageX - lastX;
       lastX = e.pageX;
       wrapper.scrollLeft = scrollLeftPos - walk;
+      currentScroll = wrapper.scrollLeft;
     });
 
     document.addEventListener('pointerup', () => {
@@ -368,20 +370,24 @@ function initAccordionMarquees() {
         } else {
           velocity *= 0.95; 
         }
-        wrapper.scrollLeft -= velocity;
+        
+        currentScroll -= velocity;
         
         const setWidth = track.scrollWidth / clonesNeeded;
-        if (wrapper.scrollLeft >= setWidth * (clonesNeeded - 2)) {
-          wrapper.scrollLeft -= setWidth;
-        } else if (wrapper.scrollLeft <= setWidth) {
-          wrapper.scrollLeft += setWidth;
+        if (currentScroll >= setWidth * (clonesNeeded - 2)) {
+          currentScroll -= setWidth;
+        } else if (currentScroll <= setWidth) {
+          currentScroll += setWidth;
         }
+        
+        wrapper.scrollLeft = currentScroll;
       }
       requestAnimationFrame(animate);
     }
     
     setTimeout(() => {
-      wrapper.scrollLeft = track.scrollWidth / 4; 
+      currentScroll = track.scrollWidth / 4;
+      wrapper.scrollLeft = currentScroll; 
       animate();
     }, 100);
   });
