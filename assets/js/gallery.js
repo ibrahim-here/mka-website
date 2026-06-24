@@ -132,10 +132,6 @@ window.initGalleryTrack = function(images) {
   let targetSpeed = baseSpeed;
   let autoScrollSpeed = baseSpeed;
 
-  wrapper.addEventListener('mouseenter', () => targetSpeed = 0.3); // Slow down on hover
-  wrapper.addEventListener('mouseleave', () => {
-    if (!isDragging) targetSpeed = baseSpeed;
-  });
   function animate() {
     // Smoothly interpolate the auto scroll speed
     autoScrollSpeed += (targetSpeed - autoScrollSpeed) * 0.05;
