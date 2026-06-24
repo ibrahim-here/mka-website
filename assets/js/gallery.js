@@ -99,8 +99,9 @@ window.initGalleryTrack = function(images) {
   document.addEventListener('pointerup', () => {
     if (!isDragging) return;
     isDragging = false;
-    track.style.cursor = 'grab';
-
+    wrapper.style.cursor = 'grab';
+    targetSpeed = baseSpeed; // Ensure it returns to normal speed when drag ends
+    
     // Momentum / inertia on release
     const decelerate = () => {
       if (Math.abs(velocity) < 0.5) return;
@@ -127,9 +128,18 @@ window.initGalleryTrack = function(images) {
   // ─────────────────────────────────────────────────────────
   // 4. Smooth Animation Loop (with Auto-Scroll)
   // ─────────────────────────────────────────────────────────
-  const autoScrollSpeed = 1.2; // 20% slower than 1.5
+  const baseSpeed = 1.2; // 20% slower than 1.5
+  let targetSpeed = baseSpeed;
+  let autoScrollSpeed = baseSpeed;
 
+  wrapper.addEventListener('mouseenter', () => targetSpeed = 0.3); // Slow down on hover
+  wrapper.addEventListener('mouseleave', () => {
+    if (!isDragging) targetSpeed = baseSpeed;
+  });
   function animate() {
+    // Smoothly interpolate the auto scroll speed
+    autoScrollSpeed += (targetSpeed - autoScrollSpeed) * 0.05;
+
     if (!isDragging) {
       // If the user isn't dragging, apply either the dying momentum or the constant auto-scroll
       let currentVelocity = velocity;

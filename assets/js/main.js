@@ -333,8 +333,15 @@ function initAccordionMarquees() {
     let isDragging = false;
     let startX, scrollLeftPos = 0;
     let velocity = 0, lastX;
-    const autoScrollSpeed = 1.2; // 20% slower than 1.5
+    const baseSpeed = 1.2;
+    let targetSpeed = baseSpeed;
+    let autoScrollSpeed = baseSpeed;
     let currentScroll = 0;
+    
+    wrapper.addEventListener('mouseenter', () => targetSpeed = 0.3); // Slow down on hover
+    wrapper.addEventListener('mouseleave', () => {
+      if (!isDragging) targetSpeed = baseSpeed;
+    });
 
     wrapper.addEventListener('pointerdown', (e) => {
       isDragging = true;
@@ -359,11 +366,15 @@ function initAccordionMarquees() {
       if (!isDragging) return;
       isDragging = false;
       wrapper.style.cursor = 'grab';
+      targetSpeed = baseSpeed; // Ensure it returns to normal speed when drag ends
     });
     
     wrapper.addEventListener('dragstart', e => e.preventDefault());
 
     function animate() {
+      // Smoothly interpolate the auto scroll speed
+      autoScrollSpeed += (targetSpeed - autoScrollSpeed) * 0.05;
+
       if (!isDragging) {
         let currentVelocity = velocity;
         if (Math.abs(velocity) < 0.1) {
