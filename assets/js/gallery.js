@@ -127,7 +127,7 @@ window.initGalleryTrack = function(images) {
   // ─────────────────────────────────────────────────────────
   // 4. Smooth Animation Loop (with Auto-Scroll)
   // ─────────────────────────────────────────────────────────
-  const autoScrollSpeed = 1.5; // Pixels per frame to constantly move (increased from 0.5)
+  const autoScrollSpeed = 1.2; // 20% slower than 1.5
 
   function animate() {
     if (!isDragging) {
