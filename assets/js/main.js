@@ -333,7 +333,7 @@ function initAccordionMarquees() {
     let isDragging = false;
     let startX, scrollLeftPos = 0;
     let velocity = 0, lastX;
-    const autoScrollSpeed = 0.8; // Slightly faster and smoother
+    const autoScrollSpeed = 0.5; // Matched to gallery speed
     let currentScroll = 0;
 
     wrapper.addEventListener('pointerdown', (e) => {
