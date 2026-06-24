@@ -20,16 +20,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   const categoryParam = urlParams.get('category');
   
   let currentFilter = categoryParam && filters.find(f => f.id === categoryParam) ? categoryParam : 'all';
-  let currentView = 'grid'; // grid or list
   
   let currentPage = 1;
   const itemsPerPage = 12;
 
   const filterBar = document.getElementById('filter-bar');
   const gridContainer = document.getElementById('projects-grid');
-  const listContainer = document.getElementById('projects-list');
   const totalCountEl = document.getElementById('total-count');
-  const viewBtns = document.querySelectorAll('.view-btn');
 
   // Fetch projects from Sanity
   let projects = [];
@@ -41,7 +38,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Initialize
   initFilters();
-  initViewToggles();
   updateTriggerText();
   renderProjects();
 
@@ -93,24 +89,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
-  function initViewToggles() {
-    viewBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        viewBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        
-        currentView = btn.dataset.view;
-        
-        if (currentView === 'grid') {
-          gridContainer.classList.remove('hidden');
-          listContainer.classList.remove('active');
-        } else {
-          gridContainer.classList.add('hidden');
-          listContainer.classList.add('active');
-        }
-      });
-    });
-  }
 
   function renderProjects(append = false) {
     // Filter data
@@ -120,7 +98,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (!append) {
       gridContainer.innerHTML = '';
-      listContainer.innerHTML = '';
     }
 
     const startIndex = append ? (currentPage - 1) * itemsPerPage : 0;
@@ -162,38 +139,14 @@ document.addEventListener('DOMContentLoaded', async () => {
       `;
       gridContainer.appendChild(gridCard);
       newGridItems.push(gridCard);
-
-      // List Row
-      const listRow = document.createElement('a');
-      listRow.href = `/projects/project-detail.html?slug=${p.slug.current}`;
-      listRow.addEventListener('click', () => localStorage.setItem('current_project_slug', p.slug.current));
-      listRow.className = 'project-list-row';
-      
-      const actualIndex = startIndex + idx;
-      const numStr = (actualIndex + 1).toString().padStart(2, '0');
-      
-      listRow.innerHTML = `
-        <div class="project-number">${numStr}</div>
-        <div class="project-name">${p.title}</div>
-        <div class="project-category">${p.category.replace('-', ' ')}</div>
-      `;
-      listContainer.appendChild(listRow);
-      newListItems.push(listRow);
     });
 
     if (window.gsap && window.ScrollTrigger) {
       ScrollTrigger.refresh();
-      if (currentView === 'grid') {
-        gsap.fromTo(newGridItems, 
-          { y: 30, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.5, stagger: 0.05, ease: "power2.out" }
-        );
-      } else {
-        gsap.fromTo(newListItems, 
-          { y: 30, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.5, stagger: 0.05, ease: "power2.out" }
-        );
-      }
+      gsap.fromTo(newGridItems, 
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, stagger: 0.05, ease: "power2.out" }
+      );
     }
   }
 });

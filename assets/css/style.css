@@ -461,6 +461,7 @@ nav.main-nav:not(.scrolled) .mobile-menu-toggle span {
   background: var(--color-bg);
   padding: 60px 0;
   border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .clients-track {
@@ -472,7 +473,7 @@ nav.main-nav:not(.scrolled) .mobile-menu-toggle span {
 }
 
 .clients-track img {
-  height: 60px;
+  height: 90px;
   width: auto;
   object-fit: contain;
   opacity: 0.6;
