@@ -365,13 +365,14 @@ function initAccordionMarquees() {
 
     function animate() {
       if (!isDragging) {
+        let currentVelocity = velocity;
         if (Math.abs(velocity) < 0.1) {
-          velocity = -autoScrollSpeed; 
+          currentVelocity = -autoScrollSpeed; 
         } else {
           velocity *= 0.95; 
         }
         
-        currentScroll -= velocity;
+        currentScroll -= currentVelocity;
         
         const setWidth = track.scrollWidth / clonesNeeded;
         if (currentScroll >= setWidth * (clonesNeeded - 2)) {
