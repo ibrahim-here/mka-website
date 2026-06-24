@@ -462,7 +462,7 @@ nav.main-nav:not(.scrolled) .mobile-menu-toggle span {
   padding: 60px 0;
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
-  margin-bottom: 60px;
+  margin-bottom: 210px;
 }
 
 .clients-track {
