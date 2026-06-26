@@ -1,4 +1,4 @@
-const SANITY_PROJECT_ID = '6xblaggo';
+const SANITY_PROJECT_ID = 'apccf3a6';
 const SANITY_DATASET = 'production';
 
 // Helper to fetch Sanity data
