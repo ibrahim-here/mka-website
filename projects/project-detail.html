@@ -237,7 +237,32 @@
         const galleryGrid = document.getElementById('gallery-grid');
         
         // Add main image or video
-        if (slug === 'velodrome-peshawar') {
+        if (project.videoUrl) {
+          const videoContainer = document.createElement('div');
+          videoContainer.className = 'gallery-item main gsap-fade';
+          videoContainer.style.position = 'relative';
+          videoContainer.style.width = '100%';
+          videoContainer.style.aspectRatio = '16/9';
+          videoContainer.style.overflow = 'hidden';
+          videoContainer.style.backgroundColor = '#000';
+
+          const video = document.createElement('video');
+          video.src = project.videoUrl;
+          video.controls = true;
+          video.autoplay = true;
+          video.muted = true;
+          video.loop = true;
+          if (project.mainImageUrl) {
+            video.poster = `${project.mainImageUrl}?w=1600&auto=format`;
+          }
+          video.style.width = '100%';
+          video.style.height = '100%';
+          video.style.objectFit = 'contain';
+
+          videoContainer.appendChild(video);
+          galleryGrid.appendChild(videoContainer);
+        } else if (slug === 'velodrome-peshawar') {
+          // Keep fallback for static hardcoded local video if sanity isn't loaded
           const videoContainer = document.createElement('div');
           videoContainer.className = 'gallery-item main';
           videoContainer.style.position = 'relative';
@@ -249,6 +274,9 @@
           const video = document.createElement('video');
           video.src = '../assets/images/projects/velodrome-peshawar/walkthrough.mp4';
           video.controls = true;
+          video.autoplay = true;
+          video.muted = true;
+          video.loop = true;
           if (project.mainImageUrl) {
             video.poster = `${project.mainImageUrl}?w=1600&auto=format`;
           }
@@ -262,7 +290,8 @@
           if (project.mainImageUrl) {
             const img = document.createElement('img');
             img.src = `${project.mainImageUrl}?w=1600&auto=format`;
-            img.className = 'gallery-item main';
+            img.alt = project.title;
+            img.className = 'gallery-item main gsap-fade';
             galleryGrid.appendChild(img);
           }
         }

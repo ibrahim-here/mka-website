@@ -17,11 +17,13 @@ async function fetchSanityData(query) {
 
 // Fetch 4 featured projects for the home page
 async function fetchFeaturedProjects() {
-  const query = `*[_type == "project"] | order(_createdAt asc) [0...4] {
+  const query = `*[_type == "project" && featured == true] | order(order asc) {
+    _id,
     title,
     slug,
     category,
-    "imageUrl": mainImage.asset->url
+    "imageUrl": mainImage.asset->url,
+    "videoUrl": video.asset->url
   }`;
   return await fetchSanityData(query);
 }
@@ -44,6 +46,7 @@ async function fetchProjectBySlug(slug) {
     category,
     description,
     "mainImageUrl": mainImage.asset->url,
+    "videoUrl": video.asset->url,
     "galleryUrls": gallery[].asset->url
   }`;
   return await fetchSanityData(query);
@@ -92,14 +95,23 @@ async function renderHomeProjects() {
     
     // Default to an empty string if no image is uploaded
     const imgSrc = project.imageUrl ? `${project.imageUrl}?w=1000&auto=format` : '';
+    
+    let mediaHTML = '';
+    if (project.videoUrl) {
+      mediaHTML = `<video src="${project.videoUrl}" autoplay muted loop playsinline style="opacity: 0; transform: scale(1.2); width: 100%; height: 100%; object-fit: cover;"></video>`;
+    } else if (imgSrc) {
+      mediaHTML = `<img src="${imgSrc}" alt="${project.title}" style="opacity: 0; transform: scale(1.2);">`;
+    } else {
+      mediaHTML = `<div style="width: 100%; height: 100%; background: #333; opacity: 0; transform: scale(1.2);"></div>`;
+    }
 
     card.innerHTML = `
       <div class="project-img-wrapper" style="opacity: 0; transform: scale(1.1);">
-        <img src="${imgSrc}" alt="${project.title}" style="opacity: 0; transform: scale(1.2);">
+        ${mediaHTML}
       </div>
       <div class="project-info">
         <h3>${project.title}</h3>
-        <span class="project-category">${project.category.replace('-', ' ')}</span>
+        <span class="project-category">${project.category ? project.category.replace('-', ' ') : ''}</span>
       </div>
     `;
     container.appendChild(card);
@@ -107,10 +119,10 @@ async function renderHomeProjects() {
     // Apply GSAP animations if available
     if (window.gsap && window.ScrollTrigger) {
       const imgWrapper = card.querySelector('.project-img-wrapper');
-      const img = card.querySelector('img');
+      const media = card.querySelector('video') || card.querySelector('img') || card.querySelector('div');
       
-      // Image fade-in and scale down (fixing the flash/pop-in)
-      gsap.fromTo([imgWrapper, img],
+      // Media fade-in and scale down (fixing the flash/pop-in)
+      gsap.fromTo([imgWrapper, media],
         { scale: 1.2, opacity: 0 },
         { 
           scale: 1, opacity: 1, duration: 1.2, ease: "power2.out",
