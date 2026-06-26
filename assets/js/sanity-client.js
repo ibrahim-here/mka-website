@@ -97,9 +97,7 @@ async function renderHomeProjects() {
     const imgSrc = project.imageUrl ? `${project.imageUrl}?w=1000&auto=format` : '';
     
     let mediaHTML = '';
-    if (project.videoUrl) {
-      mediaHTML = `<video src="${project.videoUrl}" autoplay muted loop playsinline style="opacity: 0; transform: scale(1.2); width: 100%; height: 100%; object-fit: cover;"></video>`;
-    } else if (imgSrc) {
+    if (imgSrc) {
       mediaHTML = `<img src="${imgSrc}" alt="${project.title}" style="opacity: 0; transform: scale(1.2);">`;
     } else {
       mediaHTML = `<div style="width: 100%; height: 100%; background: #333; opacity: 0; transform: scale(1.2);"></div>`;
@@ -119,7 +117,7 @@ async function renderHomeProjects() {
     // Apply GSAP animations if available
     if (window.gsap && window.ScrollTrigger) {
       const imgWrapper = card.querySelector('.project-img-wrapper');
-      const media = card.querySelector('video') || card.querySelector('img') || card.querySelector('div');
+      const media = card.querySelector('img') || card.querySelector('div');
       
       // Media fade-in and scale down (fixing the flash/pop-in)
       gsap.fromTo([imgWrapper, media],
