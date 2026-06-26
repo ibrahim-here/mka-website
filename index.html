@@ -926,50 +926,7 @@
         );
       });
 
-      // Selected Projects Alternating Scroll - Moving away from center
-      const leftProjects = document.querySelectorAll('.project-left');
-      leftProjects.forEach(proj => {
-        if (window.innerWidth <= 600) {
-          gsap.fromTo(proj, 
-            { x: -50, opacity: 0 },
-            { 
-              x: 0, opacity: 1, duration: 1, ease: "power2.out",
-              scrollTrigger: { trigger: proj, start: "top 85%" }
-            }
-          );
-        } else {
-          let startX = window.innerWidth > 900 ? window.innerWidth * 0.15 : window.innerWidth * 0.05;
-          gsap.fromTo(proj, 
-            { x: startX },
-            { 
-              x: 0, ease: "none",
-              scrollTrigger: { trigger: proj, start: "top bottom", end: "top 55%", scrub: 1 }
-            }
-          );
-        }
-      });
-
-      const rightProjects = document.querySelectorAll('.project-right');
-      rightProjects.forEach(proj => {
-        if (window.innerWidth <= 600) {
-          gsap.fromTo(proj, 
-            { x: 50, opacity: 0 },
-            { 
-              x: 0, opacity: 1, duration: 1, ease: "power2.out",
-              scrollTrigger: { trigger: proj, start: "top 85%" }
-            }
-          );
-        } else {
-          let startX = window.innerWidth > 900 ? window.innerWidth * -0.15 : window.innerWidth * -0.05;
-          gsap.fromTo(proj, 
-            { x: startX },
-            { 
-              x: 0, ease: "none",
-              scrollTrigger: { trigger: proj, start: "top bottom", end: "top 55%", scrub: 1 }
-            }
-          );
-        }
-      });
+      // Selected Projects logic moved to sanity-client.js after elements are injected
 
       // Stats Count Up
       const statNumbers = document.querySelectorAll('.gsap-count');

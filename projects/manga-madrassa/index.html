@@ -288,17 +288,17 @@
     <section class="project-hero">
       <img src="/assets/images/projects/3003-manga-madrassa/3003Modl3 (17).jpg" alt="Manga Madrassa" class="gsap-hero-img">
       <div class="hero-content container">
-        <h1 class="hero-project-title gsap-reveal">Manga Madrassa</h1>
+        <h1 class="hero-project-title ">Manga Madrassa</h1>
       </div>
     </section>
 
     <!-- Project Identity -->
     <section class="container project-identity">
-      <div class="identity-left gsap-reveal">
+      <div class="identity-left ">
         <p class="project-desc">An educational campus designed around a traditional courtyard layout, built to provide a serene and focused environment for learning in Raiwind. Built using durable fair-faced brickwork and reinforced concrete, the structure incorporates shaded arched verandas that act as outdoor corridors and thermal buffer zones. Classroom layouts are optimized for natural cross-ventilation and daylighting, aligning educational needs with regional climate-responsive design principles.</p>
       </div>
       
-      <div class="identity-right gsap-reveal" style="animation-delay: 0.2s;">
+      <div class="identity-right " style="animation-delay: 0.2s;">
         <div class="meta-badge"><span class="badge">★ Educational Design</span></div>
         
         <div class="meta-table">
@@ -327,7 +327,7 @@
     </section>
 
     <!-- Project Gallery -->
-    <section class="container gsap-reveal">
+    <section class="container ">
       <div class="project-gallery">
         <img src="/assets/images/projects/3003-manga-madrassa/3003Modl3 (17).jpg" loading="lazy" alt="Gallery Image 1">
       </div>
@@ -351,7 +351,7 @@
   <!-- Section: Premium CTA -->
   <section class="premium-cta">
     <div class="premium-cta-overlay"></div>
-    <div class="container gsap-reveal">
+    <div class="container ">
       <span class="label">• CONTACT US</span>
       <h2>Let's Build<br>Together</h2>
       <a href="/contact/index.html" class="btn-cta">Send us an Enquiry</a>
@@ -404,7 +404,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       gsap.registerPlugin(ScrollTrigger);
 
-      const reveals = document.querySelectorAll('.gsap-reveal');
+      const reveals = document.querySelectorAll('.');
       reveals.forEach(reveal => {
         gsap.fromTo(reveal, 
           { y: 40, opacity: 0 },

@@ -94,8 +94,8 @@ async function renderHomeProjects() {
     const imgSrc = project.imageUrl ? `${project.imageUrl}?w=1000&auto=format` : '';
 
     card.innerHTML = `
-      <div class="project-img-wrapper">
-        <img src="${imgSrc}" alt="${project.title}">
+      <div class="project-img-wrapper" style="opacity: 0; transform: scale(1.1);">
+        <img src="${imgSrc}" alt="${project.title}" style="opacity: 0; transform: scale(1.2);">
       </div>
       <div class="project-info">
         <h3>${project.title}</h3>
@@ -103,15 +103,56 @@ async function renderHomeProjects() {
       </div>
     `;
     container.appendChild(card);
+    
+    // Apply GSAP animations if available
+    if (window.gsap && window.ScrollTrigger) {
+      const imgWrapper = card.querySelector('.project-img-wrapper');
+      const img = card.querySelector('img');
+      
+      // Image fade-in and scale down (fixing the flash/pop-in)
+      gsap.fromTo([imgWrapper, img],
+        { scale: 1.2, opacity: 0 },
+        { 
+          scale: 1, opacity: 1, duration: 1.2, ease: "power2.out",
+          scrollTrigger: {
+            trigger: card,
+            start: "top 85%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+
+      // Alternating scroll effect
+      if (window.innerWidth <= 600) {
+        gsap.fromTo(card, 
+          { x: isLeft ? -50 : 50, opacity: 0 },
+          { 
+            x: 0, opacity: 1, duration: 1, ease: "power2.out",
+            scrollTrigger: { trigger: card, start: "top 85%" }
+          }
+        );
+      } else {
+        let startX = window.innerWidth > 900 ? window.innerWidth * 0.15 : window.innerWidth * 0.05;
+        if (!isLeft) startX = -startX;
+        gsap.fromTo(card, 
+          { x: startX },
+          { 
+            x: 0, ease: "none",
+            scrollTrigger: { trigger: card, start: "top bottom", end: "top 55%", scrub: 1 }
+          }
+        );
+      }
+    }
   });
 
   if (ctaBtn) {
     container.appendChild(ctaBtn);
   }
 
-  // Re-initialize GSAP animations for the new dynamic elements
+  // Refresh ScrollTrigger so it knows about the new DOM elements
   if (window.gsap && window.ScrollTrigger) {
-    ScrollTrigger.refresh();
+    // A slight delay ensures images have started loading and the DOM layout is stable
+    setTimeout(() => ScrollTrigger.refresh(), 100);
   }
 }
 

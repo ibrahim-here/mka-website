@@ -288,17 +288,17 @@
     <section class="project-hero">
       <img src="/assets/images/projects/3006-shahbaz-manzil/3006mdl4 (37).jpg" alt="Shahbaz Manzil" class="gsap-hero-img">
       <div class="hero-content container">
-        <h1 class="hero-project-title gsap-reveal">Shahbaz Manzil</h1>
+        <h1 class="hero-project-title ">Shahbaz Manzil</h1>
       </div>
     </section>
 
     <!-- Project Identity -->
     <section class="container project-identity">
-      <div class="identity-left gsap-reveal">
+      <div class="identity-left ">
         <p class="project-desc">A private residence in Lahore designed to accommodate a large family while balancing communal gatherings with individual privacy. The design features a grand double-height entrance, cantilevered terraces, and a sophisticated interplay of plaster and brick surfaces. Internally, the house is organized around a central stairwell that functions as a light well, distributing natural light to all levels while maintaining private wings for different family members.</p>
       </div>
       
-      <div class="identity-right gsap-reveal" style="animation-delay: 0.2s;">
+      <div class="identity-right " style="animation-delay: 0.2s;">
         <div class="meta-badge"><span class="badge">★ Modern Living</span></div>
         
         <div class="meta-table">
@@ -327,7 +327,7 @@
     </section>
 
     <!-- Project Gallery -->
-    <section class="container gsap-reveal">
+    <section class="container ">
       <div class="project-gallery">
         <img src="/assets/images/projects/3006-shahbaz-manzil/3006mdl4 (37).jpg" loading="lazy" alt="Gallery Image 1">
         <img src="/assets/images/projects/3006-shahbaz-manzil/3006mdl4 (38).jpg" loading="lazy" alt="Gallery Image 2">
@@ -352,7 +352,7 @@
   <!-- Section: Premium CTA -->
   <section class="premium-cta">
     <div class="premium-cta-overlay"></div>
-    <div class="container gsap-reveal">
+    <div class="container ">
       <span class="label">• CONTACT US</span>
       <h2>Let's Build<br>Together</h2>
       <a href="/contact/index.html" class="btn-cta">Send us an Enquiry</a>
@@ -405,7 +405,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       gsap.registerPlugin(ScrollTrigger);
 
-      const reveals = document.querySelectorAll('.gsap-reveal');
+      const reveals = document.querySelectorAll('.');
       reveals.forEach(reveal => {
         gsap.fromTo(reveal, 
           { y: 40, opacity: 0 },

@@ -288,17 +288,17 @@
     <section class="project-hero">
       <img src="/assets/images/ricardo-gomez-angel-opFPVxMRpP8-unsplash.jpg" alt="Kallar Kahar Park" class="gsap-hero-img">
       <div class="hero-content container">
-        <h1 class="hero-project-title gsap-reveal">Kallar Kahar Park</h1>
+        <h1 class="hero-project-title ">Kallar Kahar Park</h1>
       </div>
     </section>
 
     <!-- Project Identity -->
     <section class="container project-identity">
-      <div class="identity-left gsap-reveal">
+      <div class="identity-left ">
         <p class="project-desc">A 1,500-acre soft and hard landscape project won through a national competition run by the National Highway Authority. The project integrates natural topography with advanced infrastructural planning to create a landmark recreational and transit hub.</p>
       </div>
       
-      <div class="identity-right gsap-reveal" style="animation-delay: 0.2s;">
+      <div class="identity-right " style="animation-delay: 0.2s;">
         <div class="meta-badge"><span class="badge">★ Competition Winner</span></div>
         
         <div class="meta-table">
@@ -327,7 +327,7 @@
     </section>
 
     <!-- Project Gallery -->
-    <section class="container gsap-reveal">
+    <section class="container ">
       <div class="project-gallery">
       </div>
     </section>
@@ -350,7 +350,7 @@
   <!-- Section: Premium CTA -->
   <section class="premium-cta">
     <div class="premium-cta-overlay"></div>
-    <div class="container gsap-reveal">
+    <div class="container ">
       <span class="label">• CONTACT US</span>
       <h2>Let's Build<br>Together</h2>
       <a href="/contact/index.html" class="btn-cta">Send us an Enquiry</a>
@@ -403,7 +403,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       gsap.registerPlugin(ScrollTrigger);
 
-      const reveals = document.querySelectorAll('.gsap-reveal');
+      const reveals = document.querySelectorAll('.');
       reveals.forEach(reveal => {
         gsap.fromTo(reveal, 
           { y: 40, opacity: 0 },
