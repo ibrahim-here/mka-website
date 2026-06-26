@@ -57,8 +57,9 @@ window.initGalleryTrack = function(images) {
       scrollLeft = track.scrollLeft;
     } else {
       // Let vertical scroll pass through to the page so user can reach the footer!
-      // But we can optionally still move the track slightly
-      track.scrollLeft += e.deltaY * 0.3;
+      // But also move the track horizontally a bit based on vertical scroll
+      // Always move images to the left (positive scrollLeft) regardless of scroll direction
+      track.scrollLeft += Math.abs(e.deltaY) * 0.3;
       scrollLeft = track.scrollLeft;
     }
   }, { passive: false });
