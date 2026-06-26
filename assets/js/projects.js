@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Initialize
   initFilters();
   
-  if (projects.length === 0) {
+  if (projects === null) {
     const gridContainer = document.getElementById('projects-grid');
     if (gridContainer) {
       gridContainer.innerHTML = `

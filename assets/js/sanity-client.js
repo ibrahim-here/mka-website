@@ -10,7 +10,7 @@ async function fetchSanityData(query) {
     return data.result;
   } catch (error) {
     console.error("Error fetching from Sanity:", error);
-    return [];
+    return null;
   }
 }
 
@@ -54,7 +54,7 @@ async function renderHomeProjects() {
   if (!container) return;
 
   const projects = await fetchFeaturedProjects();
-  if (!projects || projects.length === 0) {
+  if (projects === null) {
     const ctaBtn = container.querySelector('.text-center');
     container.innerHTML = `
       <div style="padding: 2rem; background: #ffebee; color: #c62828; border-radius: 8px; text-align: center; border: 1px solid #ef9a9a; margin-bottom: 2rem;">
@@ -66,6 +66,14 @@ async function renderHomeProjects() {
         </ul>
       </div>
     `;
+    if (ctaBtn) container.appendChild(ctaBtn);
+    return;
+  }
+
+  if (projects.length === 0) {
+    // Database is connected but empty
+    const ctaBtn = container.querySelector('.text-center');
+    container.innerHTML = '<p style="text-align: center; width: 100%; margin-bottom: 2rem;">No projects found in the database.</p>';
     if (ctaBtn) container.appendChild(ctaBtn);
     return;
   }
@@ -136,7 +144,7 @@ async function fetchAndInitGallery() {
 
   const wrapper = track.closest('.gallery-track-wrapper') || track.parentElement;
 
-  if (allImages.length === 0) {
+  if (projects === null) {
     if (wrapper) {
       wrapper.innerHTML = `
         <div class="container" style="padding: 2rem; background: #ffebee; color: #c62828; border-radius: 8px; text-align: center; border: 1px solid #ef9a9a; margin-top: 2rem; margin-bottom: 2rem;">
@@ -148,6 +156,13 @@ async function fetchAndInitGallery() {
           </ul>
         </div>
       `;
+    }
+    return;
+  }
+
+  if (allImages.length === 0) {
+    if (wrapper) {
+      wrapper.innerHTML = '<p style="text-align: center; width: 100%; margin: 2rem 0;">No gallery images found in the database.</p>';
     }
     return;
   }
