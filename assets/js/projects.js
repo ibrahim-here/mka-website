@@ -38,6 +38,21 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Initialize
   initFilters();
+  
+  if (projects.length === 0) {
+    const gridContainer = document.getElementById('projects-grid');
+    if (gridContainer) {
+      gridContainer.innerHTML = `
+        <div style="grid-column: 1 / -1; padding: 2rem; background: #ffebee; color: #c62828; border-radius: 8px; text-align: center; border: 1px solid #ef9a9a;">
+          <h3>⚠️ API Connection Failed</h3>
+          <p style="margin-top: 1rem;">The browser blocked the connection to the Sanity database. This almost always happens when you open the HTML file directly (so the URL starts with <strong>file:///</strong>).</p>
+          <p>Please open this project using a local web server (like VS Code's <strong>Live Server</strong> extension) so the URL starts with <strong>http://localhost</strong> or <strong>http://127.0.0.1</strong>.</p>
+        </div>
+      `;
+    }
+    return;
+  }
+  
   renderProjects();
 
   const loadMoreBtn = document.getElementById('load-more-btn');

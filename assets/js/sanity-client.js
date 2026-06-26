@@ -54,7 +54,18 @@ async function renderHomeProjects() {
   if (!container) return;
 
   const projects = await fetchFeaturedProjects();
-  if (!projects || projects.length === 0) return;
+  if (!projects || projects.length === 0) {
+    const ctaBtn = container.querySelector('.text-center');
+    container.innerHTML = `
+      <div style="padding: 2rem; background: #ffebee; color: #c62828; border-radius: 8px; text-align: center; border: 1px solid #ef9a9a; margin-bottom: 2rem;">
+        <h3>⚠️ API Connection Failed</h3>
+        <p style="margin-top: 1rem;">The browser blocked the connection to the Sanity database. This almost always happens when you open the HTML file directly (so the URL starts with <strong>file:///</strong>).</p>
+        <p>Please open this project using a local web server (like VS Code's <strong>Live Server</strong> extension) so the URL starts with <strong>http://localhost</strong> or <strong>http://127.0.0.1</strong>.</p>
+      </div>
+    `;
+    if (ctaBtn) container.appendChild(ctaBtn);
+    return;
+  }
 
   // Clear existing static projects except the "View All Projects" button
   const ctaBtn = container.querySelector('.text-center');
@@ -123,11 +134,14 @@ async function fetchAndInitGallery() {
   const wrapper = track.closest('.gallery-track-wrapper') || track.parentElement;
 
   if (allImages.length === 0) {
-    // Hide the entire gallery section if there are no images at all
     if (wrapper) {
-      wrapper.style.display = 'none';
-      const sectionLabel = wrapper.previousElementSibling;
-      if (sectionLabel) sectionLabel.style.display = 'none';
+      wrapper.innerHTML = `
+        <div class="container" style="padding: 2rem; background: #ffebee; color: #c62828; border-radius: 8px; text-align: center; border: 1px solid #ef9a9a; margin-top: 2rem; margin-bottom: 2rem;">
+          <h3>⚠️ API Connection Failed</h3>
+          <p style="margin-top: 1rem;">The browser blocked the connection to the Sanity database. This almost always happens when you open the HTML file directly (so the URL starts with <strong>file:///</strong>).</p>
+          <p>Please open this project using a local web server (like VS Code's <strong>Live Server</strong> extension) so the URL starts with <strong>http://localhost</strong> or <strong>http://127.0.0.1</strong>.</p>
+        </div>
+      `;
     }
     return;
   }
