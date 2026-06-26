@@ -3,7 +3,8 @@ const SANITY_DATASET = 'production';
 
 // Helper to fetch Sanity data
 async function fetchSanityData(query) {
-  const url = `https://${SANITY_PROJECT_ID}.api.sanity.io/v2023-05-03/data/query/${SANITY_DATASET}?query=${encodeURIComponent(query)}`;
+  // Use our Vercel Serverless Function Proxy to completely bypass browser CORS blocks
+  const url = `/api/sanity-proxy?projectId=${SANITY_PROJECT_ID}&dataset=${SANITY_DATASET}&query=${encodeURIComponent(query)}`;
   try {
     const response = await fetch(url);
     const data = await response.json();
