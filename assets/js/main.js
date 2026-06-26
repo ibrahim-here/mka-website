@@ -334,12 +334,12 @@ function initAccordionMarquees() {
     let isDragging = false;
     let startX, scrollLeftPos = 0;
     let velocity = 0, lastX;
-    const baseSpeed = 0.8;
+    const baseSpeed = 0.3; // Decreased from 0.8 to match visual pacing of MKA collection
     let targetSpeed = baseSpeed;
     let autoScrollSpeed = baseSpeed;
     let currentScroll = 0;
     
-    wrapper.addEventListener('mouseenter', () => targetSpeed = 0.3); // Slow down on hover
+    wrapper.addEventListener('mouseenter', () => targetSpeed = 0.1); // Slower on hover
     wrapper.addEventListener('mouseleave', () => {
       if (!isDragging) targetSpeed = baseSpeed;
     });
