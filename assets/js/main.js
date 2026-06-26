@@ -78,7 +78,8 @@ function initMobileNav() {
   if (mobileOverlay) {
     mobileOverlay.addEventListener('click', (e) => {
       // If the user didn't click on a link, close it.
-      if (!e.target.closest('a')) {
+      // Ignore clicks on the close button because it already has an onclick handler.
+      if (!e.target.closest('a') && !e.target.closest('.mobile-close-btn')) {
         window.toggleMobileMenu();
       }
     });
