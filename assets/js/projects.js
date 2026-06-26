@@ -45,8 +45,11 @@ document.addEventListener('DOMContentLoaded', async () => {
       gridContainer.innerHTML = `
         <div style="grid-column: 1 / -1; padding: 2rem; background: #ffebee; color: #c62828; border-radius: 8px; text-align: center; border: 1px solid #ef9a9a;">
           <h3>⚠️ API Connection Failed</h3>
-          <p style="margin-top: 1rem;">The browser blocked the connection to the Sanity database. This almost always happens when you open the HTML file directly (so the URL starts with <strong>file:///</strong>).</p>
-          <p>Please open this project using a local web server (like VS Code's <strong>Live Server</strong> extension) so the URL starts with <strong>http://localhost</strong> or <strong>http://127.0.0.1</strong>.</p>
+          <p style="margin-top: 1rem;">The browser blocked the connection to the Sanity database due to CORS security settings.</p>
+          <ul style="text-align: left; max-width: 600px; margin: 1rem auto; display: inline-block;">
+            <li><strong>If testing locally:</strong> You opened the file directly (URL starts with <code>file:///</code>). Please use a local web server (like VS Code's Live Server).</li>
+            <li><strong>If testing on Vercel/Netlify:</strong> You deployed the site to a new URL, but this URL is not authorized in Sanity. You must log in to <a href="https://manage.sanity.io" target="_blank" style="color: #c62828; text-decoration: underline;">manage.sanity.io</a>, go to the <strong>API</strong> tab, and add this exact URL to your <strong>CORS Origins</strong> list!</li>
+          </ul>
         </div>
       `;
     }
