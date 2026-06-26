@@ -1,5 +1,10 @@
 /* CSS Animations & Transitions not handled by GSAP */
 
+/* Prevent GSAP FOUC (Flash of Unstyled Content) */
+.gsap-reveal, .gsap-stagger-list > * {
+  opacity: 0;
+}
+
 /* Hero Scroll Bounce */
 @keyframes bounce-y {
   0%, 100% {

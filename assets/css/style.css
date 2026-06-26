@@ -473,7 +473,7 @@ nav.main-nav:not(.scrolled) .mobile-menu-toggle span {
   animation: scrollClients 30s linear infinite;
 }
 
-.clients-carousel-section:hover .clients-track {
+.clients-track:hover {
   animation-play-state: paused;
 }
 

@@ -38,7 +38,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Initialize
   initFilters();
-  updateTriggerText();
   renderProjects();
 
   const loadMoreBtn = document.getElementById('load-more-btn');
@@ -49,13 +48,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  function updateTriggerText() {
-    const triggerBtn = document.querySelector('.filter-trigger');
-    if (triggerBtn) {
-      const activeFilterObj = filters.find(f => f.id === currentFilter);
-      triggerBtn.textContent = currentFilter === 'all' ? 'FILTER BY CATEGORY ▼' : `${activeFilterObj.label.toUpperCase()} ▼`;
-    }
-  }
+
 
   function initFilters() {
     filterBar.innerHTML = '';
@@ -77,7 +70,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         currentFilter = filter.id;
         currentPage = 1; // Reset to first page
-        updateTriggerText();
         renderProjects();
       });
       

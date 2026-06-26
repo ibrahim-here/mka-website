@@ -333,7 +333,7 @@ function initAccordionMarquees() {
     let isDragging = false;
     let startX, scrollLeftPos = 0;
     let velocity = 0, lastX;
-    const baseSpeed = 1.2;
+    const baseSpeed = 0.8;
     let targetSpeed = baseSpeed;
     let autoScrollSpeed = baseSpeed;
     let currentScroll = 0;

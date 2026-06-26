@@ -68,10 +68,10 @@ window.initGalleryTrack = function(images) {
   // ─────────────────────────────────────────────────────────
   let isDragging = false;
   let startX;
+  let scrollLeftPos = 0;
   let scrollLeft = 0;
   let velocity = 0;
   let lastX;
-  let animFrame;
 
   let hasDragged = false;
 
@@ -79,10 +79,9 @@ window.initGalleryTrack = function(images) {
     isDragging = true;
     hasDragged = false;
     startX = e.pageX - track.offsetLeft;
-    scrollLeft = track.scrollLeft;
+    scrollLeftPos = track.scrollLeft;
     lastX = e.pageX;
     track.style.cursor = 'grabbing';
-    cancelAnimationFrame(animFrame);
   });
 
   track.addEventListener('pointermove', (e) => {
@@ -93,23 +92,17 @@ window.initGalleryTrack = function(images) {
     const walk = (x - startX) * 1.5;
     velocity = e.pageX - lastX;
     lastX = e.pageX;
-    track.scrollLeft = scrollLeft - walk;
+    track.scrollLeft = scrollLeftPos - walk;
+    scrollLeft = track.scrollLeft; // Synchronize global tracker
   });
 
   document.addEventListener('pointerup', () => {
     if (!isDragging) return;
     isDragging = false;
     wrapper.style.cursor = 'grab';
-    targetSpeed = baseSpeed; // Ensure it returns to normal speed when drag ends
-    
-    // Momentum / inertia on release
-    const decelerate = () => {
-      if (Math.abs(velocity) < 0.5) return;
-      track.scrollLeft -= velocity;
-      velocity *= 0.93; // friction coefficient
-      animFrame = requestAnimationFrame(decelerate);
-    };
-    decelerate();
+    if (typeof baseSpeed !== 'undefined') {
+      targetSpeed = baseSpeed; // Ensure it returns to normal speed when drag ends
+    }
   });
 
   // Prevent clicking on links if we were dragging
