@@ -121,9 +121,15 @@ window.initGalleryTrack = function(images) {
   // ─────────────────────────────────────────────────────────
   // 4. Smooth Animation Loop (with Auto-Scroll)
   // ─────────────────────────────────────────────────────────
-  const baseSpeed = 1.2; // 20% slower than 1.5
+  const baseSpeed = 0.4; // Decreased to match the slower speed of the 'What We Do' section
   let targetSpeed = baseSpeed;
   let autoScrollSpeed = baseSpeed;
+
+  const galleryWrapper = track.parentElement;
+  galleryWrapper.addEventListener('mouseenter', () => targetSpeed = 0.1); // Slow down on hover
+  galleryWrapper.addEventListener('mouseleave', () => {
+    if (!isDragging) targetSpeed = baseSpeed;
+  });
 
   function animate() {
     // Smoothly interpolate the auto scroll speed
