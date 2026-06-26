@@ -99,7 +99,7 @@ window.initGalleryTrack = function(images) {
   document.addEventListener('pointerup', () => {
     if (!isDragging) return;
     isDragging = false;
-    wrapper.style.cursor = 'grab';
+    track.parentElement.style.cursor = 'grab';
     if (typeof baseSpeed !== 'undefined') {
       targetSpeed = baseSpeed; // Ensure it returns to normal speed when drag ends
     }
