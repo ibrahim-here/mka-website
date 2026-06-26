@@ -296,14 +296,40 @@
           }
         }
 
-        // Add gallery images
-        if (project.galleryUrls && project.galleryUrls.length > 0) {
+        // Add gallery images and additional videos
+        const totalMedia = (project.galleryUrls ? project.galleryUrls.length : 0) + (project.additionalVideoUrls ? project.additionalVideoUrls.length : 0);
+        
+        if (totalMedia > 0) {
           const titleEl = document.createElement('div');
           titleEl.className = 'gallery-title';
-          titleEl.textContent = `Full Project Gallery (${project.galleryUrls.length} Images)`;
+          titleEl.textContent = `Full Project Gallery (${totalMedia} Items)`;
           galleryGrid.appendChild(titleEl);
 
-          project.galleryUrls.forEach(url => {
+          if (project.additionalVideoUrls) {
+            project.additionalVideoUrls.forEach((url, index) => {
+              const videoContainer = document.createElement('div');
+              videoContainer.className = 'gallery-item';
+              videoContainer.style.position = 'relative';
+              videoContainer.style.width = '100%';
+              videoContainer.style.aspectRatio = '16/9';
+              videoContainer.style.overflow = 'hidden';
+              videoContainer.style.backgroundColor = '#000';
+
+              const video = document.createElement('video');
+              video.src = url;
+              video.controls = true;
+              video.preload = 'metadata'; // Prevent downloading all huge videos at once
+              video.style.width = '100%';
+              video.style.height = '100%';
+              video.style.objectFit = 'contain';
+
+              videoContainer.appendChild(video);
+              galleryGrid.appendChild(videoContainer);
+            });
+          }
+
+          if (project.galleryUrls) {
+            project.galleryUrls.forEach(url => {
             const img = document.createElement('img');
             img.src = `${url}?w=800&auto=format`;
             img.className = 'gallery-item';

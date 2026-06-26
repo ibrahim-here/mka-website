@@ -47,6 +47,7 @@ async function fetchProjectBySlug(slug) {
     description,
     "mainImageUrl": mainImage.asset->url,
     "videoUrl": video.asset->url,
+    "additionalVideoUrls": additionalVideos[].asset->url,
     "galleryUrls": gallery[].asset->url
   }`;
   return await fetchSanityData(query);
