@@ -329,7 +329,19 @@
     <!-- Project Gallery (Walkthrough Video) -->
     <section class="container " style="margin-bottom: var(--space-xxl);">
       <div style="position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; border-radius: 8px; box-shadow: 0 20px 40px rgba(0,0,0,0.15); background-color: #000;">
-        <video src="/assets/images/projects/velodrome-peshawar/walkthrough.mp4" controls poster="/assets/images/projects/velodrome-peshawar/thumbnail.png" style="width: 100%; height: 100%; object-fit: contain;"></video>
+        <video id="velodrome-video" src="../assets/images/projects/velodrome-peshawar/walkthrough.mp4" controls poster="../assets/images/projects/velodrome-peshawar/thumbnail.png" style="width: 100%; height: 100%; object-fit: contain; cursor: pointer;"></video>
+        <script>
+          const vVideo = document.getElementById('velodrome-video');
+          if(vVideo) {
+            vVideo.addEventListener('click', function() {
+              if (vVideo.paused) {
+                vVideo.play();
+              } else {
+                vVideo.pause();
+              }
+            });
+          }
+        </script>
       </div>
     </section>
 
