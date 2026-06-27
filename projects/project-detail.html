@@ -258,16 +258,26 @@
           video.style.width = '100%';
           video.style.height = '100%';
           video.style.objectFit = 'contain';
-          video.style.cursor = 'pointer';
-          video.addEventListener('click', function(e) {
+          videoContainer.appendChild(video);
+
+          // Invisible overlay to capture clicks and fix browser native control interception
+          const clickOverlay = document.createElement('div');
+          clickOverlay.style.position = 'absolute';
+          clickOverlay.style.top = '0';
+          clickOverlay.style.left = '0';
+          clickOverlay.style.right = '0';
+          clickOverlay.style.bottom = '55px'; // Leave room for native controls at the bottom
+          clickOverlay.style.zIndex = '10';
+          clickOverlay.style.cursor = 'pointer';
+          clickOverlay.addEventListener('click', function(e) {
+            e.preventDefault();
             if (video.paused) {
               video.play();
             } else {
               video.pause();
             }
           });
-
-          videoContainer.appendChild(video);
+          videoContainer.appendChild(clickOverlay);
           galleryGrid.appendChild(videoContainer);
         } else if (slug === 'velodrome-peshawar') {
           // Keep fallback for static hardcoded local video if sanity isn't loaded
@@ -291,16 +301,26 @@
           video.style.width = '100%';
           video.style.height = '100%';
           video.style.objectFit = 'contain';
-          video.style.cursor = 'pointer';
-          video.addEventListener('click', function(e) {
+          videoContainer.appendChild(video);
+
+          // Invisible overlay to capture clicks and fix browser native control interception
+          const clickOverlay = document.createElement('div');
+          clickOverlay.style.position = 'absolute';
+          clickOverlay.style.top = '0';
+          clickOverlay.style.left = '0';
+          clickOverlay.style.right = '0';
+          clickOverlay.style.bottom = '55px'; // Leave room for native controls at the bottom
+          clickOverlay.style.zIndex = '10';
+          clickOverlay.style.cursor = 'pointer';
+          clickOverlay.addEventListener('click', function(e) {
+            e.preventDefault();
             if (video.paused) {
               video.play();
             } else {
               video.pause();
             }
           });
-
-          videoContainer.appendChild(video);
+          videoContainer.appendChild(clickOverlay);
           galleryGrid.appendChild(videoContainer);
         } else {
           if (project.mainImageUrl) {
@@ -338,16 +358,26 @@
               video.style.width = '100%';
               video.style.height = '100%';
               video.style.objectFit = 'contain';
-              video.style.cursor = 'pointer';
-              video.addEventListener('click', function(e) {
+              videoContainer.appendChild(video);
+
+              // Invisible overlay to capture clicks and fix browser native control interception
+              const clickOverlay = document.createElement('div');
+              clickOverlay.style.position = 'absolute';
+              clickOverlay.style.top = '0';
+              clickOverlay.style.left = '0';
+              clickOverlay.style.right = '0';
+              clickOverlay.style.bottom = '55px'; // Leave room for native controls at the bottom
+              clickOverlay.style.zIndex = '10';
+              clickOverlay.style.cursor = 'pointer';
+              clickOverlay.addEventListener('click', function(e) {
+                e.preventDefault();
                 if (video.paused) {
                   video.play();
                 } else {
                   video.pause();
                 }
               });
-
-              videoContainer.appendChild(video);
+              videoContainer.appendChild(clickOverlay);
               galleryGrid.appendChild(videoContainer);
             });
           }
