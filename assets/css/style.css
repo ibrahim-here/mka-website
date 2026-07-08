@@ -265,7 +265,7 @@ nav.main-nav.scrolled {
 
 .nav-logo img {
   /* Offset the blank space caused by rotation to perfectly align left */
-  margin-left: calc((100px - 100%) / 2);
+  margin-left: calc((55px - 100%) / 2);
 }
 
 /* Logo inversion for dark background */
