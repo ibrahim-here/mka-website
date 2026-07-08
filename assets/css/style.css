@@ -1423,6 +1423,15 @@ footer.premium-footer .footer-big-text {
     padding-top: var(--space-xl) !important;
     padding-bottom: var(--space-xl) !important;
   }
+  
+  /* User requested logo carousel resize for mobile to fit 3 in 1 frame */
+  .clients-track {
+    gap: 40px !important;
+    animation: scrollClientsMobile 40s linear infinite !important;
+  }
+  .clients-track img {
+    height: 45px !important;
+  }
   .about-hero-grid, .section-label-row {
     display: flex !important;
     flex-direction: column !important;
@@ -1490,6 +1499,11 @@ footer.premium-footer .footer-big-text {
   .process-note {
     margin-bottom: 40px !important;
   }
+}
+
+@keyframes scrollClientsMobile {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-50% - 20px)); }
 }
 
 @media (max-width: 600px) {
