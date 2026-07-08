@@ -363,12 +363,14 @@ function initAccordionMarquees() {
       currentScroll = wrapper.scrollLeft;
     });
 
-    document.addEventListener('pointerup', () => {
+    const endDrag = () => {
       if (!isDragging) return;
       isDragging = false;
       wrapper.style.cursor = 'grab';
       targetSpeed = baseSpeed; // Ensure it returns to normal speed when drag ends
-    });
+    };
+    document.addEventListener('pointerup', endDrag);
+    document.addEventListener('pointercancel', endDrag);
     
     wrapper.addEventListener('dragstart', e => e.preventDefault());
 

@@ -97,14 +97,16 @@ window.initGalleryTrack = function(images) {
     scrollLeft = track.scrollLeft; // Synchronize global tracker
   });
 
-  document.addEventListener('pointerup', () => {
+  const endDrag = () => {
     if (!isDragging) return;
     isDragging = false;
     track.parentElement.style.cursor = 'grab';
     if (typeof baseSpeed !== 'undefined') {
       targetSpeed = baseSpeed; // Ensure it returns to normal speed when drag ends
     }
-  });
+  };
+  document.addEventListener('pointerup', endDrag);
+  document.addEventListener('pointercancel', endDrag);
 
   // Prevent clicking on links if we were dragging
   track.addEventListener('click', (e) => {
