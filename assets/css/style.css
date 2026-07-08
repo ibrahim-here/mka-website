@@ -47,7 +47,7 @@
   --color-text-primary: #1A1A18;
   --color-text-secondary: #6B6B64;
   --color-text-muted: #A8A89E;
-  --color-border: #E0DDD7;
+  --color-border: #C5C2BC;
   --color-accent: #C8A96E;
   --color-white: #FFFFFF;
   --color-black: #0F0F0D;
@@ -249,7 +249,7 @@ nav.main-nav.scrolled {
 
 @media (max-width: 900px) {
   .nav-container {
-    padding: 0 25px !important;
+    padding: 0 40px !important;
   }
 }
 
@@ -327,7 +327,7 @@ nav.main-nav.hero-inverted .nav-logo img {
 }
 .nav-links .dropdown-menu a {
   padding: 12px 20px;
-  text-align: center;
+  text-align: left;
   font-size: 12px;
   background-color: #ffffff;
   color: #000000 !important;
@@ -485,8 +485,8 @@ nav.main-nav:not(.scrolled) .mobile-menu-toggle span {
   background: var(--color-bg);
   padding: 60px 0;
   border-top: 1px solid var(--color-border);
-  border-bottom: 1px solid var(--color-border);
-  margin-bottom: 210px;
+  border-bottom: none;
+  margin-bottom: 105px;
 }
 
 .clients-track {
@@ -494,7 +494,7 @@ nav.main-nav:not(.scrolled) .mobile-menu-toggle span {
   align-items: center;
   gap: 80px;
   width: max-content;
-  animation: scrollClients 30s linear infinite;
+  animation: scrollClients 60s linear infinite;
 }
 
 .clients-track:hover {
@@ -655,7 +655,7 @@ footer {
 /* Accordion Section ("What We Do") */
 .what-we-do-section {
   padding-top: var(--space-section);
-  padding-bottom: var(--space-section);
+  padding-bottom: calc(var(--space-section) / 2);
   background-color: var(--color-bg);
 }
 
@@ -797,7 +797,7 @@ footer {
 /* Gallery Carousel Section */
 .gallery-carousel-section {
   padding-top: 100px;
-  padding-bottom: 120px;
+  padding-bottom: 60px;
   background-color: var(--color-bg);
   text-align: center;
 }
