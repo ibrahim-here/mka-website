@@ -1330,9 +1330,9 @@ footer.premium-footer .footer-big-text {
 .gallery-item video {
   height: 100%;
   width: auto;               
-  max-width: none;
+  max-width: calc(100vw - 80px);
   display: block;
-  object-fit: unset;         
+  object-fit: contain;         
   pointer-events: none;
 }
 
@@ -1343,6 +1343,7 @@ footer.premium-footer .footer-big-text {
 @media (max-width: 600px) {
   .gallery-track { padding: 0 20px; }
   .gallery-track-wrapper { height: 280px; }
+  .gallery-item img, .gallery-item video { max-width: calc(100vw - 40px); }
 }
 
 .selected-projects-section {
