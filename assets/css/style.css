@@ -497,7 +497,12 @@ nav.main-nav:not(.scrolled) .mobile-menu-toggle span {
   animation: scrollClients 60s linear infinite;
 }
 
-.clients-track:hover {
+@media (hover: hover) {
+  .clients-track:hover {
+    animation-play-state: paused;
+  }
+}
+.clients-track:active {
   animation-play-state: paused;
 }
 
@@ -1340,6 +1345,20 @@ footer.premium-footer .footer-big-text {
   .gallery-track-wrapper { height: 280px; }
 }
 
+.selected-projects-section {
+  padding-top: calc(var(--space-section) / 2) !important;
+}
+
+.projects-section-header, .projects-header, .filter-bar-container {
+  text-align: center !important;
+  width: 100% !important;
+  padding-right: 0 !important;
+}
+.projects-section-header .label {
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
 
 /* ── GLOBAL RESPONSIVENESS ────────────────────────────────── */
 @media (max-width: 900px) {
@@ -1372,18 +1391,6 @@ footer.premium-footer .footer-big-text {
   
   /* --- User Requested Mobile Alignments & Heights --- */
   
-  /* 1. Projects Section Main Heading & Eyebrow Centered */
-  .projects-section-header, .projects-header, .filter-bar-container {
-    text-align: center !important;
-    width: 100% !important;
-    padding-right: 0 !important;
-  }
-  .projects-section-header .label {
-    display: block !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
-
   /* 2. CTA Section 50vh Height & Smaller Button */
   .premium-cta {
     height: 50vh !important;
