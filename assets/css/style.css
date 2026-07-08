@@ -1472,10 +1472,15 @@ footer.premium-footer .footer-big-text {
     position: absolute;
     right: 20px;
   }
-  .accordion-btn, .service-enquiry-link {
+  .accordion-btn {
     margin-left: auto !important;
     margin-right: auto !important;
     display: inline-block !important;
+  }
+  .service-enquiry-link {
+    margin-left: 0 !important;
+    margin-right: auto !important;
+    display: inline-flex !important;
   }
   .what-we-do, .how-we-work-section {
     padding-top: var(--space-xl) !important;
