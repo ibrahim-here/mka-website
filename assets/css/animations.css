@@ -1,9 +1,8 @@
 /* CSS Animations & Transitions not handled by GSAP */
 
-/* Prevent GSAP FOUC (Flash of Unstyled Content) */
-.gsap-reveal, .gsap-stagger-list > * {
-  opacity: 0;
-}
+/* Prevent GSAP FOUC (Flash of Unstyled Content) 
+   Removed to fix blank sections on slow loads - GSAP fromTo handles it.
+*/
 
 /* Hero Scroll Bounce */
 @keyframes bounce-y {
