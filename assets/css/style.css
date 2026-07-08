@@ -264,8 +264,8 @@ nav.main-nav.scrolled {
 }
 
 .nav-logo img {
-  /* Offset the blank space caused by rotation to perfectly align left */
-  margin-left: calc((55px - 100%) / 2);
+  /* Offset the blank space caused by rotation, and shift 20px further left to halve the padding */
+  margin-left: calc(((55px - 100%) / 2) - 20px);
 }
 
 /* Logo inversion for dark background */
